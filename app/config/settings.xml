@@ -15,15 +15,15 @@
 
     <ae:configuration>
         <settings>
-            <setting name="app_name">{{ project_prefix }}</setting>
+            <setting name="app_name">honeybee-agavi-cmf-project</setting>
             <setting name="debug">false</setting>
             <!--
                 Don't change this setting!
                 @todo Move to etc/local or equally safe location and prompt with environaut.
             -->
-            <setting name="project_prefix">{{ project_prefix }}</setting>
-            <setting name="app_prefix">{{ project_prefix }}</setting>
-            <setting name="db_prefix">{{ project_prefix }}</setting>
+            <setting name="project_prefix">honeybee-agavi-cmf-project</setting>
+            <setting name="app_prefix">honeybee-agavi-cmf-project</setting>
+            <setting name="db_prefix">honeybee-agavi-cmf-project</setting>
             <!--
                 Please determine the primary contact for this project
                 and add in the information below.
