@@ -12,7 +12,7 @@ find . -type f -exec sed -i '' s/honeybee\/honeybee-agavi-cmf-project/your-vendo
 find . -type f -exec sed -i '' s/honeybee-agavi-cmf-project/your-project/g {} +
 ```
 
-From here on the following README leads through setting up a dev environment based ony vagrant and puppet.  
+From here on the following README leads through setting up a dev environment based on vagrant and puppet.  
 
 ### Development setup
 
