@@ -1,0 +1,5 @@
+        auth_basic "<%= @text %>";
+        auth_basic_user_file <%= @user_file %>;
+<% if defined? @content -%>
+<%= @content %>
+<% end -%>

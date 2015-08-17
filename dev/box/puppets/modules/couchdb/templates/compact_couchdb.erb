@@ -1,0 +1,79 @@
+#!/usr/bin/env ruby
+
+# CouchDB compaction script - fetches the list of all databases from
+# a running couchdb instance and issues the compaction command for each
+# one of them, and for each design view into them.
+
+# Read more about compaction here:
+#   http://wiki.apache.org/couchdb/Compaction
+
+#  - m.barnaba@ifad.org  Wed Nov 30 18:19:27 CET 2011
+
+require 'net/http'
+
+require 'rubygems'
+require 'json'
+
+$HOST = 'localhost'
+$PORT = 5984
+$USER = 'username'
+$PASS = 'password'
+
+# Creates an HTTP request with the given method and for the given
+# URL. Sets the Content-Type header to application/json and the
+# HTTP basic auth credentials specified above.
+#
+def r(method, url)
+  klass = Net::HTTP.const_get(method.to_s.capitalize)
+  klass.new(url, 'Content-Type' => 'application/json').tap do |req|
+    #we dont need http auth for now...so dont use it
+    #req.basic_auth $USER, $PASS
+  end
+end
+
+def get(url)
+  JSON.parse($http.request(r(:get, url)).body)
+end
+
+def post(url)
+  JSON.parse($http.request(r(:post, url)).body)['ok']
+end
+
+def size(db)
+  "%.2f MB" % (get("/#{db}")['disk_size'].to_i / 1024.0 / 1024.0)
+end
+
+# Connects to the database server
+$http = Net::HTTP.new($HOST, $PORT)
+
+# Gets the list of all databases
+databases = get('/_all_dbs').reject {|d| d =~ /^_/}
+
+# For each database
+databases.each do |database|
+
+  # Get list of database views
+  puts "Processing #{database} - #{size(database)}"
+
+  url   = "/#{database}/_all_docs?startkey=\"_design\"&endkey=\"_design0\""
+  views = get(url)['rows'].map {|r| r['id'].sub('_design/', '')}
+
+  # For each view
+  views.each do |view|
+    # Issue the compaction request
+    post("/#{database}/_compact/#{view}")
+  end
+
+  # Issue the compaction request
+  post("/#{database}/_compact")
+end
+
+puts
+puts "Waiting for compaction to finish..."
+puts
+
+sleep 1 while get('/_active_tasks').size > 0
+ 
+databases.each do |database|
+  puts "Processed #{database} - #{size(database)}"
+end

@@ -1,0 +1,40 @@
+#!/bin/bash
+
+cd `dirname $0`/../tests
+
+if [ ! -d /tmp/pp-nginx-results/ ]
+then
+  mkdir /tmp/pp-nginx-results/
+fi
+
+FAILED_TESTS=0
+TOTAL_TESTS=0
+SUCCESSFUL_TESTS=0
+while read line
+do
+  WITHOUT_EXTENSION=`echo $line | rev | cut -f 2- -d '.' | rev`
+  if [ -f "/tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf" ]
+  then
+    rm /tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf
+  fi
+  puppet apply --modulepath=`pwd`/modules "$line"
+  diff ${WITHOUT_EXTENSION}.txt /tmp/pp-nginx-results/${WITHOUT_EXTENSION}.conf
+  if [ "$?" == 0 ]
+  then
+    let "SUCCESSFUL_TESTS += 1"
+  else
+    let "FAILED_TESTS += 1"
+  fi
+  let "TOTAL_TESTS += 1"
+done<<EOF
+`ls | grep ".pp$"`
+EOF
+
+echo "Successful tests: $SUCCESSFUL_TESTS / $TOTAL_TESTS"
+
+if [ "$FAILED_TESTS" != "0" ]
+then
+ exit 1
+fi
+
+exit 0

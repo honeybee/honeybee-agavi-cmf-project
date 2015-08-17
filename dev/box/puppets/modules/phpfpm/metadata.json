@@ -1,0 +1,33 @@
+{
+  "name": "Slashbunny-phpfpm",
+  "version": "0.0.4",
+  "source": "UNKNOWN",
+  "author": "Slashbunny",
+  "license": "GPLv3",
+  "summary": "Manages php-fpm daemon and pool configuration",
+  "description": "Manages php-fpm daemon and pool configuration",
+  "project_page": "https://github.com/Slashbunny/puppet-phpfpm",
+  "dependencies": [
+
+  ],
+  "types": [
+
+  ],
+  "checksums": {
+    "Gemfile": "595859575c2cbfa7836212a7cc426de6",
+    "Gemfile.lock": "2ff62c2a5ea889f8966366f47cca8193",
+    "LICENSE": "3f53caacc709027c797540bb2023ceae",
+    "Modulefile": "c64ee3d37005b1d1e2761664c0afc218",
+    "README.md": "e6dea122ac2aaa359c4b83486c91b45c",
+    "Rakefile": "aa770d3059dc1bb2e47ea2447de3a539",
+    "manifests/init.pp": "eb62b92a385c9ca770164c52f879fde6",
+    "manifests/package.pp": "f3a503a279a1904c60bc137d2ca0ff21",
+    "manifests/params.pp": "f510ce3963173630bcfb93a5127ab8de",
+    "manifests/pool.pp": "3a72aed9bb1228ba9708f2661555ec9d",
+    "manifests/service.pp": "dd5c76ea811279b76abb3a372496d29d",
+    "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+    "templates/php-fpm.conf.erb": "2ee929949f1dddc0337d7113c0b47c3a",
+    "templates/pool.conf.erb": "0272855f2a729e6109b364b80a39430f",
+    "tests/init.pp": "286787a290ce85951d431dedc256876e"
+  }
+}

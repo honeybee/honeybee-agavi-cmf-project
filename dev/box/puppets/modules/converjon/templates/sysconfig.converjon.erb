@@ -1,0 +1,1 @@
+CONFIGS=<%scope['converjon::aliases'].each do |entry| %>--config <%=scope['::converjon::alias_basepath']%>/<%=entry['name']%>.yml <%end%>

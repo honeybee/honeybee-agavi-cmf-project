@@ -1,0 +1,18 @@
+{
+    "urlChecker": {
+        "urlWhitelist": {
+            "berlinonline.dev": "^.+:\/\/berlinonline\\.dev",
+            "familienportal.dev": "^.+:\/\/familienportal\\.dev",
+            "*.local": "^.+:\/\/.*\\.local",
+            "placehold.it": "^.+:\/\/placehold\\.it",
+            "lorempixel.com": "^.+:\/\/lorempixel\\.com",
+            "maps.google.com": "^.+:\/\/maps\\.google\\.com",
+            "iberlinonline.de": "^.+:\/\/.*\\.berlinonline\\.de"
+        },
+        "cache": {
+        }
+    },
+    "converter": {
+        "paddingColor": "#FFBBBB" //imagemagicks default shade of gray for borders
+    }
+}

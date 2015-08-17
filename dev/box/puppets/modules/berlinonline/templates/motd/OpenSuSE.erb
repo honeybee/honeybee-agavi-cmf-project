@@ -1,0 +1,26 @@
+ ---------------------------------------------------------------------
+<% if scope['berlinonline::bo_environment'] == "production" %>
+ WARNING THIS IS A PRODUCTION SYSTEM - DONT DO ANYTHING STUPID
+<% elsif scope['berlinonline::bo_environment'] == "staging"%>
+ THIS IS A STAGING SYSTEM - Watch your steps
+<%else%>
+ This seems to be a development system, have fun.
+<%end%>
+ 
+ Hostname : <%=scope['fqdn']%>
+
+ Webdir : <%=scope['berlinonline::webdirectory']%>
+
+ Control Service with systemd
+ systemctl (start|stop|restart|status|reload) $servicename$
+
+ Nginx : /etc/nginx/nginx.conf
+ vhosts: /etc/nginx/vhosts.d/
+
+ php5-fpm : /etc/php5/fpm/
+
+ Log locations : /var/log/nginx/
+ Log locations : /var/log/php/
+ Log locations : /var/log/php-fpm
+
+ ---------------------------------------------------------------------

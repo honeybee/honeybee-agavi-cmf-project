@@ -1,0 +1,29 @@
++-----------------------------------------------------------------------------------------------------------+
+ <% if scope.function_defined([scope.function_Class['berlinonline::cms_only']]) %>
+ Machine Name <%=scope['berlinonline::cms_name']%>, 
+ Paths:       /var/www/<%=scope['berlinonline::cms_name']%>/<%=scope['cms_dir']%>                               
+ <% elsif scope.function_defined([Class['berlinonline::app_only']])%>
+ Machine Name <%=scope['berlinonline::app_name']%>
+ Paths:       /var/www/<%=scope['berlinonline::app_name']%>/<%=scope['app_dir']%>
+ <% else%>                                                                                      
+ Machine Names <%=scope['berlinonline::cms_name']%>, <%=scope['berlinonline::app_name']%> 
+ Paths:       /var/www/<%=scope['berlinonline::cms_name']%>/<%=scope['cms_dir']%>
+ Paths:       /var/www/<%=scope['berlinonline::app_name']%>/<%=scope['app_dir']%>
+ <% end%>                             
+                                                                                                                   
+ Setup : <%=scope['berlinonline::setup']%>                                                                 
+ Control Service with Init script under /etc/init.d/$servicename$ (start|stop|restart|status)            
+ OR                                                                                                       
+ service $servicename$ (start|stop|restart|status)                                                       
+                                                                                                         
+ Nginx : /etc/nginx/nginx.conf - vhosts: /etc/nginx/conf.d/                                              
+ 
+ <% if !scope.function_defined([Class['berlinonline::app_only']]) %>       
+ elasticsearch : /etc/elasticsearch/                                                                     
+                                                                                                         
+ couchdb : /etc/couchdb/                                                                                                                                                                                                                     
+ kestrel : /etc/kestrel/production.scala                                                                 
+                                                                                                         
+ php5-fpm : /etc/php5//etc/php5/fpm/
+ <% end %>                                               
++-----------------------------------------------------------------------------------------------------------+

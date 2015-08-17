@@ -1,0 +1,58 @@
+{
+  "name": "ULHPC/sudo",
+  "version": "0.3.7",
+  "author": "S. Varrette, H. Cartiaux, V. Plugaru, S. Diehl aka. UL HPC Management Team",
+  "mail": "hpc-sysadmins@uni.lu",
+  "summary": "Configure and manage sudo and sudoers files",
+  "description": "Manage sudo configuration via Puppet",
+  "license": "GPL-3.0",
+  "source": "https://github.com/ULHPC/puppet-sudo",
+  "project_page": "https://github.com/ULHPC/puppet-sudo",
+  "issues_url": "https://github.com/ULHPC/puppet-sudo/issues",
+  "forge_url": "https://forge.puppetlabs.com/ULHPC/sudo",
+  "docs_project": "ulhpc-puppet-sudo",
+  "dependencies": [
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "6.0",
+        "7.0"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "6.0",
+        "7.0"
+      ]
+    }
+  ],
+  "tags": [
+    "sudo",
+    "sudoers",
+    "security"
+  ],
+  "classes": [
+    "sudo",
+    "sudo::common",
+    "sudo::common::debian",
+    "sudo::common::redhat",
+    "sudo::params"
+  ],
+  "definitions": [
+    "sudo::alias::command",
+    "sudo::alias::host",
+    "sudo::alias::user",
+    "sudo::defaults::spec",
+    "sudo::directive"
+  ]
+}

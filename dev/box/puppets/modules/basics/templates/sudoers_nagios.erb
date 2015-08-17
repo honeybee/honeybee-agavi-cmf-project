@@ -1,0 +1,19 @@
+# Nagios events
+nagios  ALL=(root) NOPASSWD: /usr/bin/systemctl
+nagios  ALL=(root) NOPASSWD: /etc/init.d/lsyncd
+nagios  ALL=(root) NOPASSWD: /usr/sbin/logrotate /etc/logrotate.conf
+nagios  ALL=(root) NOPASSWD: /usr/bin/killall -9 -u wwwrun
+
+nagios  ALL=(root) NOPASSWD: /etc/init.d/couchdb
+nagios  ALL=(root) NOPASSWD: /usr/bin/killall -9 -u couchdb
+nagios  ALL=(root) NOPASSWD: /etc/init.d/elasticsearch
+nagios  ALL=(root) NOPASSWD: /usr/bin/killall -9 -u elasticsearch
+nagios  ALL=(root) NOPASSWD: /usr/sbin/iptables
+nagios  ALL=(root) NOPASSWD: /usr/sbin/smartctl
+nagios  ALL=(root) NOPASSWD: /usr/lib/nagios/plugins/check_smart.pl
+
+nagios  ALL=(root) NOPASSWD: /etc/init.d/nginx
+nagios  ALL=(root) NOPASSWD: /usr/sbin/service nginx
+
+nagios  ALL=(root) NOPASSWD: /etc/init.d/php5-fpm
+nagios  ALL=(root) NOPASSWD: /usr/sbin/service php5-fpm

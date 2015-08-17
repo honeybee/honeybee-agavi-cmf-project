@@ -1,0 +1,7 @@
+map $http_X_Portal $portal_server_name {
+    hostnames;
+    .berlin.de       $http_X_Portal;
+    .berlinonline.de $http_X_Portal;
+    .berlinonline.net $http_X_Portal;
+    default $host;
+}

@@ -1,0 +1,29 @@
+server {
+
+    listen                *:80;
+
+    server_name           access-location.example.org;
+  
+    location ~ /first/ {
+        allow all;
+        allow 127.0.0.1;
+        deny all;
+        deny 127.0.0.1;
+
+        index index.html;
+    }
+    location ~ /fourth/ {
+        deny all;
+        deny 127.0.0.1;
+    }
+    location ~ /second/ {
+        allow all;
+        allow 127.0.0.1;
+        deny all;
+        deny 127.0.0.1;
+    }
+    location ~ /third/ {
+        allow all;
+        allow 127.0.0.1;
+    }
+}

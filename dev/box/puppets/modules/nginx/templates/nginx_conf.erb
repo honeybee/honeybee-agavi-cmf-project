@@ -1,0 +1,61 @@
+user             wwwrun www;
+worker_processes 2;
+error_log        /var/log/nginx/error.log info;
+pid              /var/run/nginx.pid;
+
+events {
+    worker_connections 1024;
+}
+
+http {
+    
+    server_names_hash_bucket_size  128;
+    types_hash_bucket_size 256;
+    include      /etc/nginx/mime.types;
+    default_type application/octet-stream;
+
+    log_format main '$remote_addr - $remote_user [$time_local] "$request" '
+    '$status $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"';
+
+    log_format custom_xportal '$remote_addr - $remote_user [$time_local] "$request" '
+    '$status $body_bytes_sent "$http_referer" '
+    '"$http_user_agent" "$http_x_forwarded_for"'
+    '"X-Portal" "-" "$http_X_Portal"';
+
+    access_log  /var/log/nginx/access.log custom_xportal;
+
+    # GENERAL
+    ignore_invalid_headers  on;
+    sendfile                on;
+    server_name_in_redirect off;
+    server_tokens           off;
+
+    # TCP
+    tcp_nodelay off;
+    tcp_nopush  on;
+
+    # TIMEOUTS
+    client_body_timeout   65;
+    client_header_timeout 65;
+    keepalive_timeout     65 65;
+    send_timeout          65;
+
+    # COMPRESSION
+    gzip              on;
+    gzip_static       on;
+    gzip_buffers      256 8k;
+    gzip_comp_level   9;
+    gzip_http_version 1.1;
+    gzip_min_length   0;
+    gzip_types        text/css text/javascript text/mathml text/plain text/xml application/x-javascript application/atom+xml application/rss+xml application/xhtml+xml image/svg+xml;
+    gzip_vary         on;
+    gzip_disable      "MSIE [1-6]\.(?!.*SV1)";
+    gzip_proxied    any;
+     
+
+    index index.php;
+
+    include /etc/nginx/conf.d/*.conf;
+    include /etc/nginx/vhosts.d/*;
+}

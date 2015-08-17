@@ -1,0 +1,19 @@
+{
+  "name": "berlinonline-converjon",
+  "version": "0.0.1",
+  "author": "Maximilian Rüdiger",
+  "license": "Apache-2.0",
+  "summary": "Deploys Converjon Image Server and optional nginx config",
+  "source": "https://gitlab.berlinonline.net/puppets/converjon",
+  "project_page": "https://gitlab.berlinonline.net/puppets/converjon",
+  "issues_url": "https://gitlab.berlinonline.net/puppets/converjon/issues",
+  "tags": ["converjon"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "OpenSuSE",
+    "operatingsystemrelease": [ "13.1", "13.2" ]
+    }
+   ],
+  "dependencies": [
+  ]
+}

@@ -1,0 +1,11 @@
+#!/bin/bash
+
+VERSION=$1
+
+echo "building version $VERSION"
+
+cd `dirname $0`/../
+
+sed -i "s/version .*/version '$VERSION'/g" Modulefile
+puppet module build
+sed -i "s/version .*/version 'dev'/g" Modulefile

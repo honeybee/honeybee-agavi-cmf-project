@@ -1,4 +1,4 @@
----
+  ---
 berlinonline::scm_user: deploy
 berlinonline::scm_group_primary: deploy
 berlinonline::scm_groups:
@@ -22,7 +22,7 @@ berlinonline::webdir_cms_mode: '0755'
 berlinonline::webdirectory_mode: '0755'
 berlinonline::project_git_path:
 berlinonline::scm_group_additional:
- - 
+ -
 
 
 berlinonline::sync_user: sync

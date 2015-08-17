@@ -1,0 +1,13 @@
+{
+  "name": "berlinonline/elasticsearch",
+  "version": "0.0.1",
+  "author": "berlinonline",
+  "summary": "Elasticsearch",
+  "license": "Apache 2.0",
+  "source": "https://gitlab.berlinonline.net/puppets/elasticsearch",
+  "project_page": "https://gitlab.berlinonline.net/puppets/elasticsearch",
+  "issues_url": "https://gitlab.berlinonline.net/puppets/elasticsearch/issues",
+  "dependencies": [
+  ]
+}
+

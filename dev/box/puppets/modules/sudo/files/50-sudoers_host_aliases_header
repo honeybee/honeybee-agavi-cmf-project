@@ -1,0 +1,7 @@
+
+## Host Aliases
+## A host alias is a list of hostname, ip addresses, networks and netgroups (prefixed with a +).
+## If you do not specify a netmask with a network the netmask of the hosts
+## ethernet interface(s) will be used when matching.
+## Ex:
+# Host_Alias NETWORK = 192.168.0.0/255.255.255.0

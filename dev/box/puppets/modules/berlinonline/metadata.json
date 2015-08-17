@@ -1,0 +1,19 @@
+{
+  "name": "berlinonline-puppet",
+  "version": "0.0.1",
+  "author": "BerlinOnline",
+  "license": "Apache-2.0",
+  "summary": "Deploys BerlinOnline Configs for honeybee",
+  "source": "https://gitlab.berlinonline.net/puppets/berlinonline",
+  "project_page": "https://gitlab.berlinonline.net/puppets/berlinonline",
+  "issues_url": "https://gitlab.berlinonline.net/puppets/berlinonline/issues",
+  "tags": ["berlinonline"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "OpenSuSE",
+    "operatingsystemrelease": [ "13.1", "13.2" ]
+    }
+   ],
+  "dependencies": [
+  ]
+}

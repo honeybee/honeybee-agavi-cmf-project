@@ -1,0 +1,19 @@
+{
+  "name": "berlinonline-couchdb",
+  "version": "0.0.1",
+  "author": "Maximilian Rüdiger",
+  "license": "Apache-2.0",
+  "summary": "Deploys Couchdb and Config for BerlinOnline use",
+  "source": "https://gitlab.berlinonline.net/puppets/couchdb",
+  "project_page": "https://gitlab.berlinonline.net/puppets/couchdb",
+  "issues_url": "https://gitlab.berlinonline.net/puppets/couchdb/issues",
+  "tags": ["couchdb"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "OpenSuSE",
+    "operatingsystemrelease": [ "13.1", "13.2" ]
+    }
+   ],
+  "dependencies": [
+  ]
+}

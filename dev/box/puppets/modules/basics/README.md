@@ -1,0 +1,1 @@
+This is a module for some basics like package deployment. Its likely to be included into berlinonline main puppets in a upcoming release

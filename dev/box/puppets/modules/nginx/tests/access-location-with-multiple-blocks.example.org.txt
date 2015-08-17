@@ -1,0 +1,14 @@
+server {
+
+    listen                *:80;
+
+    server_name           access-location-with-multiple-blocks.example.org;
+  
+    location ~ /fives/ {
+        deny 192.168.1.1;
+        allow 192.168.1.0/24;
+        allow 10.1.1.0/16;
+        allow 2620:100:e000::8001;
+        deny all;
+    }
+}

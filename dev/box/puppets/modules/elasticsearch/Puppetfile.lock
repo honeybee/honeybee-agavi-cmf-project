@@ -1,0 +1,19 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    puppetlabs-java (1.3.0)
+      puppetlabs-stdlib (>= 2.4.0)
+    puppetlabs-stdlib (4.6.0)
+
+GIT
+  remote: https://github.com/deadpoint/puppet-zypprepo
+  ref: master
+  sha: 64eb804e7da4bd22e153d6674caa4815daf20c41
+  specs:
+    deadpoint-zypprepo (1.0.2)
+
+DEPENDENCIES
+  deadpoint-zypprepo (>= 0)
+  puppetlabs-java (>= 0)
+  puppetlabs-stdlib (>= 0)
+

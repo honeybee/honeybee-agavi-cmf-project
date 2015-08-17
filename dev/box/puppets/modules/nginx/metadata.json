@@ -1,0 +1,20 @@
+{
+  "name": "berlinonline-nginx",
+  "version": "0.0.1",
+  "author": "Dracoblue, flavoured by Berlinonline",
+  "summary": "Deploys Nginx Configuration",
+  "license": "MIT",
+  "source": "https://gitlab.berlinonline.net/puppets/nginx",
+  "project_page": "https://gitlab.berlinonline.net/puppets/nginx",
+  "issues_url": null,
+  "dependencies": [
+    {
+      "name": "puppetlabs-stdlib",
+      "version_range": ">= 4.0.0"
+    },
+    {
+      "name": "puppetlabs-concat",
+      "version_range": ">= 1.0.0"
+    }
+  ]
+}

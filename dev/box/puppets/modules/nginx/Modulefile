@@ -1,0 +1,11 @@
+name    'DracoBlue-nginx'
+version '0.0.1'
+source 'https://gitlab.berlinonline.net/puppets/nginx'
+author 'DracoBlue - infused by BerlinOnline'
+license 'MIT'
+summary 'NGINX module for Puppet >=3.0x'
+description 'This module can be used for basic NGINX Management - its modified by Berlinonline to support Opensuse'
+project_page 'http://github.com/dracoblue/pp-nginx'
+
+dependency 'puppetlabs/stdlib', '>= 4.0.0'
+dependency 'puppetlabs/concat', '>= 1.0.0'

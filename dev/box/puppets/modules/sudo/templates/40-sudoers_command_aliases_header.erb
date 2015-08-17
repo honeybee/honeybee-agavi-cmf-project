@@ -1,0 +1,16 @@
+
+## Command Aliases
+## These are groups of related commands...
+
+## Networking
+Cmnd_Alias NETWORKING = /sbin/route, /sbin/ifconfig, /bin/ping, /sbin/dhclient, /sbin/iptables
+## Installation and management of software
+Cmnd_Alias PKG_MANAGER = <%= scope.lookupvar('sudo::params::cmdalias_pkgmanager').join(', ')  %>
+## Storage
+Cmnd_Alias STORAGE = /sbin/fdisk, /sbin/sfdisk, /sbin/parted, /sbin/partprobe, /bin/mount, /bin/umount
+## Processes
+Cmnd_Alias PROCESSES = /bin/nice, /bin/kill, /usr/bin/kill, /usr/bin/killall
+## Drivers
+Cmnd_Alias DRIVERS = /sbin/modprobe
+## Delegating permissions
+Cmnd_Alias DELEGATING = /usr/sbin/visudo, /bin/chown, /bin/chmod, /bin/chgrp 

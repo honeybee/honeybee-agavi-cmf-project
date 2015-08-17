@@ -1,6 +1,6 @@
 ---
-berlinonline::project_name: "honeybee-agavi-cmf-project"
-berlinonline::project_prefix: "honeybee-agavi-cmf-project"
+berlinonline::project_name: "honeybee-cmf-project"
+berlinonline::project_prefix: "honeybee-cmf-project"
 berlinonline::cms_name: "honeybee-cmf-project.local"
 berlinonline::cms_dir: "pub"
 berlinonline::bo_environment: "development"
@@ -8,7 +8,7 @@ berlinonline::webdir_app_mode: "0777"
 berlinonline::webdir_cms_mode: "0777"
 berlinonline::webdirectory_mode: "0777"
 berlinonline::aliases_root_recipient: vagrant
-berlinonline::project_git_path: "git@github.com:honeybee/honeybee-agavi-cmf-project.git"
+berlinonline::project_git_path: "git@github.com:honeybee/honeybee-cmf-project.git"
 
 berlinonline::sudos:all:
   - deploy

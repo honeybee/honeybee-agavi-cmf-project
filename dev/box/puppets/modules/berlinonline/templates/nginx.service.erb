@@ -1,0 +1,15 @@
+[Unit]
+Description=The nginx HTTP and reverse proxy server
+After=network.target remote-fs.target nss-lookup.target
+
+[Service]
+ExecStartPre=/usr/sbin/nginx -t
+ExecStartPre=/usr/bin/chown -R <%=scope['berlinonline::webuser']%>.<%=scope['berlinonline::webgroup']%> /var/lib/nginx
+ExecStartPre=/usr/bin/chmod g+w /var/lib/nginx
+ExecStart=/usr/sbin/nginx -g "daemon off;"
+ExecReload=/bin/kill -s HUP $MAINPID
+ExecStop=/bin/kill -s QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

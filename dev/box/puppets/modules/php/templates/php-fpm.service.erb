@@ -1,0 +1,18 @@
+[Unit]
+Description=The PHP FastCGI Process Manager
+After=syslog.target network.target
+Before=apache2.service nginx.service lighttpd.service
+
+[Service]
+Type=notify
+ExecStart=/usr/sbin/php-fpm --nodaemonize --fpm-config /etc/php5/fpm/php-fpm.conf
+ExecStartPre=/usr/bin/mkdir -p /var/run/php-fpm/
+
+ExecStartPre=/usr/bin/chown <%= scope['berlinonline::webuser']%>.<%= scope['berlinonline::scm_user']%> /var/run/php-fpm
+ExecStartPre=/usr/bin/chmod 774 /var/run/php-fpm/
+ExecReload=/bin/kill -USR2 $MAINPID
+ExecStop=/bin/kill -QUIT $MAINPID
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

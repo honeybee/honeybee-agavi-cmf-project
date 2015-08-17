@@ -1,0 +1,9 @@
+<% if defined? @allow && @allow.count > 0-%><% @allow.each do |rule| -%>
+        allow <%= rule %>;
+<% end -%><% end -%>
+<% if defined? @deny && @deny.count > 0-%><% @deny.each do |rule| -%>
+        deny <%= rule %>;
+<% end -%><% end -%>
+<% if defined? @content -%>
+<%= @content %>
+<% end -%>

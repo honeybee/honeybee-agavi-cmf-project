@@ -1,0 +1,1 @@
+This is a snippet for berlinonline to deploy various php configs. Its (of now) not designed to work alone since it uses to parameters from berlinonline main puppets like user etc.

@@ -1,0 +1,25 @@
+  # file managed by puppet
+#
+# SSLeay example configuration file.
+#
+
+# This definition stops the following lines choking if HOME isn't
+# defined.
+HOME                    = .
+RANDFILE                = $ENV::HOME/.rnd
+
+[ req ]
+default_bits            = 4096
+default_md              = sha256
+default_keyfile         = privkey.pem
+distinguished_name      = req_distinguished_name
+prompt                  = no
+
+[ req_distinguished_name ]
+countryName                     = DE
+stateOrProvinceName             = Berlin
+localityName                    = Berlin
+organizationName                = BerlinOnline Stadtportal GmbH & Co. KG
+organizationalUnitName          = Technik
+commonName                      = <%=scope['::berlinonline::cms_name']%>
+emailAddress                    = webmaster@service.berlinonline.de

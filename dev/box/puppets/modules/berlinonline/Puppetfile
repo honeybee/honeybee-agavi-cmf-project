@@ -1,0 +1,35 @@
+forge "https://forgeapi.puppetlabs.com"
+
+mod 'puppetlabs-apt'
+mod 'puppetlabs-stdlib'
+mod 'puppetlabs-concat', '1.2.3'
+mod 'thias-postfix'
+mod 'puppetlabs-vcsrepo'
+mod 'rodjek-logrotate',
+	:git => "https://github.com/rodjek/puppet-logrotate.git"
+mod 'camptocamp-openssl',
+	:git => "https://github.com/camptocamp/puppet-openssl"
+mod 'puppet-nodejs',
+	:git => "https://github.com/puppet-community/puppet-nodejs"
+mod 'berlinonline-converjon',
+	:git => "https://gitlab.berlinonline.net/puppets/converjon.git"
+mod 'berlinonline-couchdb',
+	:git => "https://gitlab.berlinonline.net/puppets/couchdb.git",
+	:ref => '0.0.3'
+mod 'deadpoint-zypprepo',
+	:git => "https://github.com/deadpoint/puppet-zypprepo"
+mod 'berlinonline-nginx',
+	:git => "https://gitlab.berlinonline.net/puppets/nginx.git"
+mod 'berlinonline-elasticsearch',
+	:git => "https://gitlab.berlinonline.net/puppets/elasticsearch.git"
+mod 'berlinonline-php',
+	:git => "https://gitlab.berlinonline.net/puppets/php.git"
+mod 'berlinonline-phpfpm',
+	:git => "https://gitlab.berlinonline.net/puppets/phpfpm.git"
+mod 'berlinonline-basics',
+	:git => "https://gitlab.berlinonline.net/puppets/basics.git"
+mod 'berlinonline-sudo',
+	:git => "https://gitlab.berlinonline.net/puppets/sudo.git",
+	:ref => 'production'
+mod 'berlinonline-ssh',
+	:git => "https://gitlab.berlinonline.net/puppets/ssh.git"

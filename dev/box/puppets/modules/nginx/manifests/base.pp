@@ -1,0 +1,3 @@
+class nginx::base (
+) {
+}

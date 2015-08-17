@@ -1,0 +1,17 @@
+server {
+
+    listen                *:80;
+
+    server_name           auth-basic-location.example.org;
+  
+    location ~ /assets/ {
+        auth_basic "This is restricted";
+        auth_basic_user_file /dev/null;
+
+        index index.html;
+    }
+    location ~ /other-assets/ {
+        auth_basic "This is restricted";
+        auth_basic_user_file /dev/null;
+    }
+}

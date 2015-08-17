@@ -1,0 +1,57 @@
+server:
+  port: <%=scope['converjon::running_port']%>
+  instance_name: <%=scope['converjon::running_instance_name']%>
+  timeout: <%=scope['converjon::running_instance_timeout']%>
+  access_log_format: "<%=scope['converjon::running_instance_access_log_format']%>"
+  base_url_path: '<%=scope['converjon::base_url_path']%>'
+
+test_server:
+  enabled: <%=scope['converjon::test_server_enable']%>
+
+cache:
+  base_path: "<%=scope['converjon::cache_base_path']%>"
+
+download:
+  url_whitelist:
+  <% @whitelist_url.each do |entry| -%>
+    - '<%=entry%>'
+  <% end -%>
+download.rejectInvalidSSL: <%=scope['converjon::reject_invalid_ssl']%>
+
+timeout: <%=scope['converjon::download_timeout']%>
+
+process:
+  limit: <%=scope['converjon::process_limit']%>
+  timeout: <%=scope['converjon::process_timeout']%>
+
+analysis:
+  aoi_name: "<%=scope['converjon::analysis_aio_name']%>"
+
+converter:
+  padding_color: "<%=scope['converjon::converter_padding_color']%>"
+
+cropping:
+  default_mode: "<%=scope['converjon::cropping_default_mode']%>"
+
+constraints:
+  quality:
+    min: <%=scope['converjon::constrains_quality_min']%>
+    max: <%=scope['converjon::constrains_quality_max']%>
+  colors:
+    min: <%=scope['converjon::constrains_colors_min']%>
+    max: <%=scope['converjon::constrains_colors_max']%>
+  width:
+    min: <%=scope['converjon::constrains_width_min']%>
+    max: <%=scope['converjon::constrains_width_max']%>
+  height:
+    min: <%=scope['converjon::constrains_height_min']%>
+    max: <%=scope['converjon::constrains_height_max']%>
+
+logging:
+  error: "<%=scope['converjon::logging_error']%>"
+  debug: "<%=scope['converjon::logging_debug']%>"
+  access: "<%=scope['converjon::logging_access']%>"
+
+authentication:
+  username: "<%=scope['converjon::auth_username']%>"
+  password: "<%=scope['converjon::auth_password']%>"

@@ -1,0 +1,15 @@
+server {
+
+    listen                *:80;
+
+    server_name           alias-location.example.org;
+  
+    location ~ /assets/(.*) {
+        alias /var/www/$domain_name/assets/$1;
+
+        index index.html;
+    }
+    location ~ /other-assets/(.*) {
+        alias /var/www/$domain_name/assets/$1;
+    }
+}
