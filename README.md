@@ -1,7 +1,17 @@
 # honeybee-agavi-cmf-project
 
 This repository holds a ```honeybee-agavi-cmf-project``` application.
-@todo figure out the composer.phar create-project command
+
+To create a new project off of this template do:
+```
+git clone git@github.com:honeybee/honeybee-agavi-cmf-project.git your-project
+cd your-project
+rm -rf .git
+// Edit composer.json and adjust the meta-data of your package as needed.
+find . -type f -exec sed -i '' s/honeybee-agavi-cmf-project/your-project/g {} +
+```
+
+From here on the following README leads through setting up a dev environment based ony vagrant and puppet.  
 
 ### Development setup
 
