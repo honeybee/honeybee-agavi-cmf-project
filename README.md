@@ -8,6 +8,7 @@ git clone git@github.com:honeybee/honeybee-agavi-cmf-project.git your-project
 cd your-project
 rm -rf .git
 // Edit composer.json and adjust the meta-data of your package as needed.
+find . -type f -exec sed -i '' s/honeybee\/honeybee-agavi-cmf-project/your-vendor\/your-project/g {} +
 find . -type f -exec sed -i '' s/honeybee-agavi-cmf-project/your-project/g {} +
 ```
 
