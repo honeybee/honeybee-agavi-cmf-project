@@ -8,7 +8,7 @@ berlinonline::webdir_app_mode: "0777"
 berlinonline::webdir_cms_mode: "0777"
 berlinonline::webdirectory_mode: "0777"
 berlinonline::aliases_root_recipient: vagrant
-berlinonline::project_git_path: "git@github.com:honeybee/honeybee-cmf-project.git"
+berlinonline::project_git_path: "git@github.com:honeybee/honeybee-agavi-cmf-project.git"
 
 berlinonline::sudos:all:
   - deploy
