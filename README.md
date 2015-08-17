@@ -5,7 +5,7 @@ This repository holds a ```honeybee-agavi-cmf-project``` application.
 
 ### Development setup
 
-When successfully setup the "{{ project_name }}" application should be reachable at: https://honeybee-cmf-project.local/
+When successfully setup a "honeybee-agavi-cmf-project" application should be reachable at: https://honeybee-cmf-project.local/
 
 See the ["Controlling system services"](#controlling-system-services) section for further information on available endpoints.
 
@@ -46,7 +46,7 @@ SendEnv LANG LC_* GIT_*
 
 * Initially create the vagrant box:
 ```shell
-git clone {{ project_github_uri }}
+git clone git@github.com:honeybee/honeybee-agavi-cmf-project.git
 cd honeybee-cmf-project/dev/box/
 vagrant up # this will take a while, time to grab a coffee
 ```
