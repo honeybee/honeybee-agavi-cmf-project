@@ -1,0 +1,139 @@
+FORGE
+  remote: https://forgeapi.puppetlabs.com
+  specs:
+    puppetlabs-apt (2.1.1)
+      puppetlabs-stdlib (< 5.0.0, >= 4.5.0)
+    puppetlabs-concat (1.2.3)
+      puppetlabs-stdlib (< 5.0.0, >= 3.2.0)
+    puppetlabs-java (1.4.1)
+      puppetlabs-stdlib (< 5.0.0, >= 2.4.0)
+    puppetlabs-stdlib (4.7.0)
+    puppetlabs-vcsrepo (1.3.1)
+    thias-postfix (0.3.3)
+
+GIT
+  remote: https://github.com/camptocamp/puppet-openssl
+  ref: master
+  sha: 649a3ec565c2871cbd8801590275f37716e4facb
+  specs:
+    camptocamp-openssl (1.3.9)
+      puppetlabs-stdlib (< 5.0.0, >= 2.0.0)
+
+GIT
+  remote: https://github.com/deadpoint/puppet-zypprepo
+  ref: master
+  sha: 64eb804e7da4bd22e153d6674caa4815daf20c41
+  specs:
+    deadpoint-zypprepo (1.0.2)
+
+GIT
+  remote: https://github.com/puppet-community/puppet-nodejs
+  ref: master
+  sha: b9d2528fe37155388c57132ca213c5180a440f29
+  specs:
+    puppet-nodejs (1.1.0)
+      puppetlabs-stdlib (< 5.0.0, >= 4.1.0)
+
+GIT
+  remote: https://github.com/rodjek/puppet-logrotate.git
+  ref: master
+  sha: 89ee645e2350045be48df7ac3ef86cbe4cd9b096
+  specs:
+    rodjek-logrotate (0.0.1)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/basics.git
+  ref: master
+  sha: 311bb0e9e32c07415ee5c0d6a212cf9258a96b17
+  specs:
+    berlinonline-basics (0.0.1)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/berlinonline.git
+  ref: master
+  sha: fc9112168e7235b1fc96d26d704096b7865908a1
+  specs:
+    berlinonline-berlinonline (0.0.1)
+      berlinonline-basics (>= 0)
+      berlinonline-converjon (>= 0)
+      berlinonline-couchdb (>= 0)
+      berlinonline-elasticsearch (>= 0)
+      berlinonline-nginx (>= 0)
+      berlinonline-php (>= 0)
+      berlinonline-phpfpm (>= 0)
+      berlinonline-ssh (>= 0)
+      berlinonline-sudo (>= 0)
+      camptocamp-openssl (>= 0)
+      deadpoint-zypprepo (>= 0)
+      puppet-nodejs (>= 0)
+      puppetlabs-apt (>= 0)
+      puppetlabs-concat (= 1.2.3)
+      puppetlabs-stdlib (>= 0)
+      puppetlabs-vcsrepo (>= 0)
+      rodjek-logrotate (>= 0)
+      thias-postfix (>= 0)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/converjon.git
+  ref: master
+  sha: 8f0fa83d0748554612fd374754a018d62939383b
+  specs:
+    berlinonline-converjon (0.0.1)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/couchdb.git
+  ref: 0.0.3
+  sha: 684c3c44286da54f236d8ebd6efa0620fcf9c1cf
+  specs:
+    berlinonline-couchdb (0.0.1)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/elasticsearch.git
+  ref: master
+  sha: 0b8c7e9cd2ce648f2a7667c358bc14971cda01b2
+  specs:
+    berlinonline-elasticsearch (0.0.1)
+      deadpoint-zypprepo (>= 0)
+      puppetlabs-java (>= 0)
+      puppetlabs-stdlib (>= 0)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/nginx.git
+  ref: master
+  sha: 2f2c77ba09c63846ec038880435cd698181b2667
+  specs:
+    berlinonline-nginx (0.0.1)
+      puppetlabs-concat (>= 0)
+      puppetlabs-stdlib (>= 0)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/php.git
+  ref: master
+  sha: 5d1b4f47744ae3cd9128acfe3e68959904e7df06
+  specs:
+    berlinonline-php (0.0.1)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/phpfpm.git
+  ref: master
+  sha: 85781f143bbe7d4f3b8e5c6791b432db0f2dffe8
+  specs:
+    berlinonline-phpfpm (0.0.4)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/ssh.git
+  ref: master
+  sha: feb2fe5b7355eb7362a93392c0d8196b528f1b69
+  specs:
+    berlinonline-ssh (0.0.1)
+
+GIT
+  remote: https://gitlab.berlinonline.net/puppets/sudo.git
+  ref: production
+  sha: 66b20c213a6b9880d6f4bacac15749d4d1399bb7
+  specs:
+    berlinonline-sudo (0.3.7)
+
+DEPENDENCIES
+  berlinonline-berlinonline (>= 0)
+

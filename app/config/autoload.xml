@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://agavi.org/agavi/config/parts/autoload/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    parent="%core.system_config_dir%/autoload.xml"
+>
+
+    <xi:include href="%core.honeybee_config_dir%/autoload.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <xi:include href="./includes/autoload.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+</ae:configurations>

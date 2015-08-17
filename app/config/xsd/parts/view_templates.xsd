@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/view_templates/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/view_templates/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:choice>
+            <xs:element name="view_templates" type="ViewTemplatesListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="view_template" type="ViewTemplateType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="ViewTemplatesListType">
+        <xs:sequence>
+            <xs:element name="view_template" type="ViewTemplateType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <xs:attribute name="scope" type="xs:string" use="required" />
+        <xs:attribute name="extends" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="ViewTemplateType">
+        <xs:group ref="TabsGroup" />
+        <xs:attribute name="name" type="types_1_0:non_empty_string" use="required" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="TabsGroup">
+        <xs:choice>
+            <xs:element name="tabs" type="TabsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="tab" type="TabType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="TabsListType">
+        <xs:sequence>
+            <xs:element name="tab" type="TabType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TabType" mixed="true">
+        <xs:group ref="PanelsGroup" />
+        <xs:attribute name="name" type="types_1_0:non_empty_string" use="required" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="PanelsGroup">
+        <xs:choice>
+            <xs:element name="panels" type="PanelsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="panel" type="PanelType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="PanelsListType">
+        <xs:sequence>
+            <xs:element name="panel" type="PanelType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PanelType" mixed="true">
+        <xs:group ref="RowsGroup" />
+        <xs:attribute name="name" type="types_1_0:non_empty_string" use="required" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="RowsGroup">
+        <xs:choice>
+            <xs:element name="rows" type="RowsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="row" type="RowType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="RowsListType">
+        <xs:sequence>
+            <xs:element name="row" type="RowType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RowType">
+        <xs:group ref="CellsGroup" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="CellsGroup">
+        <xs:choice>
+            <xs:element name="cells" type="CellsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="cell" type="CellType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="CellsListType">
+        <xs:sequence>
+            <xs:element name="cell" type="CellType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CellType">
+        <xs:group ref="GroupsGroup" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="GroupsGroup">
+        <xs:choice>
+            <xs:element name="groups" type="GroupsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="group" type="GroupType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="GroupsListType">
+        <xs:sequence>
+            <xs:element name="group" type="GroupType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="GroupType">
+        <xs:group ref="FieldsGroup" />
+        <xs:attribute name="name" type="types_1_0:non_empty_string" use="required" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="FieldsGroup">
+        <xs:choice>
+            <xs:element name="fields" type="FieldsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="field" type="FieldType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="FieldsListType">
+        <xs:sequence>
+            <xs:element name="field" type="FieldType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FieldType">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="name" type="types_1_0:non_empty_string" use="required" />
+        <xs:attribute name="template" type="types_1_0:non_empty_string" use="optional" />
+        <xs:attribute name="renderer" type="types_1_0:php_class" use="optional" />
+        <xs:attribute name="css" type="xs:string" use="optional" />
+        <xs:anyAttribute namespace="##any" processContents="lax" />
+    </xs:complexType>
+
+</xs:schema>

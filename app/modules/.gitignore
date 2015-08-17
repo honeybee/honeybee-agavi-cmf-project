@@ -1,0 +1,8 @@
+#
+# Ignoring the default modules that are provided by the honeybee vendor lib.
+#
+# If you want to commit these modules, remove the ignore lines. This enables
+# you to actually get a diff of changes after updating the honeybee version.
+#
+/Honeybee_Core
+/Honeybee_SystemAccount

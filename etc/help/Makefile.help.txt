@@ -1,0 +1,47 @@
+Terminbüro CMS - Makefile
+
+Current working directory : ${PROJECT_DIR}
+Environaut cache location : ${ENVIRONAUT_CACHE_LOCATION}
+Local env config location : ${PROJECT_DIR}/etc/local/
+PHP executable            : ${PHP_COMMAND}
+PHP error log file path   : ${PHP_ERROR_LOG}
+Last working copy update  : ${LAST_FETCH_DATE}
+
+--------------
+COMMON TARGETS
+--------------
+
+  autoloads                 - Generate and optimize autoloads.
+  build-resources           - Builds css and javascript production packages for the project.
+  cc                        - Purges/clears the application caches.
+  config                    - Generates the configuration includes for all (agavi) modules.
+  install                   - Installs vendor (development) libraries and runs environaut.
+  install-production        - Installs vendor (production) libraries and runs environaut.
+  link-project              - Creates module symlinks and copies core honeybee modules into this app.
+  migrate-list              - List migration targets
+  migrate-all               - Run all available migrations
+  environment               - Run environaut and configure environment.
+  reconfigure-environment   - Runs environaut and overrides any exisitng environment configs.
+  tail-logs                 - Starts to tail all application logs and the php error-log.
+
+-------------------
+DEVELOPMENT TARGETS
+-------------------
+
+  update                    - Updates all vendor libraries (dev+prod) and the composer.lock file.
+  update-composer-lockfile  - Updates the composer.lock file with latest vendor library versions.
+  user                      - Create a new user
+
+Scaffolding:
+
+  module                    - Creates and links a new honeybee-module.
+  type                      - Creates a new aggregate root type
+  trellis                   - Creates the trellis classes (aggregate roots or projections)
+
+Integration and reporting:
+
+  php-metrics               - Determines source code metrics/reports into build/ folder.
+  tests                     - Runs phpunit tests from tests/ folder.
+  codesniffer               - Runs psr2 codesniffer on app/ and tests/ folders.
+
+

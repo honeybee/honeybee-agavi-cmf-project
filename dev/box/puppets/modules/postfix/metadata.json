@@ -1,0 +1,40 @@
+{
+  "types": [
+
+  ],
+  "name": "thias-postfix",
+  "version": "0.3.3",
+  "project_page": "https://github.com/thias/puppet-postfix",
+  "dependencies": [
+
+  ],
+  "description": "Install, enable and configure a complete Postfix Mail Transport\n    Agent instance.",
+  "checksums": {
+    "tests/dbfile.pp": "33492660c452fc329aa78c943de66e2d",
+    "templates/master.cf.erb": "88f28856c4efa7fc9e60f05189028983",
+    "templates/main.cf-el5.erb": "8af8924e12b2d59d0c071ef65e5d1dcb",
+    "templates/main.cf.erb": "8fe2274978353816f8eb62f2872f813d",
+    "LICENSE": "99219472697a01561e7630d63aaecdc1",
+    "templates/spamassassin-local.cf.erb": "d6aec2e7637a2b3161af48e3882d7211",
+    "manifests/params.pp": "01077b209c4ab34355419c3bd71370e2",
+    "tests/file.pp": "87af4cb8c1a02a022bf9929c77c216e8",
+    "templates/spamassassin-local.cf.orig": "e4853a23efc7aadfb53434d5f5fadcf1",
+    "manifests/dbfile.pp": "9e71b4965cd74c8ff530180394fd6ea2",
+    "templates/default-spampd.erb": "62319957e3e8c08fab9fa667788d2dc4",
+    "templates/sysconfig-freshclam.erb": "2bf85c0ac8bddab7d12b0a9006cc51a2",
+    "templates/header_checks.erb": "9c3a11846827e733a02beb6a3e5873a9",
+    "templates/sysconfig-spampd.erb": "de6517bd88ba9075beb2de5f6aba1ec1",
+    "Modulefile": "42b6b3fe8e2f8591215c8644e65a7630",
+    "templates/freshclam.conf": "5b56c3d0eeaf29e59f9580005dfbeeb7",
+    "templates/master.cf-el5.erb": "77eb8848e5686acc9e2c4768ff520bb2",
+    "ChangeLog": "ac5653388bd622df62dfda9d91a2f127",
+    "manifests/file.pp": "dc2d11167489c001023d4cdf0885ad83",
+    "templates/body_checks.erb": "c4f60d8e66f3afe29615c64ebaa0d274",
+    "README.md": "e0890e2fbcb7e0612a653e5934b2cbbb",
+    "manifests/server.pp": "87b9e6debb02fe862ec650d396ebf3be"
+  },
+  "summary": "Postfix Mail Transport Agent module",
+  "source": "git://github.com/thias/puppet-postfix",
+  "author": "Matthias Saou",
+  "license": "Apache 2.0"
+}

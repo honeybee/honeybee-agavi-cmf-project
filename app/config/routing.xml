@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://agavi.org/agavi/config/parts/routing/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+
+    <xi:include href="%core.honeybee_config_dir%/routing.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+    </xi:include>
+
+    <xi:include href="./includes/routing.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <!--
+
+        It should be easily possible to redefine all routes you don't like or
+        want to point to other modules and actions. To just continue route
+        matching on routes that otherwise would break add stop="false" as an
+        attribute. To override routing callbacks add the NoOpRoutingCallback
+        to the redefinition of the route to prevent matching and generation of
+        such routes.
+
+        You can use the normal Agavi merging of context and environment specific config blocks to your advantage as well.
+
+        Example:
+
+        <ae:configuration context="web" environment="development-trololo">
+            <routes>
+                <route name="locale" pattern="^/({locale:[a-z]{2}(_[A-Z]{2})?})" stop="false" imply="true" cut="true" locale="${locale}">
+                    <callbacks>
+                        <callback class="Honeybee\Agavi\Routing\NoOpRoutingCallback" />
+                    </callbacks>
+                </route>
+                <route name="index" pattern="^/$" module="User" action="Logout" stop="false" />
+            </routes>
+        </ae:configuration>
+
+    -->
+
+</ae:configurations>

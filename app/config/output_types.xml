@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://agavi.org/agavi/config/parts/output_types/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+
+    <xi:include href="%core.honeybee_config_dir%/output_types.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+<!--
+    <ae:configuration context="web">
+
+        <output_types default="html">
+            <output_type name="html">
+                <layouts default="default">
+                    <layout name="default">
+                        <layer name="decorator">
+                            <ae:parameter name="directory">%core.template_dir%</ae:parameter>
+                            <ae:parameter name="template">CustomMaster</ae:parameter>
+                        </layer>
+                    </layout>
+                </layouts>
+            </output_type>
+        </output_types>
+    </ae:configuration>
+-->
+
+</ae:configurations>

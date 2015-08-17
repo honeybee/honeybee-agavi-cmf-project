@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/event_bus/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/event_bus/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="event_bus" type="EventBusType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="EventBusType">
+        <xs:sequence>
+            <xs:element name="transports" type="TransportCollectionType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="channels" type="ChannelCollectionType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ChannelCollectionType">
+        <xs:sequence>
+            <xs:element name="channel" type="ChannelType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ChannelType">
+        <xs:group ref="SubscriptionGroup" />
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="TransportCollectionType">
+        <xs:sequence>
+            <xs:element name="transport" type="TransportType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransportType">
+        <xs:sequence>
+            <xs:element name="implementor" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:group ref="SettingsGroup" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:group name="SubscriptionGroup">
+        <xs:choice>
+            <xs:element name="subscription" type="SubscriptionType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="subscriptions" type="SubscriptionCollectionType" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="SubscriptionCollectionType">
+        <xs:sequence>
+            <xs:element name="subscription" type="SubscriptionType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SubscriptionType">
+        <xs:sequence>
+            <xs:element name="transport" type="xs:string" />
+            <xs:group ref="FilterGroup" />
+            <xs:group ref="HandlerGroup" />
+        </xs:sequence>
+        <xs:attribute name="enabled" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="HandlerGroup">
+        <xs:choice>
+            <xs:element name="handler" type="HandlerType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="handlers" type="HandlerCollectionType" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="HandlerCollectionType">
+        <xs:sequence>
+            <xs:element name="handler" type="HandlerType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="HandlerType">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="implementor" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:group name="FilterGroup">
+        <xs:choice>
+            <xs:element name="filter" type="FilterType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="filters" type="FilterCollectionType" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="FilterCollectionType">
+        <xs:sequence>
+            <xs:element name="filter" type="FilterType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FilterType">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="implementor" type="xs:string" use="optional" />
+    </xs:complexType>
+</xs:schema>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/access_control/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/access_control/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="roles" type="RoleCollectionType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="RoleCollectionType">
+        <xs:sequence>
+            <xs:element name="role" type="RoleType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RoleType">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="members" type="MemberCollectionType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="acl" type="AclType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="parent" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="MemberCollectionType">
+        <xs:sequence>
+            <xs:element name="member" type="MemberType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MemberType" mixed="true">
+        <xs:attribute name="type">
+            <xs:simpleType>
+                <xs:list itemType="MemberTypes"/>
+            </xs:simpleType>
+        </xs:attribute>
+    </xs:complexType>
+
+    <xs:simpleType name="MemberTypes">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="ldap"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:complexType name="AclType">
+        <xs:sequence  minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="permissions" type="PermissionsType" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="PermissionsType">
+        <xs:choice  minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="allow" type="RuleType" />
+            <xs:element name="deny" type="RuleType" />
+        </xs:choice>
+        <xs:attribute name="scope" use="required" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="RuleType" mixed="true">
+        <xs:attribute name="if" use="optional" type="xs:string" />
+    </xs:complexType>
+</xs:schema>

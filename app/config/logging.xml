@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://agavi.org/agavi/config/parts/logging/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+
+    <xi:include href="%core.honeybee_config_dir%/logging.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <xi:include href="./includes/logging.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <!--
+        Create loggers, appenders and layouts as you like. You can use the
+        normal Agavi merging of context and environment specific config blocks
+        to your advantage as well. Please note, that it is not possible to
+        remove appenders from already defined loggers or add appenders with
+        names that already exist.
+
+        Example to add FirePHP and ChromePHP to default logger in development
+        environments for all contexts (cli and web) and add the
+        PhpDebugToolbarLoggerAppender to development environments in the web
+        context (as it modifies HTML):
+
+        <ae:configuration environment="^development.+(?!-testing)$" context="web">
+            <loggers default="default">
+                <logger name="default">
+                    <appenders>
+                        <appender>firephp</appender>
+                        <appender>chromephp</appender>
+                        <appender>phpdebugtoolbar</appender>
+                    </appenders>
+                </logger>
+            </loggers>
+        </ae:configuration>
+    -->
+
+</ae:configurations>

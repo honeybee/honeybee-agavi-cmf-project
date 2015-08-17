@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/exports/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/exports/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="exports" type="ExportsListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="ExportsListType">
+        <xs:sequence>
+            <xs:element name="export" type="ExportType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ExportType">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="filters" type="FiltersListType" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="FiltersListType">
+        <xs:sequence>
+            <xs:element name="filter" type="FilterType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FilterType">
+        <xs:sequence>
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+</xs:schema>

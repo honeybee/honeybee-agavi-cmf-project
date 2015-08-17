@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://agavi.org/agavi/config/parts/settings/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+    <xi:include href="%core.honeybee_config_dir%/settings.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+    </xi:include>
+
+    <xi:include href="./includes/settings.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <ae:configuration>
+        <settings>
+            <setting name="app_name">{{ project_prefix }}</setting>
+            <setting name="debug">false</setting>
+            <!--
+                Don't change this setting!
+                @todo Move to etc/local or equally safe location and prompt with environaut.
+            -->
+            <setting name="project_prefix">{{ project_prefix }}</setting>
+            <setting name="app_prefix">{{ project_prefix }}</setting>
+            <setting name="db_prefix">{{ project_prefix }}</setting>
+            <!--
+                Please determine the primary contact for this project
+                and add in the information below.
+            <setting name="project_contact">
+                <ae:parameter name="name">{{ contact_person }}</ae:parameter>
+                <ae:parameter name="email">{{ contact_email }}</ae:parameter>
+            </setting>
+            -->
+        </settings>
+
+        <settings prefix="converjon.">
+            <setting name="enabled">true</setting>
+        </settings>
+
+        <!--
+            Set the password policy for your project.
+        -->
+        <settings prefix="password_constraints.">
+            <setting name="min_decimal_numbers">0</setting>
+            <setting name="min_uppercase_chars">2</setting>
+            <setting name="min_lowercase_chars">2</setting>
+            <setting name="min_string_length">8</setting>
+            <setting name="max_string_length">32</setting>
+        </settings>
+        <!--
+            Set an explicit order for how modules are listed inside the navigation.
+        -->
+        <!--
+        <settings prefix="project.modules.">
+            <setting name="sort_order">
+                <ae:parameter>{module-name}</ae:parameter>
+                <ae:parameter>{module-name}</ae:parameter>
+            </setting>
+        </settings>
+        -->
+
+        <settings prefix="themes.">
+            <setting name="default">whitelabel</setting>
+        </settings>
+
+        <settings prefix="requirejs.">
+            <setting name="cmd_rjs">%core.app_dir%/../vendor/node_modules/honeybee/node_modules/.bin/r.js</setting>
+        </settings>
+        <settings prefix="autoprefixer.">
+            <setting name="cmd">%core.app_dir%/../vendor/node_modules/honeybee/node_modules/.bin/autoprefixer</setting>
+        </settings>
+        <settings prefix="sass.">
+            <setting name="cmd">/usr/bin/sass</setting>
+        </settings>
+    </ae:configuration>
+
+    <ae:configuration environment="development.*">
+        <settings prefix="requirejs.">
+            <setting name="use_optimized">false</setting>
+        </settings>
+    </ae:configuration>
+
+    <!--
+        Example for changing settings based on an evironment modifier.
+    -->
+    <!--
+    <ae:configuration environment="^.+-fe_endpoint$">
+        <settings>
+            <setting name="auth_provider">
+                <ae:parameter name="class">TokenBasedAuthProvider</ae:parameter>
+                <ae:parameter name="shared_secret_file">%core.app_dir%/../etc/local/local.fe_endpoint.secret</ae:parameter>
+            </setting>
+        </settings>
+    </ae:configuration>
+    -->
+</ae:configurations>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/data_access/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/data_access/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="storage_writers" type="StorageWritersListType" minOccurs="0"  />
+            <xs:element name="storage_readers" type="StorageReadersListType" minOccurs="0"  />
+            <xs:element name="units_of_work" type="UnitOfWorkListType" minOccurs="0"  />
+            <xs:element name="finders" type="FindersListType" minOccurs="0"  />
+            <xs:element name="query_services" type="QueryServiceListType" minOccurs="0"  />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="StorageWritersListType">
+        <xs:sequence>
+            <xs:element name="storage_writer" type="DataAccessComponentType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StorageReadersListType">
+        <xs:sequence>
+            <xs:element name="storage_reader" type="DataAccessComponentType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="FindersListType">
+        <xs:sequence>
+            <xs:element name="finder" type="DataAccessComponentType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="QueryServiceListType">
+        <xs:sequence>
+            <xs:element name="query_service" type="QueryServiceType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UnitOfWorkListType">
+        <xs:sequence>
+            <xs:element name="unit_of_work" type="UnitOfWorkType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="UnitOfWorkType">
+        <xs:sequence>
+            <xs:element name="event_reader" type="xs:string"  />
+            <xs:element name="event_writer" type="xs:string"  />
+            <xs:group ref="SettingsGroup" minOccurs="0" />
+            <xs:element name="dependencies" type="DependencyListType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="DataAccessComponentType">
+        <xs:sequence>
+            <xs:element name="connection" type="xs:string" />
+            <xs:group ref="SettingsGroup" minOccurs="0" />
+            <xs:element name="dependencies" type="DependencyListType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="DependencyListType">
+        <xs:sequence>
+            <xs:element name="dependency" type="DependencyType" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="DependencyType" mixed="true">
+        <xs:attribute name="key" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="QueryServiceType">
+        <xs:sequence>
+            <xs:group ref="SettingsGroup" minOccurs="0" />
+            <xs:element name="finder_mappings">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="finder_mapping" type="FinderMappingType" maxOccurs="unbounded" />
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+            <xs:element name="dependencies" type="DependencyListType" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="FinderMappingType">
+        <xs:sequence>
+            <xs:element name="finder" type="xs:string" />
+            <xs:element name="query_translation">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:group ref="SettingsGroup" minOccurs="0" />
+                        <xs:element name="dependencies" type="DependencyListType" minOccurs="0" />
+                    </xs:sequence>
+                    <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

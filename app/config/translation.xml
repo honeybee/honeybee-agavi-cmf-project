@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://agavi.org/agavi/config/parts/translation/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+
+    <xi:include href="%core.honeybee_config_dir%/translation.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+    </xi:include>
+
+    <xi:include href="./includes/translation.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <ae:configuration>
+        <translators default_domain="application.ui">
+            <translator domain="application">
+                <message_translator class="AgaviSimpleTranslator">
+                    <ae:parameter name="ui">
+                        <ae:parameter name="de">
+                            <ae:parameter name="brand_entity">{{ brand }}</ae:parameter>
+                            <ae:parameter name="brand_title">{{ brand_title }}</ae:parameter>
+                        </ae:parameter>
+                        <ae:parameter name="en">
+                            <ae:parameter name="brand_entity">{{ brand }}</ae:parameter>
+                            <ae:parameter name="brand_title">{{ brand_title }}</ae:parameter>
+                        </ae:parameter>
+                    </ae:parameter>
+
+                    <ae:parameter name="navigations">
+                        <ae:parameter name="de">
+                            <ae:parameter name="system_account">Nutzer</ae:parameter>
+                            <ae:parameter name="core">System</ae:parameter>
+                        </ae:parameter>
+                        <ae:parameter name="en">
+                            <ae:parameter name="system_account">Users</ae:parameter>
+                            <ae:parameter name="core">System</ae:parameter>
+                        </ae:parameter>
+                    </ae:parameter>
+
+                    <ae:parameter name="pagination">
+                        <ae:parameter name="de">
+                            <ae:parameter name="pager.of_total.title">von %d</ae:parameter>
+                        </ae:parameter>
+                        <ae:parameter name="en">
+                            <ae:parameter name="pager.of_total.title">of %s</ae:parameter>
+                        </ae:parameter>
+                    </ae:parameter>
+
+                    <ae:parameter name="activities">
+                        <ae:parameter name="de">
+                            <ae:parameter name="user.activity.collection.title">Nutzerverwaltung</ae:parameter>
+                            <ae:parameter name="user.activity.create_resource.title">Nutzer hinzufügen</ae:parameter>
+                            <ae:parameter name="user.activity.hierarchy.title">Nutzerhierarchie</ae:parameter>
+                            <ae:parameter name="honeybee_core.activity.theme_preview.title">Themenvorschau</ae:parameter>
+                        </ae:parameter>
+                        <ae:parameter name="en">
+                            <ae:parameter name="user.activity.collection.title">Users</ae:parameter>
+                            <ae:parameter name="user.activity.create_resource.title">Add user</ae:parameter>
+                            <ae:parameter name="user.activity.hierarchy.title">Users hierarchy</ae:parameter>
+                            <ae:parameter name="honeybee_core.activity.theme_preview.title">Theme preview</ae:parameter>
+                        </ae:parameter>
+                    </ae:parameter>
+                </message_translator>
+            </translator>
+
+            <translator domain="honeybee.core">
+                <message_translator class="AgaviSimpleTranslator">
+                    <ae:parameter name="views">
+                        <ae:parameter name="de">
+                            <ae:parameter name="index.page_title">Welcome!</ae:parameter>
+                        </ae:parameter>
+                    </ae:parameter>
+                </message_translator>
+            </translator>
+        </translators>
+    </ae:configuration>
+</ae:configurations>

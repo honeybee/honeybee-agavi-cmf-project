@@ -1,0 +1,6 @@
+berlinonline::webdirectory:           '/var/www'
+berlinonline::repo_tool:              'apt'
+
+berlinonline::packages::avahi:        'avahi-daemon'
+php::fpm_service_name:   'php5-fpm'
+

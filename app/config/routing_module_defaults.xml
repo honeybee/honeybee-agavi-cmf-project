@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0" xmlns="http://agavi.org/agavi/config/parts/routing/1.0">
+
+    <!-- default WEB routes for modules with domain handling -->
+    <ae:configuration context="web">
+
+        <route name=".summary" pattern="^$" action=".Summary" />
+        <route name=".collection" pattern="^collection$" action=".Collection">
+            <callbacks>
+                <callback class="Honeybee\FrameworkBinding\Agavi\Routing\OnGenerateRoutingCallback">
+                    <ae:parameter name="remove">
+                        <ae:parameter>jumpToPage</ae:parameter>
+                        <ae:parameter>page</ae:parameter>
+                    </ae:parameter>
+                </callback>
+            </callbacks>
+        </route>
+        <route name=".resource" pattern="^({resource:[\w\.\-_]{1,128}\-\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}\-\w{2}_\w{2}\-\d+})" action=".Resource">
+            <callbacks>
+                <callback class="Honeybee\FrameworkBinding\Agavi\Routing\ResourceRoutingCallback" />
+            </callbacks>
+            <route name=".task.proceed" pattern="^/tasks/({event:(promote|demote|delete)})" action=".Task.Proceed" />
+            <route name=".task" pattern="^/tasks/({event:\w+})" action=".Task" />
+            <route name=".editors" pattern="^/editors$" action=".Editors" />
+            <route name=".history" pattern="^/history$" action=".History" />
+            <route name=".embed"  pattern="^/_embeds/({embed_path:[A-Za-z0-9\-_\]\[\.\*]{1,1024}})" action=".Embed">
+                <!--
+                <callbacks>
+                    <callback class="Honeybee\FrameworkBinding\Agavi\Routing\AttributePathRoutingCallback" />
+                </callbacks>
+                -->
+            </route>
+        </route>
+        <route name=".create" pattern="^create$" action=".Create" />
+        <route name=".embed"  pattern="^_embeds/({embed_path:[A-Za-z0-9\-_\]\[\.\*]{1,1024}})$" action=".Embed">
+            <!--
+            <callbacks>
+                <callback class="Honeybee\FrameworkBinding\Agavi\Routing\AttributePathRoutingCallback" />
+            </callbacks>
+            -->
+        </route>
+        <route name=".files" pattern="^files" action=".Files">
+            <route name=".upload" pattern="^/$" action=".Upload" />
+            <route name=".download" pattern="^/({file:[A-Za-z0-9\/\-\_\.]{1,1024}})$" action=".Download" output_type="binary">
+                <callbacks>
+                    <callback class="Honeybee\FrameworkBinding\Agavi\Routing\AttributeRoutingCallback">
+                        <ae:parameter name="mandatory">false</ae:parameter>
+                    </callback>
+                </callbacks>
+            </route>
+        </route>
+        <route name=".suggestions" pattern="^suggestions$" action=".Suggestions" />
+        <route name=".status" pattern="^status" action="Status">
+            <route name=".detail" pattern="^/({id:-\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}})$" action=".Details" />
+        </route>
+        <route name=".bulk" pattern="^bulk$" action=".Bulk" />
+        <route name=".hierarchy" pattern="^hierarchy(/{resource:[\w\.\-_]{1,128}\-\w{8}\-\w{4}\-\w{4}\-\w{4}\-\w{12}\-\w{2}_\w{2}\-\d+})?" action=".Hierarchy">
+            <callbacks>
+                <callback class="Honeybee\FrameworkBinding\Agavi\Routing\OptionalResourceRoutingCallback" />
+                <callback class="Honeybee\FrameworkBinding\Agavi\Routing\OnGenerateRoutingCallback">
+                    <ae:parameter name="remove">
+                        <ae:parameter>jumpToPage</ae:parameter>
+                        <ae:parameter>page</ae:parameter>
+                    </ae:parameter>
+                </callback>
+            </callbacks>
+        </route>
+        <route name=".export" pattern="^exports$" action=".Exports" />
+        <route name=".import" pattern="^imports$" action=".Imports" />
+
+    </ae:configuration>
+
+    <!-- default CLI routes for modules with domain handling -->
+    <ae:configuration context="console">
+
+        <route name=".summary" pattern="^summary$" action=".Summary" />
+        <route name=".collection" pattern="^collection$" action=".Collection">
+            <ae:parameter name="description">Retrieve resource collection.</ae:parameter>
+        </route>
+        <route name=".resource" pattern="^resource" action=".Resource">
+            <callbacks>
+                <callback class="Honeybee\FrameworkBinding\Agavi\Routing\ResourceRoutingCallback" />
+            </callbacks>
+            <ae:parameter name="description">Retrieve resource information.</ae:parameter>
+            <route name=".task" pattern="^.task" action=".Task">
+                <ae:parameter name="description">Execute the current task plugin to read data.</ae:parameter>
+                <route name=".write"  pattern="^.write$" method="write">
+                    <ae:parameter name="description">Execute the current task plugin to write data.</ae:parameter>
+                </route>
+                <route name=".proceed"  pattern="^.proceed" action=".Proceed">
+                    <ae:parameter name="description">Show list of available task gates.</ae:parameter>
+                    <route name=".write"  pattern="^.write$" method="write">
+                        <ae:parameter name="description">Proceed to the next step in the task.</ae:parameter>
+                    </route>
+                </route>
+            </route>
+            <route name=".editors"  pattern="^.editors$" action=".Editors">
+                <ae:parameter name="description">Get the list of current resource editors.</ae:parameter>
+            </route>
+            <route name=".events"  pattern="^.events$" action=".Events">
+                <ae:parameter name="description">Get all events that occured for a given resource.</ae:parameter>
+            </route>
+        </route>
+        <route name=".create" pattern="^create$" action=".Create" method="write">
+            <ae:parameter name="description">Create a new resource with the given role.</ae:parameter>
+        </route>
+        <route name=".import" pattern="^import$" action=".Import" method="write">
+            <ae:parameter name="description">Import data into the module via specified consumers.</ae:parameter>
+        </route>
+        <route name=".export" pattern="^export$" action=".Export" method="write">
+            <ae:parameter name="description">Export data from the module as specified in exports.xml file.</ae:parameter>
+        </route>
+
+    </ae:configuration>
+
+</ae:configurations>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/view_configs/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/view_configs/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="view_configs" type="ViewConfigsListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="ViewConfigsListType">
+        <xs:sequence>
+            <xs:element name="view_config" type="ViewConfigType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+        <!-- <xs:attribute name="default" type="xs:string" use="required" /> -->
+    </xs:complexType>
+
+    <xs:complexType name="ViewConfigType">
+        <xs:sequence>
+            <xs:element name="activities" type="ActivitiesListType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="slots" type="SlotsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="output_formats" type="OutputFormatsListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="scope" type="xs:string" use="required" />
+        <xs:attribute name="extends" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="ActivitiesListType">
+        <xs:sequence>
+            <xs:element name="activity" type="ActivityType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ActivityType" mixed="true">
+        <xs:attribute name="scope" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="SlotsListType">
+        <xs:sequence>
+            <xs:element name="slot" type="SlotType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SlotType">
+        <xs:sequence>
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="OutputFormatsListType">
+        <xs:sequence>
+            <xs:element name="output_format" type="OutputFormatType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="OutputFormatType">
+        <xs:group ref="RendererConfigsGroup" />
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:group name="RendererConfigsGroup">
+        <xs:choice>
+            <xs:element name="renderer_configs" type="RendererConfigsListType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="renderer_config" type="RendererConfigType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="RendererConfigsListType">
+        <xs:sequence>
+            <xs:element name="renderer_config" type="RendererConfigType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="RendererConfigType">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="subject" type="xs:string" use="required" />
+        <xs:attribute name="implementor" type="types_1_0:php_class" use="optional" />
+    </xs:complexType>
+
+</xs:schema>

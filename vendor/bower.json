@@ -1,0 +1,9 @@
+{
+    "name": "honeybee-project-template",
+    "version": "0.1.0",
+    "license": "MIT",
+    "private": true,
+    "dependencies": {
+        "honeybee": "git@github.com:berlinonline/honeybee.git#v001-dev"
+    }
+}

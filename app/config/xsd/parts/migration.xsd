@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/migration/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/migration/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="migration_targets" type="MigrationTargetsListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="MigrationTargetsListType">
+        <xs:sequence>
+            <xs:element name="migration_target" type="MigrationTargetType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MigrationTargetType">
+        <xs:sequence>
+            <xs:group ref="SettingsGroup" />
+            <xs:element name="migration_loader" type="MigrationLoaderType" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="active" type="xs:boolean" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="MigrationStorageType">
+        <xs:sequence>
+            <xs:element name="read" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="write" type="xs:string" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="MigrationLoaderType">
+        <xs:sequence>
+            <xs:group ref="SettingsGroup" />
+        </xs:sequence>
+        <xs:attribute name="class" type="types_1_0:php_class" use="required" />
+    </xs:complexType>
+
+</xs:schema>

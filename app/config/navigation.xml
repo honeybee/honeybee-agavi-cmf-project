@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ae:configurations
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/navigation/1.0"
+    xmlns:env="http://berlinonline.de/schemas/honeybee/config/envelope/definition/1.0"
+    >
+
+    <xi:include href="./includes/navigation.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+    <ae:configuration>
+        <available_items>
+            <items name="system_account-list-views">
+                <activity scope="honeybee.system_account.user">collection</activity>
+            </items>
+            <items name="core-list-views">
+                <activity scope="honeybee.core">theme_preview</activity>
+            </items>
+        </available_items>
+
+        <navigations default="main">
+            <navigation name="main">
+                <settings>
+                    <setting name="default_group">SystemAccount</setting>
+                </settings>
+                <groups>
+                    <group name="SystemAccount">
+                        <include>system_account-list-views</include>
+                    </group>
+                    <group name="Core">
+                        <include>core-list-views</include>
+                    </group>
+                </groups>
+            </navigation>
+        </navigations>
+    </ae:configuration>
+</ae:configurations>

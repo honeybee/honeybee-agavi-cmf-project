@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/command_bus/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/command_bus/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="command_bus" type="CommandBusType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="CommandBusType">
+        <xs:sequence>
+            <xs:element name="transports" type="TransportCollectionType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="subscriptions" type="SubscriptionCollectionType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransportCollectionType">
+        <xs:sequence>
+            <xs:element name="transport" type="TransportType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="TransportType">
+        <xs:sequence>
+            <xs:element name="implementor" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="SubscriptionCollectionType">
+        <xs:sequence>
+            <xs:element name="subscription" type="SubscriptionType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SubscriptionType">
+        <xs:sequence>
+            <xs:element name="commands" type="CommandCollectionType" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="transport" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="CommandCollectionType">
+        <xs:sequence>
+            <xs:element name="command" type="CommandType" minOccurs="1" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="CommandType">
+        <xs:sequence>
+            <xs:element name="handler" type="xs:string" minOccurs="1" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

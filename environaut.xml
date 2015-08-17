@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<environaut xmlns="http://mivesto.de/environaut/config/1.0" xmlns:xi="http://www.w3.org/2001/XInclude">
+
+    <name>Honeybee project environment configuration</name>
+
+    <description><![CDATA[
+        This is an Environaut configuration file for a Honeybee project that
+        defines settings and checks to be performed for project configuration
+        and health checking.
+    ]]></description>
+
+    <keywords>
+        <keyword>Honeybee</keyword>
+        <keyword>Environment</keyword>
+        <keyword>Configuration</keyword>
+        <keyword>Settings</keyword>
+        <keyword>Checks</keyword>
+    </keywords>
+
+    <introduction><![CDATA[
+    <comment>This will check and configure this Honeybee project's environment.</comment>
+
+    Hint: When being asked for a value type in the correct string or pick a
+    given one. Available autocompletions can be accepted via <info>TAB key</info>. Some questions
+    will allow to pick common values via <info>UP/DOWN arrows</info>. To accept default values
+    just hit the <info>ENTER key</info>.
+
+    At the end a security check of a given composer.lock file is performed.
+
+    A report with messages will be printed to the CLI and the accumulated
+    settings will be written to 'etc/local/* files.
+
+    Subsequent runs will read the already configured settings from the cache
+    and thus will not ask again for settings. Use '<comment>--no-cache</comment>' to reconfigure
+    or run '<comment>make reconfigure-environment</comment>'.
+    ]]></introduction>
+
+    <!-- Default is:
+        <cache location=".environaut.cache" />
+    -->
+
+    <export>
+        <xi:include href="vendor/honeybee/honeybee-agavi-cmf-vendor/environaut.xml" xpointer="xmlns(ec=http://mivesto.de/environaut/config/1.0) xpointer(//ec:export/ec:*)">
+            <xi:fallback />
+        </xi:include>
+    </export>
+
+    <checks>
+
+        <!--
+            Honeybee default environaut environment checks and settings.
+        -->
+        <xi:include href="vendor/honeybee/honeybee-agavi-cmf-vendor/environaut.xml" xpointer="xmlns(ec=http://mivesto.de/environaut/config/1.0) xpointer(//ec:checks/ec:*)">
+            <xi:fallback />
+        </xi:include>
+
+    </checks>
+</environaut>

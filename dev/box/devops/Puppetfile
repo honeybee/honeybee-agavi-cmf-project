@@ -1,0 +1,4 @@
+forge "https://forgeapi.puppetlabs.com"
+
+mod 'berlinonline-berlinonline',
+	:git => "https://gitlab.berlinonline.net/puppets/berlinonline.git"

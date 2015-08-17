@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ae:configurations
+    xmlns:ae="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/mail/1.0"
+    xmlns:env="http://berlinonline.de/schemas/honeybee/config/envelope/definition/1.0"
+    xmlns:xi="http://www.w3.org/2001/XInclude"
+>
+
+    <xi:include href="%core.honeybee_config_dir%/mail.xml"
+        xpointer="xmlns(ae=http://agavi.org/agavi/config/global/envelope/1.0) xpointer(/ae:configurations/*)">
+        <xi:fallback />
+    </xi:include>
+
+<!--
+
+See docs/mailing.md for a more detailed documentation.
+
+Each module has its own mail.xml file, that usually has this file as it's parent config. If
+you want to customize mailer settings you can change this %core.config_dir%/mail.xml file
+or change the mail.xml files of each module.
+
+To use mailer settings when sending emails specify the mailer name as second parameter on
+the send method (otherwise the default mailer settings are used):
+
+$mail = Message::create('from@example.com', 'to@example.com', 'Subject', '<h1>HTML-Body-Part</h1>', 'Text body part');
+$mail_service->send($mail, 'custom_mailer_name');
+
+The following settings are supported for mailer settings:
+
+- "override_all_recipients": email address to use for TO, CC and BCC regardless of other settings when those fields are set in a message
+- "default_subject": string to use as the default subject if none is set for the message
+- "default_body_text": string to use as the default plain text part of the mail body if none is set in a message
+- "default_body_html": string to use as the default html part of the mail body if none is set in a message
+- "default_date": default (unix) timestamp to set in a message if none is set - you may use a strtotime() compatible string like "+2 weeks"
+- "address_defaults": contains settings with "email field" => "email address(es)" pairs to use as defaults if a message does not set them
+  - you can either specify an email address as string or a nested settings block with multiple addresses as settings
+  - supported email field identifiers are: "to", "from", "cc", "bcc", "reply_to", "return_path", "sender"
+- "address_overrides": contains settings with "email field" => "email address(es)" pairs to use instead of addresses already set on the message
+  - you can either specify an email address as string or a nested settings block with multiple addresses as settings
+  - supported email field identifiers are: "to", "from", "cc", "bcc", "reply_to", "return_path", "sender"
+- "max_line_length": maximum length of lines in the plain text email part, defaults to 78 characters historically
+- "priority": priority from 1 (highest) to 5 (lowest) used for mails, defaults to 3 (normal).
+- "read_receipt_to": email address(es) to use for read receipt functionality
+
+-->
+<!--
+    <ae:configuration>
+        <mailers default="default">
+            <mailer name="default">
+                <settings>
+                    <setting name="charset">utf-8</setting>
+                    <setting name="logging_enabled">true</setting>
+                    <setting name="log_messages">false</setting>
+                </settings>
+            </mailer>
+        </mailers>
+    </ae:configuration>
+
+    <ae:configuration environment="development.*">
+        <mailers default="default">
+            <mailer name="default">
+                <settings>
+                    <setting name="log_messages">true</setting>
+                </settings>
+            </mailer>
+        </mailers>
+    </ae:configuration>
+-->
+<!--
+    <ae:configuration environment="development.*">
+        <mailers default="default">
+            <mailer name="default">
+                <settings>
+                    <setting name="override_all_recipients">%core.project_prefix%+%core.clean_environment%@example.com</setting>
+                    <setting name="override_all_recipients">
+                        <settings>
+                            <setting>OVERRIDE_ALL@example.com</setting>
+                            <setting>OVERRIDE_ALWAYS@example.com</setting>
+                        </settings>
+                    </setting>
+                    <setting name="default_date">+2 weeks</setting>
+                    <setting name="default_body_html"><![CDATA[<h1>Hello from mail.xml!</h1>]]></setting>
+                    <setting name="default_body_text">Hello from the default_body_text in mail.xml. :-)</setting>
+                    <setting name="address_defaults">
+                        <settings>
+                            <setting name="bcc">default-bcc-%core.project_prefix%+%core.clean_environment%@example.com</setting>
+                            <setting name="sender">default-sender@example.com</setting>
+                            <setting name="reply_to">default-reply-to@example.com</setting>
+                        </settings>
+                    </setting>
+                    <setting name="address_overrides">
+                        <settings>
+                            <setting name="from">override-from@example.com</setting>
+                            <setting name="to">
+                                <settings>
+                                    <setting>override-to-someone@example.com</setting>
+                                    <setting>override-to-trololo@example.com</setting>
+                                </settings>
+                            </setting>
+                            <setting name="cc">override-cc@example.com</setting>
+                            <setting name="bcc">override-bcc@example.com</setting>
+                            <setting name="return_path">override-return-path@example.com</setting>
+                            <setting name="reply_to">override-reply-to@example.com</setting>
+                        </settings>
+                    </setting>
+                </settings>
+            </mailer>
+        </mailers>
+    </ae:configuration>
+-->
+
+</ae:configurations>

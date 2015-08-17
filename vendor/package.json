@@ -1,0 +1,9 @@
+{
+    "name": "honeybee-project-template",
+    "description": "Defines the node dependencies for honeybee.",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "honeybee": "git+ssh://git@github.com:berlinonline/honeybee.git#v001-dev"
+    }
+}

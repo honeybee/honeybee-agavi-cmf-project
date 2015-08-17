@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns:envelope_1_0="http://agavi.org/agavi/config/global/envelope/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/workflow/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/workflow/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:import namespace="http://agavi.org/agavi/config/global/envelope/1.0"
+        schemaLocation="../../../../vendor/honeybee/agavi/src/config/xsd/_envelope.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="workflows" type="WorkflowsListType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="WorkflowsListType">
+        <xs:sequence>
+            <xs:element name="workflow" type="WorkflowType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="WorkflowType">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="start_at" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="steps" type="StepsListType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="StepsListType">
+        <xs:sequence>
+            <xs:element name="step" type="StepType" minOccurs="1" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="StepType">
+        <xs:sequence>
+            <xs:element name="description" type="xs:string" minOccurs="1" maxOccurs="1"/>
+            <xs:element name="plugin" type="PluginType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="PluginType">
+        <xs:sequence>
+            <xs:group ref="envelope_1_0:parameters"/>
+            <xs:element name="gates" type="GatesListType" minOccurs="1" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="types_1_0:php_class" use="required"/>
+    </xs:complexType>
+
+    <xs:complexType name="GatesListType">
+        <xs:choice minOccurs="1" maxOccurs="unbounded">
+            <xs:element name="gate_step" type="StepGateType" />
+            <xs:element name="gate_workflow" type="WorkflowGateType" />
+            <xs:element name="gate_end" type="EndGateType" />
+        </xs:choice>
+    </xs:complexType>
+
+    <xs:complexType name="BaseGateType" abstract="true">
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="label" type="xs:string" />
+    </xs:complexType>
+
+    <xs:complexType name="StepGateType">
+        <xs:complexContent mixed="true">
+            <xs:extension base="BaseGateType" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="WorkflowGateType">
+        <xs:complexContent mixed="true">
+            <xs:extension base="BaseGateType" />
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="EndGateType">
+        <xs:complexContent>
+            <xs:extension base="BaseGateType" />
+        </xs:complexContent>
+    </xs:complexType>
+
+</xs:schema>

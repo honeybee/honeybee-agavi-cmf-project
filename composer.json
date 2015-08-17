@@ -1,0 +1,86 @@
+{
+    "name": "honeybee/honeybee-agavi-cmf-project",
+    "license": "MIT",
+    "type": "project",
+    "description": "Project (template) for building content-management applications, that base on Agavi and the Honeybee CQRS library.",
+    "keywords": [ "honeybee", "agavi", "project-template" ],
+    "homepage": "https://github.com/honeybee/honeybee-agavi-cmf-project",
+    "authors": [
+        {
+            "name": "Hasham Ahmad",
+            "email": "mr.hash@gmail.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Steffen Gransow",
+            "email": "honeybee@mivesto.de",
+            "role": "Developer"
+        },
+        {
+            "name": "Thorsten Schmitt-Rink",
+            "email": "schmittrink@gmail.com",
+            "homepage": "https://github.com/shrink0r",
+            "role": "Developer"
+        },
+        {
+            "name": "Honeybee Contributors",
+            "homepage": "https://github.com/honeybee/honeybee-agavi-cmf-vendor/graphs/contributors"
+        }
+    ],
+
+    "support": {
+        "issues": "https://github.com/honeybee/honeybee-agavi-cmf-vendor/issues",
+        "irc": "irc://irc.freenode.org/honeybee"
+    },
+
+    "prefer-stable": true,
+
+    "minimum-stability": "dev",
+
+    "require": {
+        "php": ">=5.3.3",
+        "lib-curl": "*",
+        "lib-libxml": "*",
+        "lib-xsl": "*",
+        "lib-iconv": "*",
+        "lib-icu": "*",
+        "lib-openssl": "*",
+        "lib-pcre": "*",
+        "ext-imagick": "*",
+        "honeybee/honeybee-agavi-cmf-vendor": "dev-master",
+        "honeybee/trellis": "master@dev",
+        "shrink0r/workflux": "master@dev",
+        "webmozart/json": "^1.0"
+    },
+
+     "require-dev": {
+        "phpmd/phpmd": "2.2.*",
+        "phpunit/phpunit": "4.8.*",
+        "sami/sami": "3.*",
+        "satooshi/php-coveralls": "0.6.*",
+        "sebastian/phpcpd": "2.0.*",
+        "squizlabs/php_codesniffer": "2.3.*"
+    },
+
+    "scripts": {
+        "test": [
+            "echo \"\nRunning unit tests ...\n\"",
+            "./vendor/bin/phpunit --colors tests"
+        ],
+        "code-sniffer": [
+            "echo \"\nRunning codesniffer to check for PSR-2 compatibility ...\n\"",
+            "./vendor/bin/phpcs --extensions=php --standard=psr2 ./app/lib ./app/modules ./tests"
+        ],
+        "api-doc": [
+            "echo \"\nRunning Sami to generate docs ...\n\"",
+            "if [ -d ./build/docs ]; then rm -rf ./build/docs; fi",
+            "vendor/sami/sami/sami.php --ansi update app/config/sami.php"
+        ],
+        "build": [
+            "if [ -d ./build/logs ]; then rm -rf ./build/logs; fi",
+            "mkdir -p ./build/logs",
+            "./bin/composer.phar test",
+            "./bin/composer.phar code-sniffer"
+        ]
+    }
+}

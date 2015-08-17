@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+
+    <xs:complexType name="SettingsListType">
+         <xs:sequence>
+            <xs:element name="setting" type="SettingType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="SettingType" mixed="true">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="name" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:group name="SettingsGroup">
+        <xs:choice>
+            <xs:element name="setting" type="SettingType" minOccurs="0" maxOccurs="unbounded"/>
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+        </xs:choice>
+    </xs:group>
+
+</xs:schema>

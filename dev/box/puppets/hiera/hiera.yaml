@@ -1,0 +1,14 @@
+---
+:backends:
+  - yaml
+
+:hierarchy:
+  - "../devbox"
+  - "devbox"
+  - "operatingsystem/%{::operatingsystem}"
+  - "global"
+
+:yaml:
+  :datadir: '/vagrant/puppets/hiera'
+
+:merge_behavior: deeper
