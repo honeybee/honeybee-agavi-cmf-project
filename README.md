@@ -5,7 +5,7 @@ This repository holds a ```honeybee-agavi-cmf-project``` application.
 
 ### Development setup
 
-When successfully setup a "honeybee-agavi-cmf-project" application should be reachable at: https://honeybee-cmf-project.local/
+When successfully setup a "honeybee-agavi-cmf-project" application should be reachable at: https://honeybee-agavi-cmf-project.local/
 
 See the ["Controlling system services"](#controlling-system-services) section for further information on available endpoints.
 
@@ -47,20 +47,20 @@ SendEnv LANG LC_* GIT_*
 * Initially create the vagrant box:
 ```shell
 git clone git@github.com:honeybee/honeybee-agavi-cmf-project.git
-cd honeybee-cmf-project/dev/box/
+cd honeybee-agavi-cmf-project/dev/box/
 vagrant up # this will take a while, time to grab a coffee
 ```
 
 * Checkout and setup app within the box:
 ```shell
 vagrant ssh
-cd /srv/www/honeybee-cmf-project.local/
+cd /srv/www/honeybee-agavi-cmf-project.local/
 make install
 ```
 
 In the end you'll be prompted for some infos. Here are some answers, that are suitable for dev:
 
-* Base-url: ```https://honeybee-cmf-project.local/```
+* Base-url: ```https://honeybee-agavi-cmf-project.local/```
 * Environment: ```development```
 * Enable testing: ```y```
 
@@ -78,7 +78,7 @@ make user
 
 This will give an output similar to:
 ```
-Please set a password for the created account at: https://honeybee-cmf-project.local/foh/system_account/user/password?token=c469090bf62c4d21444cd0a83171b1429a11ad9b
+Please set a password for the created account at: https://honeybee-agavi-cmf-project.local/foh/system_account/user/password?token=c469090bf62c4d21444cd0a83171b1429a11ad9b
 Via CLI use the following: bin/cli foh.system_account.user.password '-token' 'c469090bf62c4d21444cd0a83171b1429a11ad9b'
 ```
 
@@ -88,10 +88,10 @@ Either copy the displayed url and open it in a browser or run the displayed cli 
 
 * MAC:
     * In the Finder's menubar select: ```Connect to Server```
-    * then enter the following address: ```nfs://honeybee-cmf-project.local/srv/www/```
+    * then enter the following address: ```nfs://honeybee-agavi-cmf-project.local/srv/www/```
 * Ubuntu:
 ```shell
-mount honeybee-cmf-project.local:/srv/www/ /home/${USER}/projects/honeybee-cmf-project
+mount honeybee-agavi-cmf-project.local:/srv/www/ /home/${USER}/projects/honeybee-agavi-cmf-project
 ```
 
 #### Controlling system services
@@ -99,16 +99,16 @@ mount honeybee-cmf-project.local:/srv/www/ /home/${USER}/projects/honeybee-cmf-p
 The following services are running on the cms devbox and are controlled via systemd:
 
 * couchdb
-    * http-endpoint: http://honeybee-cmf-project.local:5984
-    * web-client: http://honeybee-cmf-project.local:5984/_utils
+    * http-endpoint: http://honeybee-agavi-cmf-project.local:5984
+    * web-client: http://honeybee-agavi-cmf-project.local:5984/_utils
 * elasticsearch
-    * http-endpoint: http://honeybee-cmf-project.local:9200
-    * web-client: http://honeybee-cmf-project.local:9200/_plugin/head
+    * http-endpoint: http://honeybee-agavi-cmf-project.local:9200
+    * web-client: http://honeybee-agavi-cmf-project.local:9200/_plugin/head
 * converjon
-    * http-endpoint: https://honeybee-cmf-project.local/converjon
-    * web-status: https://honeybee-cmf-project.local/converjon/status
+    * http-endpoint: https://honeybee-agavi-cmf-project.local/converjon
+    * web-status: https://honeybee-agavi-cmf-project.local/converjon/status
 * nginx
-    * cms http-endpoint: https://honeybee-cmf-project.local/
+    * cms http-endpoint: https://honeybee-agavi-cmf-project.local/
 * php-fpm
 
 In order to start/stop services or get the status use the corresponding sudo command within the devbox, e.g.:
