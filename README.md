@@ -1,30 +1,14 @@
 # honeybee-agavi-cmf-project
 
-This repository holds a ```honeybee-agavi-cmf-project``` application.
-
-To create a new project off of this template do:
-```
-git clone git@github.com:honeybee/honeybee-agavi-cmf-project.git your-project
-cd your-project
-rm -rf .git
-// Edit composer.json and adjust the meta-data of your package as needed.
-find . -type f -exec sed -i '' s/honeybee\/honeybee-agavi-cmf-project/your-vendor\/your-project/g {} +
-find . -type f -exec sed -i '' s/honeybee-agavi-cmf-project/your-project/g {} +
-```
-
-From here on the following README leads through setting up a dev environment based on vagrant and puppet.  
-
 ### Development setup
 
-When successfully setup a "honeybee-agavi-cmf-project" application should be reachable at: https://honeybee-agavi-cmf-project.local/
-
-See the ["Controlling system services"](#controlling-system-services) section for further information on available endpoints.
+This repository holds a `honeybee-agavi-cmf-project` template application which you can use to create your own projects.
 
 #### Checking the prerequisites
 
 * VirtualBox: https://www.virtualbox.org/wiki/Downloads
 * VirtualBox Extension Pack: https://www.virtualbox.org/wiki/Download_Old_Builds_4_2
-    * either add via Menu: ```VirtualBox``` -> ```File``` -> ```Preferences``` -> ```Extensions```
+    * either add via Menu: `VirtualBox` -> `File` -> `Preferences` -> `Extensions`
     * or doubleclick the extension pack file after downloading
 * Vagrant: http://downloads.vagrantup.com/
 * Git: https://git-scm.com
@@ -32,12 +16,14 @@ See the ["Controlling system services"](#controlling-system-services) section fo
 ##### Optional devops dependencies
 
 * Ruby: https://www.ruby-lang.org/de/
-* Puppet: ```gem install puppet```
-* Librarian: ```gem install librarian-puppet```
+* Puppet: `gem install puppet`
+* Librarian: `gem install librarian-puppet`
 
-#### Setting up ssh and git
+#### Setting up `ssh` and `git`
 
-* Add GIT_* environment-vars in ~/.bashrc:
+You can configure `git` manually inside your VM or you can preconfigure environment variables to pass into the VM as follows:
+
+* Add `GIT_*` environment-vars in `~/.bashrc` or `~/.bash_profile`:
 ```shell
 PATH=$PATH:/opt/vagrant/bin
 export GIT_AUTHOR_NAME="User Name"
@@ -46,7 +32,7 @@ export GIT_COMMITTER_NAME="$GIT_AUTHOR_NAME"
 export GIT_COMMITTER_EMAIL="$GIT_AUTHOR_EMAIL"
 ```
 
-* Enable ssh-agent and env-var forwarding in ~/.ssh/config:
+* Enable `ssh-agent` and environment-vars forwarding in `~/.ssh/config`:
 ```shell
 Host *
 ForwardAgent yes
@@ -55,32 +41,51 @@ SendEnv LANG LC_* GIT_*
 
 #### Initially setting up the project
 
-* Initially create the vagrant box:
+* To create a new project and VM from this template using `composer`:
 ```shell
-git clone git@github.com:honeybee/honeybee-agavi-cmf-project.git
+composer.phar create-project -sdev --dev --ignore-platform --no-install \
+honeybee/honeybee-agavi-cmf-project <your-honeybee-project-dir>
+```
+You will be prompted for for some information to configure the VM.
+
+* In order to launch the VM your application must be made available on Github. When the repository is ready at the location you specified in the `create-project` command you can build the VM as follows:
+```shell
 cd honeybee-agavi-cmf-project/dev/box/
 vagrant up # this will take a while, time to grab a coffee
 ```
 
-* Checkout and setup app within the box:
+* Now you can install your application within the box:
 ```shell
 vagrant ssh
 cd /srv/www/honeybee-agavi-cmf-project.local/
 make install
 ```
 
-In the end you'll be prompted for some infos. Here are some answers, that are suitable for dev:
+In the end you'll be prompted for some infos. Here are some answers, that are suitable for development:
 
-* Base-url: ```https://honeybee-agavi-cmf-project.local/```
-* Environment: ```development```
-* Enable testing: ```y```
+* Base-url: `https://honeybee-agavi-cmf-project.local/`
+* Environment: `development`
+* Enable testing: `y`
 
-Afterwards run the migrations to complete the setup:
+#### Mounting the source
+
+* MAC:
+    * In the Finder's menubar select: `Connect to Server`
+    * then enter the following address: `nfs://honeybee-agavi-cmf-project.local/srv/www/`
+* Ubuntu:
+```shell
+mount honeybee-agavi-cmf-project.local:/srv/www/ /home/${USER}/projects/honeybee-agavi-cmf-project
+```
+
+When successfully setup the application should be reachable at: https://honeybee-agavi-cmf-project.local/
+and is ready for development. 
+
+Run the migrations to complete the setup:
 ```shell
 make migrate-all
 ```
 
-#### Creating the first system-account user/admin
+#### Creating the first system account user/admin
 
 The first user within the system must be created via command line using:
 ```shell
@@ -89,21 +94,11 @@ make user
 
 This will give an output similar to:
 ```
-Please set a password for the created account at: https://honeybee-agavi-cmf-project.local/foh/system_account/user/password?token=c469090bf62c4d21444cd0a83171b1429a11ad9b
-Via CLI use the following: bin/cli foh.system_account.user.password '-token' 'c469090bf62c4d21444cd0a83171b1429a11ad9b'
+Please set a password for the created account at: https://honeybee-agavi-cmf-project.local/honeybee/system_account/user/password?token=c469090bf62c4d21444cd0a83171b1429a11ad9b
+Via CLI use the following: bin/cli honeybee.system_account.user.password '-token' 'c469090bf62c4d21444cd0a83171b1429a11ad9b'
 ```
 
 Either copy the displayed url and open it in a browser or run the displayed cli command. Then follow through the instructions in order to set the password for the user, that you just created.
-
-#### Mounting the source
-
-* MAC:
-    * In the Finder's menubar select: ```Connect to Server```
-    * then enter the following address: ```nfs://honeybee-agavi-cmf-project.local/srv/www/```
-* Ubuntu:
-```shell
-mount honeybee-agavi-cmf-project.local:/srv/www/ /home/${USER}/projects/honeybee-agavi-cmf-project
-```
 
 #### Controlling system services
 
@@ -127,7 +122,7 @@ In order to start/stop services or get the status use the corresponding sudo com
 sudo service couchdb status|start|stop|restart
 ```
 
-#### Turning the devbox on/off
+#### Turning the VM on/off
 
 Whenever possible stop the box with:
 ```shell
