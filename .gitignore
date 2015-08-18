@@ -8,3 +8,6 @@
 codecache
 .sass-cache
 .DS_Store
+.project
+.buildpath
+.settings
