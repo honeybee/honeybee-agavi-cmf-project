@@ -114,7 +114,7 @@ class ScriptHandler
         );
 
         foreach($objects as $name => $object) {
-            if($object->isFile()) {
+            if($object->isFile() && is_writable($object->getRealPath())) {
                 $file_contents = file_get_contents($object->getRealPath());
                 $file_contents = str_replace($search, $replacement, $file_contents);
                 file_put_contents($object->getRealPath(), $file_contents);
