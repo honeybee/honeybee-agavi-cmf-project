@@ -62,6 +62,10 @@
         "squizlabs/php_codesniffer": "2.3.*"
     },
 
+    "autoload": {
+        "psr-0": { "ScriptHandler": "etc/composer/" }
+    },
+
     "scripts": {
         "test": [
             "echo \"\nRunning unit tests ...\n\"",
@@ -81,6 +85,9 @@
             "mkdir -p ./build/logs",
             "./bin/composer.phar test",
             "./bin/composer.phar code-sniffer"
+        ],
+        "post-root-package-install": [
+            "ScriptHandler::postRootPackageInstall"
         ]
     }
 }

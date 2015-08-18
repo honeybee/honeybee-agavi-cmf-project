@@ -44,7 +44,7 @@
             <xi:fallback />
         </xi:include>
     </export>
-
+        
     <checks>
 
         <!--
@@ -53,6 +53,13 @@
         <xi:include href="vendor/honeybee/honeybee-agavi-cmf-vendor/environaut.xml" xpointer="xmlns(ec=http://mivesto.de/environaut/config/1.0) xpointer(//ec:checks/ec:*)">
             <xi:fallback />
         </xi:include>
+
+        <check name="base_href" group="local_config">
+            <parameter name="question">What's the base HREF of the application?</parameter>
+            <parameter name="default">https://honeybee-agavi-cmf-project.local/</parameter>
+	    <parameter name="validator">Environaut\Checks\Validator::validUrl</parameter>
+            <parameter name="max_attempts">5</parameter>
+        </check>
 
     </checks>
 </environaut>
