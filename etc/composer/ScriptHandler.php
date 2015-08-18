@@ -83,6 +83,7 @@ class ScriptHandler
             $io->write('Please execute the following git commands as detailed here:');
             $io->write('<options=underscore>https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line</>');
             $io->write('');
+            $io->write('<options=bold>cd ' . $project_path . '</>');
             $io->write('<options=bold>git init</>');
             $io->write('<options=bold>git add .</>');
             $io->write('<options=bold>git commit -m "Initialising project"</>');
