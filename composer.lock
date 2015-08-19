@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "32686681c8d305b216bb1580465ad7dc",
+    "hash": "c5581b2b5108d6dc253326558ec59f50",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee.git",
-                "reference": "692c9bd1adbae2f9afb1996521fee0ca06ceacab"
+                "reference": "7c83416b746b3b1f3f6fcddb7bbc93d86e995308"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/692c9bd1adbae2f9afb1996521fee0ca06ceacab",
-                "reference": "692c9bd1adbae2f9afb1996521fee0ca06ceacab",
+                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/7c83416b746b3b1f3f6fcddb7bbc93d86e995308",
+                "reference": "7c83416b746b3b1f3f6fcddb7bbc93d86e995308",
                 "shasum": ""
             },
             "require": {
@@ -674,13 +674,14 @@
                     "role": "Developer"
                 },
                 {
-                    "name": "Thorsten Schmitt-Rink",
-                    "email": "schmittrink@gmail.com",
-                    "role": "Developer"
-                },
-                {
                     "name": "Honeybee Contributors",
                     "homepage": "https://github.com/honeybee/honeybee/graphs/contributors"
+                },
+                {
+                    "name": "Thorsten Schmitt-Rink",
+                    "email": "schmittrink@gmail.com",
+                    "homepage": "https://github.com/shrink0r",
+                    "role": "Developer"
                 }
             ],
             "description": "Library for implementing CQRS driven, event-sourced and distributed architectures.",
@@ -692,7 +693,7 @@
                 "hexagonal",
                 "messaging"
             ],
-            "time": "2015-08-17 16:50:51"
+            "time": "2015-08-18 15:46:53"
         },
         {
             "name": "honeybee/honeybee-agavi-cmf-vendor",
@@ -700,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee-agavi-cmf-vendor.git",
-                "reference": "83365b5c15b992a2cd62f2808852af34f75fb29c"
+                "reference": "c09913906fd2d6ef6419293180c52ed535e02efa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/83365b5c15b992a2cd62f2808852af34f75fb29c",
-                "reference": "83365b5c15b992a2cd62f2808852af34f75fb29c",
+                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/c09913906fd2d6ef6419293180c52ed535e02efa",
+                "reference": "c09913906fd2d6ef6419293180c52ed535e02efa",
                 "shasum": ""
             },
             "require": {
@@ -763,7 +764,7 @@
                 "agavi",
                 "honeybee"
             ],
-            "time": "2015-08-17 20:14:36"
+            "time": "2015-08-18 11:21:46"
         },
         {
             "name": "honeybee/trellis",

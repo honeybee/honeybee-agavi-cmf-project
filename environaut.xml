@@ -57,7 +57,7 @@
         <check name="base_href" group="local_config">
             <parameter name="question">What's the base HREF of the application?</parameter>
             <parameter name="default">https://honeybee-agavi-cmf-project.local/</parameter>
-	    <parameter name="validator">Environaut\Checks\Validator::validUrl</parameter>
+            <parameter name="validator">Environaut\Checks\Validator::validUrl</parameter>
             <parameter name="max_attempts">5</parameter>
         </check>
 

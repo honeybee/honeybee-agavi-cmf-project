@@ -100,6 +100,7 @@ class ScriptHandler
             $io->write('<options=bold>vagrant ssh</>');
             $io->write('<options=bold>cd /srv/www/' . $hostname . '</>');
             $io->write('<options=bold>make install</>');
+            $io->write('<options=bold>sudo service nginx restart</>');
         } else {
             $io->write('You can now install the application by executing the following command:');
             $io->write('');

@@ -59,6 +59,7 @@ vagrant up # this will take a while, time to grab a coffee
 vagrant ssh
 cd /srv/www/honeybee-agavi-cmf-project.local/
 make install
+sudo service nginx restart
 ```
 
 In the end you'll be prompted for some infos. Here are some answers, that are suitable for development:

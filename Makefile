@@ -1,5 +1,6 @@
 # vim: ts=4:sw=4:noexpandtab!:
 
+MAKEFLAGS += --no-print-directory
 PROJECT_DIR=`pwd`
 LOCAL_CONFIG_SH = $(wildcard etc/local/config.sh)
 
@@ -88,7 +89,7 @@ install:
 	@npm install --prefix ./vendor
 
 	@echo "[INFO] Installing (updating) bower (clientside libraries) into vendor/bower_components."
-	@cd vendor && node_modules/honeybee/node_modules/.bin/bower update
+	@cd vendor && node_modules/honeybee/node_modules/.bin/bower update --config.interactive=false
 
 	@echo "[INFO] Downloading additional dependencies from package.txt files."
 	@bin/wget_packages
@@ -118,7 +119,7 @@ install-production:
 	@npm install --prefix ./vendor
 
 	@echo "[INFO] Installing bower (clientside libraries) into vendor/bower_components."
-	@cd vendor && node_modules/honeybee/node_modules/.bin/bower install
+	@cd vendor && node_modules/honeybee/node_modules/.bin/bower install --config.interactive=false
 
 	@echo "[INFO] Downloading additional dependencies from package.txt files."
 	@bin/wget_packages

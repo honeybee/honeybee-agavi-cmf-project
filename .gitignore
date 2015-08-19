@@ -3,6 +3,7 @@
 /tags
 /build
 /app/modules/Honeybee_SystemAccount/fixture
+/dev/trellis_templates
 .environment
 .environaut.cache
 codecache
