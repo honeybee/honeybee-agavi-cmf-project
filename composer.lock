@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee.git",
-                "reference": "7c83416b746b3b1f3f6fcddb7bbc93d86e995308"
+                "reference": "a317c19852f5540146dbb635e0d647db60e40a6d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/7c83416b746b3b1f3f6fcddb7bbc93d86e995308",
-                "reference": "7c83416b746b3b1f3f6fcddb7bbc93d86e995308",
+                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/a317c19852f5540146dbb635e0d647db60e40a6d",
+                "reference": "a317c19852f5540146dbb635e0d647db60e40a6d",
                 "shasum": ""
             },
             "require": {
@@ -693,7 +693,7 @@
                 "hexagonal",
                 "messaging"
             ],
-            "time": "2015-08-18 15:46:53"
+            "time": "2015-08-20 20:19:29"
         },
         {
             "name": "honeybee/honeybee-agavi-cmf-vendor",
@@ -701,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee-agavi-cmf-vendor.git",
-                "reference": "c09913906fd2d6ef6419293180c52ed535e02efa"
+                "reference": "b30ed2294dbbb52df2e2a9b32869f942443b4b79"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/c09913906fd2d6ef6419293180c52ed535e02efa",
-                "reference": "c09913906fd2d6ef6419293180c52ed535e02efa",
+                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/b30ed2294dbbb52df2e2a9b32869f942443b4b79",
+                "reference": "b30ed2294dbbb52df2e2a9b32869f942443b4b79",
                 "shasum": ""
             },
             "require": {
@@ -764,7 +764,7 @@
                 "agavi",
                 "honeybee"
             ],
-            "time": "2015-08-18 11:21:46"
+            "time": "2015-08-20 20:26:09"
         },
         {
             "name": "honeybee/trellis",
@@ -1639,12 +1639,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/shrink0r/workflux.git",
-                "reference": "061c3c37c91bb5adadd67ecca0d78384a9ac0564"
+                "reference": "104066fc3518753607fdc4e0b8ab2d976e878edb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/shrink0r/workflux/zipball/061c3c37c91bb5adadd67ecca0d78384a9ac0564",
-                "reference": "061c3c37c91bb5adadd67ecca0d78384a9ac0564",
+                "url": "https://api.github.com/repos/shrink0r/workflux/zipball/104066fc3518753607fdc4e0b8ab2d976e878edb",
+                "reference": "104066fc3518753607fdc4e0b8ab2d976e878edb",
                 "shasum": ""
             },
             "require": {
@@ -1685,7 +1685,7 @@
                 "workflow",
                 "workflux"
             ],
-            "time": "2015-03-08 21:51:09"
+            "time": "2015-08-20 16:10:21"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2937,16 +2937,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "4.8.4",
+            "version": "4.8.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7"
+                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
-                "reference": "55bf1d6092b0e13a1f26bd5eaffeef3d8ad85ea7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/9b7417edaf28059ea63d86be941e6004dbfcc0cc",
+                "reference": "9b7417edaf28059ea63d86be941e6004dbfcc0cc",
                 "shasum": ""
             },
             "require": {
@@ -3005,24 +3005,24 @@
                 "testing",
                 "xunit"
             ],
-            "time": "2015-08-15 04:21:23"
+            "time": "2015-08-19 09:20:57"
         },
         {
             "name": "phpunit/phpunit-mock-objects",
-            "version": "2.3.6",
+            "version": "2.3.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit-mock-objects.git",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42"
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
-                "reference": "18dfbcb81d05e2296c0bcddd4db96cade75e6f42",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit-mock-objects/zipball/5e2645ad49d196e020b85598d7c97e482725786a",
+                "reference": "5e2645ad49d196e020b85598d7c97e482725786a",
                 "shasum": ""
             },
             "require": {
-                "doctrine/instantiator": "~1.0,>=1.0.2",
+                "doctrine/instantiator": "^1.0.2",
                 "php": ">=5.3.3",
                 "phpunit/php-text-template": "~1.2",
                 "sebastian/exporter": "~1.2"
@@ -3061,7 +3061,7 @@
                 "mock",
                 "xunit"
             ],
-            "time": "2015-07-10 06:54:24"
+            "time": "2015-08-19 09:14:08"
         },
         {
             "name": "sami/sami",
