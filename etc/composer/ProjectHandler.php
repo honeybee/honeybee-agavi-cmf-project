@@ -1,16 +1,27 @@
 <?php
 
-use Composer\Script\Event;
+namespace HoneybeeExtensions\Composer;
 
-class ScriptHandler
+use Composer\Script\Event;
+use RecursiveIteratorIterator;
+use RecursiveCallbackFilterIterator;
+use RecursiveDirectoryIterator;
+use Exception;
+
+class ProjectHandler
 {
     const DEFAULT_HOST_NAME = 'honeybee-agavi-cmf-project.local';
     const DEFAULT_REPOSITORY_NAME = 'honeybee/honeybee-agavi-cmf-project';
     const DEFAULT_PROJECT_NAME = 'honeybee-agavi-cmf-project';
 
+    protected static function getProjectPath(Event $event)
+    {
+        return realpath($event->getComposer()->getConfig()->get('vendor-dir') . DIRECTORY_SEPARATOR . '..');
+    }
+
     public static function postRootPackageInstall(Event $event)
     {
-        $project_path = realpath(__DIR__ . '/../../');
+        $project_path = self::getProjectPath($event);
 
         $io = $event->getIO();
         $io->write('');
@@ -71,9 +82,6 @@ class ScriptHandler
         self::replaceStringInFiles(self::DEFAULT_REPOSITORY_NAME, $vendor_package, $project_path);
         self::replaceStringInFiles(self::DEFAULT_PROJECT_NAME, $package_name, $project_path);
 
-        // Remove .git files if present
-        // self::deleteGitFiles($project_path . DIRECTORY_SEPARATOR . '.git');
-
         $io->write('<fg=green;options=bold>Your project configuration is complete.</>');
         $io->write('<info>--------------------------------------------------------------------------------------------');
 
@@ -83,7 +91,6 @@ class ScriptHandler
             $io->write('Please execute the following git commands as detailed here:');
             $io->write('<options=underscore>https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line</>');
             $io->write('');
-            $io->write('<options=bold>cd ' . $project_path . '</>');
             $io->write('<options=bold>git init</>');
             $io->write('<options=bold>git add .</>');
             $io->write('<options=bold>git commit -m "Initialising project"</>');
@@ -113,7 +120,7 @@ class ScriptHandler
         $io->write('');
         $io->write('Further Honeybee information and support can be found here:');
         $io->write('Installation documentation: <options=underscore>https://github.com/honeybee/honeybee-agavi-cmf-project</>');
-        $io->write('Cookbook & demo project: <options=underscore>https://github.com/honeybee/honeybee-agavi-cmf-demo/cookbook</>');
+        $io->write('Demo project & Cookbook: <options=underscore>https://github.com/honeybee/honeybee-agavi-cmf-demo/docs</>');
         $io->write('IRC support and feedback: <options=underscore>irc://irc.freenode.org/honeybee</>');
         $io->write('--------------------------------------------------------------------------------------------</info>');
         $io->write('<fg=green;options=bold>Thank you for using Honeybee.</>');
@@ -146,17 +153,6 @@ class ScriptHandler
                 $file_contents = str_replace($search, $replacement, $file_contents);
                 file_put_contents($object->getRealPath(), $file_contents);
             }
-        }
-    }
-
-    protected static function deleteGitFiles($path)
-    {
-        if (is_writable($path)) {
-            $files = array_diff(scandir($path), array('.','..'));
-            foreach ($files as $file) {
-                (is_dir("$path/$file")) ? self::deleteGitFiles("$path/$file") : unlink("$path/$file");
-            }
-            rmdir($path);
         }
     }
 }

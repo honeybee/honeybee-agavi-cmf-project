@@ -63,7 +63,9 @@
     },
 
     "autoload": {
-        "psr-0": { "ScriptHandler": "etc/composer/" }
+        "psr-4": { 
+            "HoneybeeExtensions\\Composer\\": "etc/composer/"
+         }
     },
 
     "scripts": {
@@ -87,7 +89,33 @@
             "./bin/composer.phar code-sniffer"
         ],
         "post-root-package-install": [
-            "ScriptHandler::postRootPackageInstall"
+            "HoneybeeExtensions\\Composer\\ProjectHandler::postRootPackageInstall"
+        ],
+        "migration-create": [
+            "HoneybeeExtensions\\Composer\\MigrationHandler::createMigration"
+        ],
+        "migration-list": [
+            "HoneybeeExtensions\\Composer\\MigrationHandler::listMigrations"
+        ],
+        "migration-run-all": [
+            "HoneybeeExtensions\\Composer\\MigrationHandler::runAllMigrations"
+        ],
+        "migration-run": [
+            "HoneybeeExtensions\\Composer\\MigrationHandler::runMigration"
+        ],
+        "fixture-create": [
+            "HoneybeeExtensions\\Composer\\FixtureHandler::createFixture"
+        ],
+        "fixture-import": [
+            "HoneybeeExtensions\\Composer\\FixtureHandler::importFixture"
+        ],
+        "fixture-generate": [
+            "HoneybeeExtensions\\Composer\\FixtureHandler::generateFixture"
+        ],
+        "build-config": [
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload"
         ]
     }
 }

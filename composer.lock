@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c5581b2b5108d6dc253326558ec59f50",
+    "hash": "2b4517b4c1079534e643850362c52298",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -701,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee-agavi-cmf-vendor.git",
-                "reference": "fcccd0618d0be1b119d18e2bffe0f0b74ea4d0ab"
+                "reference": "fae4a28b4aa3d55cbb27da92379af0959922ff2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/fcccd0618d0be1b119d18e2bffe0f0b74ea4d0ab",
-                "reference": "fcccd0618d0be1b119d18e2bffe0f0b74ea4d0ab",
+                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/fae4a28b4aa3d55cbb27da92379af0959922ff2b",
+                "reference": "fae4a28b4aa3d55cbb27da92379af0959922ff2b",
                 "shasum": ""
             },
             "require": {
@@ -729,7 +729,8 @@
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Honeybee\\FrameworkBinding\\Agavi\\": "app/lib/Agavi"
+                    "Honeybee\\FrameworkBinding\\Agavi\\": "app/lib/Agavi",
+                    "HoneybeeExtensions\\Composer\\": "etc/composer/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -764,7 +765,7 @@
                 "agavi",
                 "honeybee"
             ],
-            "time": "2015-08-24 11:01:54"
+            "time": "2015-08-24 13:07:10"
         },
         {
             "name": "honeybee/trellis",
