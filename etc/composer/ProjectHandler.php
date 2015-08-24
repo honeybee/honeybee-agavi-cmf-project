@@ -14,14 +14,9 @@ class ProjectHandler
     const DEFAULT_REPOSITORY_NAME = 'honeybee/honeybee-agavi-cmf-project';
     const DEFAULT_PROJECT_NAME = 'honeybee-agavi-cmf-project';
 
-    protected static function getProjectPath(Event $event)
-    {
-        return realpath($event->getComposer()->getConfig()->get('vendor-dir') . DIRECTORY_SEPARATOR . '..');
-    }
-
     public static function postRootPackageInstall(Event $event)
     {
-        $project_path = self::getProjectPath($event);
+        $project_path = ScriptToolkit::getProjectPath($event);
 
         $io = $event->getIO();
         $io->write('');
@@ -127,7 +122,7 @@ class ProjectHandler
         $io->write('');
     }
 
-    protected static function replaceStringInFiles($search, $replacement, $path, array $exclude_paths = array())
+    protected static function replaceStringInFiles($search, $replacement, $path, array $exclude_paths = [])
     {
         $objects = new RecursiveIteratorIterator(
             new RecursiveCallbackFilterIterator(
