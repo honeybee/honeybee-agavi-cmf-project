@@ -112,6 +112,39 @@
         "fixture-generate": [
             "HoneybeeExtensions\\Composer\\FixtureHandler::generateFixture"
         ],
+        "module-create": [
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload",
+            "HoneybeeExtensions\\Composer\\ModuleHandler::createModule"
+        ],
+        "type-create": [
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload",
+            "HoneybeeExtensions\\Composer\\TypeHandler::createType",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload"
+        ],
+        "type-build": [
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload",
+            "HoneybeeExtensions\\Composer\\TypeHandler::buildType",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload"
+        ],
+        "type-build-all": [
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload",
+            "HoneybeeExtensions\\Composer\\TypeHandler::buildAllType",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
+            "HoneybeeExtensions\\Composer\\ConfigurationHandler::makeAutoload"
+        ],
         "build-config": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::clearCaches",
