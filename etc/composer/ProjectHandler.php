@@ -115,7 +115,7 @@ class ProjectHandler
         $io->write('');
         $io->write('Further Honeybee information and support can be found here:');
         $io->write('Installation documentation: <options=underscore>https://github.com/honeybee/honeybee-agavi-cmf-project</>');
-        $io->write('Demo project & Cookbook: <options=underscore>https://github.com/honeybee/honeybee-agavi-cmf-demo/docs</>');
+        $io->write('Demo project & Cookbook: <options=underscore>https://github.com/honeybee/honeybee-agavi-cmf-demo/cookbook</>');
         $io->write('IRC support and feedback: <options=underscore>irc://irc.freenode.org/honeybee</>');
         $io->write('--------------------------------------------------------------------------------------------</info>');
         $io->write('<fg=green;options=bold>Thank you for using Honeybee.</>');

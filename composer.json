@@ -30,6 +30,7 @@
 
     "support": {
         "issues": "https://github.com/honeybee/honeybee-agavi-cmf-project/issues",
+        "cookbook": "https://github.com/honeybee/honeybee-agavi-cmf-demo/cookbook",
         "irc": "irc://irc.freenode.org/honeybee"
     },
 
