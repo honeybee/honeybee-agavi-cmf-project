@@ -71,11 +71,11 @@
     "scripts": {
         "test": [
             "echo \"\nRunning unit tests ...\n\"",
-            "./vendor/bin/phpunit --colors tests"
+            "./vendor/bin/phpunit --colors ./testing"
         ],
         "code-sniffer": [
             "echo \"\nRunning codesniffer to check for PSR-2 compatibility ...\n\"",
-            "./vendor/bin/phpcs --extensions=php --standard=psr2 ./app/lib ./app/modules ./tests"
+            "./vendor/bin/phpcs --extensions=php --standard=psr2 ./app/lib ./app/modules ./testing"
         ],
         "api-doc": [
             "echo \"\nRunning Sami to generate docs ...\n\"",
@@ -123,7 +123,7 @@
             "HoneybeeExtensions\\Composer\\TypeHandler::buildType",
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
         ],
-        "build-config": [
+        "config-build": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
         ]
     }
