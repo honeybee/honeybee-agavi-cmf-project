@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "1852153ed2eecff6715ce855799200f3",
+    "hash": "6d58f8ff97053e7606020dbf5f93caf2",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -701,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee-agavi-cmf-vendor.git",
-                "reference": "987f9afc7e0c5682107130676e161aac22c40cde"
+                "reference": "0d22438174fa7ab68b0cc7eb55d34c860d9e538a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/987f9afc7e0c5682107130676e161aac22c40cde",
-                "reference": "987f9afc7e0c5682107130676e161aac22c40cde",
+                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/0d22438174fa7ab68b0cc7eb55d34c860d9e538a",
+                "reference": "0d22438174fa7ab68b0cc7eb55d34c860d9e538a",
                 "shasum": ""
             },
             "require": {
@@ -765,7 +765,7 @@
                 "agavi",
                 "honeybee"
             ],
-            "time": "2015-08-25 08:00:36"
+            "time": "2015-08-25 09:26:57"
         },
         {
             "name": "honeybee/trellis",

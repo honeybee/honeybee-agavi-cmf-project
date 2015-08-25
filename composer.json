@@ -91,6 +91,9 @@
         "post-root-package-install": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::postRootPackageInstall"
         ],
+        "user-create": [
+            "HoneybeeExtensions\\Composer\\ProjectHandler::createUser"
+        ],
         "migration-create": [
             "HoneybeeExtensions\\Composer\\MigrationHandler::createMigration"
         ],

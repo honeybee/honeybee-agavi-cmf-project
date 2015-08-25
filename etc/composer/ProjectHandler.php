@@ -122,6 +122,44 @@ class ProjectHandler
         $io->write('');
     }
 
+    public static function call(Event $event)
+    {
+        $io = $event->getIO();
+        $args = ScriptToolkit::processArguments($event->getArguments());
+        if (!isset($args['route'])) {
+            throw new Exception('"route" argument is required');
+        }
+
+        $cmd_line = [ 'bin/cli', $args['route'] ];
+        unset($args['route']);
+        foreach ($args as $arg => $val) {
+            $cmd_line[] = '-' . $arg;
+            $cmd_line[] = $val;
+        }
+
+        $process = ScriptToolkit::createProcess(
+                implode(' ', $cmd_line),
+                ScriptToolkit::getProjectPath($event)
+        );
+
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+    }
+
+    public static function createUser(Event $event)
+    {
+        self::call(
+            new Event(
+                $event->getName(),
+                $event->getComposer(),
+                $event->getIO(),
+                $event->isDevMode(),
+                [ '-route=honeybee.system_account.user.create' ]
+            )
+        );
+    }
+
     protected static function replaceStringInFiles($search, $replacement, $path, array $exclude_paths = [])
     {
         $objects = new RecursiveIteratorIterator(
