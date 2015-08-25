@@ -50,8 +50,7 @@
         "ext-imagick": "*",
         "honeybee/honeybee-agavi-cmf-vendor": "dev-master",
         "honeybee/trellis": "master@dev",
-        "shrink0r/workflux": "master@dev",
-        "webmozart/json": "^1.0"
+        "shrink0r/workflux": "master@dev"
     },
 
      "require-dev": {
