@@ -20,24 +20,24 @@
         normal Agavi merging of context and environment specific config blocks
         to your advantage as well. Please note, that it is not possible to
         remove appenders from already defined loggers or add appenders with
-        names that already exist.
+        names that already exist. For details about already available loggers,
+        appenders and layouts see honeybee-agavi-cmf-vendor/app/config/logging.xml.
 
-        Example to add FirePHP and ChromePHP to default logger in development
-        environments for all contexts (cli and web) and add the
-        PhpDebugToolbarLoggerAppender to development environments in the web
-        context (as it modifies HTML):
+        Example to create a logger that logs to a same named file:
 
         <ae:configuration environment="^development.+(?!-testing)$" context="web">
             <loggers default="default">
-                <logger name="default">
+                <logger name="mycustom" class="Honeybee\FrameworkBinding\Agavi\Logging\Logger">
                     <appenders>
-                        <appender>firephp</appender>
-                        <appender>chromephp</appender>
-                        <appender>phpdebugtoolbar</appender>
+                        <appender>mycustom</appender>
                     </appenders>
                 </logger>
             </loggers>
+            <appenders>
+                <appender name="mycustom" class="Honeybee\FrameworkBinding\Agavi\Logging\FileLoggerAppender" layout="default" />
+            </appenders>
         </ae:configuration>
+
     -->
 
 </ae:configurations>
