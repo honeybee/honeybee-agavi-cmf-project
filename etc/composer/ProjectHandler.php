@@ -16,7 +16,7 @@ class ProjectHandler
 
     public static function postRootPackageInstall(Event $event)
     {
-        $project_path = ScriptToolkit::getProjectPath($event);
+        $project_path = realpath($event->getComposer()->getConfig()->get('vendor-dir') . DIRECTORY_SEPARATOR . '..');
 
         $io = $event->getIO();
         $io->write('');
