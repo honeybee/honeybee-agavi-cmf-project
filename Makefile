@@ -41,7 +41,7 @@ build-assets:
 	@make link-project
 	@make css
 	@make js
-	@echo "-> binary, css and javascript resource packages where successfully built"
+	@echo "-> binary, css and javascript asset packages were successfully built"
 
 
 cc:

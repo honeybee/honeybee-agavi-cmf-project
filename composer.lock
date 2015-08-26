@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "23ab255dfae52d9652461d25702a4da5",
+    "hash": "6a4f7633bed1f5c6bba716595e90fa66",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -603,12 +603,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee.git",
-                "reference": "ac4c543c16c0d2dd8bb083480e416af32e9e7f6c"
+                "reference": "c628122a6d9c3b385e160669488b7187191114a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/ac4c543c16c0d2dd8bb083480e416af32e9e7f6c",
-                "reference": "ac4c543c16c0d2dd8bb083480e416af32e9e7f6c",
+                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/c628122a6d9c3b385e160669488b7187191114a7",
+                "reference": "c628122a6d9c3b385e160669488b7187191114a7",
                 "shasum": ""
             },
             "require": {
@@ -693,7 +693,7 @@
                 "hexagonal",
                 "messaging"
             ],
-            "time": "2015-08-25 11:15:54"
+            "time": "2015-08-26 21:15:47"
         },
         {
             "name": "honeybee/honeybee-agavi-cmf-vendor",
@@ -701,12 +701,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee-agavi-cmf-vendor.git",
-                "reference": "c170d7846a35f0fba08db13187b75f0625633d6e"
+                "reference": "3219c51ffa711ffe3b54683d32276aac4e3b97af"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/c170d7846a35f0fba08db13187b75f0625633d6e",
-                "reference": "c170d7846a35f0fba08db13187b75f0625633d6e",
+                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/3219c51ffa711ffe3b54683d32276aac4e3b97af",
+                "reference": "3219c51ffa711ffe3b54683d32276aac4e3b97af",
                 "shasum": ""
             },
             "require": {
@@ -765,7 +765,7 @@
                 "agavi",
                 "honeybee"
             ],
-            "time": "2015-08-26 15:03:17"
+            "time": "2015-08-26 23:08:06"
         },
         {
             "name": "honeybee/trellis",

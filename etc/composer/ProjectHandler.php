@@ -138,8 +138,8 @@ class ProjectHandler
         }
 
         $process = ScriptToolkit::createProcess(
-                implode(' ', $cmd_line),
-                ScriptToolkit::getProjectPath($event)
+            implode(' ', $cmd_line),
+            ScriptToolkit::getProjectPath($event)
         );
 
         $process->run(function ($type, $buffer) use ($io) {
@@ -160,14 +160,185 @@ class ProjectHandler
         );
     }
 
+    public static function preInstall(Event $event)
+    {
+        $io = $event->getIO();
+        self::makeDirectories($event);
+    }
+
+    public static function postInstall(Event $event)
+    {
+        $io = $event->getIO();
+        $project_path = ScriptToolkit::getProjectPath($event);
+        $install_app = $io->askConfirmation('<options=bold>Would you also like to install the project? [y,N]: </>', false);
+        if ($install_app) {
+            self::installProject($event);
+        }
+    }
+
+    public static function installProject(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> installing project');
+        $project_path = ScriptToolkit::getProjectPath($event);
+
+        $io->write('-> installing node modules');
+        $process = ScriptToolkit::createProcess('npm install --prefix vendor', $project_path);
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+
+        $io->write('-> running bower install');
+        $process = ScriptToolkit::createProcess(
+                'node_modules/honeybee/node_modules/.bin/bower install --config.interactive=false',
+                $project_path . '/vendor'
+        );
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+
+        $io->write('-> getting packages');
+        $process = ScriptToolkit::createProcess('bin/wget_packages', $project_path);
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+
+        self::createEnvironment($event);
+        self::buildAssets($event);
+    }
+
+    public static function createEnvironment(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> configuring project environment');
+        $project_path = ScriptToolkit::getProjectPath($event);
+
+        $process = ScriptToolkit::createProcess('vendor/bin/environaut.phar check', $project_path);
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+    }
+
+    public static function buildAssets(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> building binary, css and javascript asset packages');
+        self::linkProject($event);
+        self::makeCss($event);
+        self::makeJs($event);
+    }
+
+    public static function linkProject(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> copying and linking Honeybee files into project');
+        $project_path = ScriptToolkit::getProjectPath($event);
+
+        $modules_path = $project_path . DIRECTORY_SEPARATOR . 'pub/static/modules';
+        $files = array_diff(scandir($modules_path), [ '.', '..' ]);
+        foreach ($files as $file) {
+            if (is_link($file)) {
+                unlink($file);
+            }
+        }
+
+        $io->write('-> copying Honeybee default modules');
+        ScriptToolkit::copyDirectory(
+            $project_path . '/vendor/honeybee/honeybee-agavi-cmf-vendor/app/modules/Honeybee_Core',
+            $project_path . '/app/modules/Honeybee_Core'
+        );
+        ScriptToolkit::copyDirectory(
+            $project_path . '/vendor/honeybee/honeybee-agavi-cmf-vendor/app/modules/Honeybee_SystemAccount',
+            $project_path . '/app/modules/Honeybee_SystemAccount'
+        );
+
+        $io->write('-> copying Honeybee default themes');
+        ScriptToolkit::copyDirectory(
+            $project_path . '/vendor/honeybee/honeybee-agavi-cmf-vendor/pub/static/themes',
+            $project_path . '/pub/static/themes'
+        );
+
+        $io->write('-> copying Honeybee configuration schema files');
+        ScriptToolkit::copyDirectory(
+            $project_path . '/vendor/honeybee/honeybee-agavi-cmf-vendor/app/config/xsd',
+            $project_path . '/app/config/xsd'
+        );
+
+        $io->write('-> copying Honeybee default module resource routing file');
+        copy(
+            $project_path . '/vendor/honeybee/honeybee-agavi-cmf-vendor/app/config/default_resource_routing.xml',
+            $project_path . '/app/config/default_resource_routing.xml'
+        );
+
+        $io->write('-> copying Honeybee default Trellis templates');
+        ScriptToolkit::copyDirectory(
+            $project_path . '/vendor/honeybee/honeybee-agavi-cmf-vendor/dev/trellis_templates',
+            $project_path . '/dev/trellis_templates'
+        );
+
+        ConfigurationHandler::buildConfig($event);
+    }
+
+    public static function makeCss(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> compiling SCSS files from all themes and modules');
+        $project_path = ScriptToolkit::getProjectPath($event);
+
+        $process = ScriptToolkit::createProcess('bin/cli honeybee.core.util.compile_scss', $project_path);
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+    }
+
+    public static function makeJs(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> compiling JS files from all modules');
+        $project_path = ScriptToolkit::getProjectPath($event);
+
+        $process = ScriptToolkit::createProcess('bin/cli honeybee.core.util.compile_js', $project_path);
+        $process->run(function ($type, $buffer) use ($io) {
+            $io->write($buffer, false);
+        });
+    }
+
+    public static function makeDirectories(Event $event)
+    {
+        $io = $event->getIO();
+        $io->write('-> initialising directories');
+        $project_path = ScriptToolkit::getProjectPath($event);
+        $paths = [
+            'app/cache',
+            'app/log',
+            'data/assets',
+            'pub/static/modules-built',
+            'pub/static/modules',
+            'build/codebrowser',
+            'build/logs',
+            'build/docs',
+            'vendor/node_modules',
+            'etc/local'
+        ];
+
+        foreach ($paths as $path) {
+            ScriptToolkit::makeDirectory($project_path . DIRECTORY_SEPARATOR . $path);
+        }
+
+        // @todo remove pub/static/modules symlinks here?
+    }
+
+    /*
+     * This method lives here so it can be used by create-project prior to dependencies being installed
+     */
     protected static function replaceStringInFiles($search, $replacement, $path, array $exclude_paths = [])
     {
-        $objects = new RecursiveIteratorIterator(
+        $iterator = new RecursiveIteratorIterator(
             new RecursiveCallbackFilterIterator(
                 new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS),
                 function ($current) use ($path, $exclude_paths) {
                     if ($current->isDir()) {
-                       foreach ($exclude_paths as $exclusion) {
+                        foreach ($exclude_paths as $exclusion) {
                             $real_exclusion = $path . DIRECTORY_SEPARATOR . $exclusion;
                             if ($current->getRealPath() == $real_exclusion) {
                                 return false;
@@ -180,7 +351,7 @@ class ProjectHandler
             RecursiveIteratorIterator::SELF_FIRST
         );
 
-        foreach ($objects as $name => $object) {
+        foreach ($iterator as $name => $object) {
             if ($object->isFile() && is_writable($object->getRealPath())) {
                 $file_contents = file_get_contents($object->getRealPath());
                 $file_contents = str_replace($search, $replacement, $file_contents);

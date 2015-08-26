@@ -91,6 +91,15 @@
         "post-root-package-install": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::postRootPackageInstall"
         ],
+        "pre-install-cmd": [
+            "HoneybeeExtensions\\Composer\\ProjectHandler::preInstall"
+        ],
+        "post-install-cmd": [
+            "HoneybeeExtensions\\Composer\\ProjectHandler::postInstall"
+        ],
+        "project-install": [
+            "HoneybeeExtensions\\Composer\\ProjectHandler::installProject"
+        ],
         "user-create": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::createUser"
         ],
@@ -128,6 +137,9 @@
         ],
         "config-build": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
+        ],
+        "assets-build": [
+            "HoneybeeExtensions\\Composer\\ProjectHandler::buildAssets"
         ]
     }
 }
