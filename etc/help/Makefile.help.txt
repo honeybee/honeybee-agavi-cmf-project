@@ -12,7 +12,7 @@ COMMON TARGETS
 --------------
 
   autoloads                 - Generate and optimize autoloads.
-  build-resources           - Builds css and javascript production packages for the project.
+  build-assets              - Builds css and javascript production packages for the project.
   cc                        - Purges/clears the application caches.
   config                    - Generates the configuration includes for all (agavi) modules.
   install                   - Installs vendor (development) libraries and runs environaut.

@@ -36,7 +36,7 @@ autoloads:
 	@echo "-> regenerated and optimized autoload files"
 
 
-build-resources:
+build-assets:
 
 	@make link-project
 	@make css
@@ -96,7 +96,7 @@ install:
 
 	@make environment
 
-	@make build-resources
+	@make build-assets
 
 
 install-production:
@@ -126,7 +126,7 @@ install-production:
 
 	@make environment
 
-	@make build-resources
+	@make build-assets
 
 
 link-project:
@@ -209,7 +209,7 @@ copy-honeybee-core-schemas:
 copy-honeybee-core-routing:
 
 	@echo "[INFO] Copying honeybee default module routing file into this application."
-	@cp -rfv ./vendor/honeybee/honeybee-agavi-cmf-vendor/app/config/default_type_routing.xml app/config/
+	@cp -rfv ./vendor/honeybee/honeybee-agavi-cmf-vendor/app/config/default_resource_routing.xml app/config/
 
 
 copy-honeybee-trellis-templates:
@@ -269,7 +269,7 @@ update:
 
 	@make environment
 
-	@make build-resources
+	@make build-assets
 
 
 update-composer-lock-file:
@@ -335,7 +335,7 @@ fixture:
 php-metrics: folders
 
 	@nice vendor/bin/phpunit tests/
-	@vendor/bin/phpcs --extensions=php --standard=psr2 --report=checkstyle --report-file=build/logs/checkstyle.xml --ignore='app/cache*,*Action.class.php,*SuccessView.class.php,*InputView.class.php,*ErrorView.class.php,app/templates/*,app/config/includes/*,resources/*,migration/*,/Base/*,*Type.php,*.scss,*.css,*.js' app tests
+	@vendor/bin/phpcs --extensions=php --standard=psr2 --report=checkstyle --report-file=build/logs/checkstyle.xml --ignore='app/cache*,*Action.class.php,*SuccessView.class.php,*InputView.class.php,*ErrorView.class.php,app/templates/*,app/config/includes/*,assets/*,migration/*,/Base/*,*Type.php,*.scss,*.css,*.js' app tests
 	-@vendor/bin/phpcpd --log-pmd ./build/logs/pmd-cpd.xml app/
 	-@vendor/bin/phpmd app/ xml codesize,design,naming,unusedcode --reportfile build/logs/pmd.xml
 
@@ -345,11 +345,11 @@ tests: folders
 
 codesniffer: folders
 
-	@vendor/bin/phpcs --extensions=php --standard=psr2 --ignore='app/cache*,*Action.class.php,*SuccessView.class.php,*InputView.class.php,*ErrorView.class.php,app/templates/*,app/config/includes/*,resources/*,migration/*,/Base/*,*Type.php,*.scss,*.css,*.js' app tests
+	@vendor/bin/phpcs --extensions=php --standard=psr2 --ignore='app/cache*,*Action.class.php,*SuccessView.class.php,*InputView.class.php,*ErrorView.class.php,app/templates/*,app/config/includes/*,assets/*,migration/*,/Base/*,*Type.php,*.scss,*.css,*.js' app tests
 
 
 #
 # PHONY targets @see http://www.linuxdevcenter.com/pub/a/linux/2002/01/31/make_intro.html?page=2
 # vim: ts=4:sw=4:noexpandtab!:
 #
-.PHONY: help build-resources link-project module type trellis environment reconfigure-environment cc config install update update-composer-lock-file install-production copy-honeybee-core-modules copy-honeybee-core-themes copy-honeybee-core-schemas copy-honeybee-core-routing copy-honeybee-trellis-templates folders tests codesniffer php-metrics css js migration fixture
+.PHONY: help build-assets link-project module type trellis environment reconfigure-environment cc config install update update-composer-lock-file install-production copy-honeybee-core-modules copy-honeybee-core-themes copy-honeybee-core-schemas copy-honeybee-core-routing copy-honeybee-trellis-templates folders tests codesniffer php-metrics css js migration fixture

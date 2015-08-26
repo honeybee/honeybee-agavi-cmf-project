@@ -2,7 +2,7 @@
     "name": "honeybee/honeybee-agavi-cmf-project",
     "license": "MIT",
     "type": "project",
-    "description": "Project (template) for building content-management applications, that base on Agavi and the Honeybee CQRS library.",
+    "description": "Project (template) for building content-management applications, based on Agavi and the Honeybee CQRS library.",
     "keywords": [ "honeybee", "agavi", "project-template" ],
     "homepage": "https://github.com/honeybee/honeybee-agavi-cmf-project",
     "authors": [
@@ -116,14 +116,14 @@
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
             "HoneybeeExtensions\\Composer\\ModuleHandler::createModule"
         ],
-        "type-create": [
+        "resource-create": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
-            "HoneybeeExtensions\\Composer\\TypeHandler::createType",
+            "HoneybeeExtensions\\Composer\\ResourceHandler::createResource",
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
         ],
-        "type-build": [
+        "resource-build": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
-            "HoneybeeExtensions\\Composer\\TypeHandler::buildType",
+            "HoneybeeExtensions\\Composer\\ResourceHandler::buildResource",
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
         ],
         "config-build": [
