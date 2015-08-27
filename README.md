@@ -43,8 +43,7 @@ SendEnv LANG LC_* GIT_*
 
 * To create a new project and VM from this template using `composer`:
 ```shell
-composer.phar create-project -sdev --dev --ignore-platform-reqs --no-install \
-honeybee/honeybee-agavi-cmf-project <your-honeybee-project-dir>
+composer create-project --ignore-platform-reqs --no-install honeybee/honeybee-agavi-cmf-project <your-project-dir>
 ```
 You will be prompted for for some information to configure the VM.
 
