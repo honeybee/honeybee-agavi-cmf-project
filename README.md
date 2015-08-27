@@ -43,7 +43,8 @@ SendEnv LANG LC_* GIT_*
 
 * To create a new project and VM from this template using `composer`:
 ```shell
-composer create-project --ignore-platform-reqs --no-install honeybee/honeybee-agavi-cmf-project <your-project-dir>
+composer create-project -sdev --ignore-platform-reqs --no-install \
+honeybee/honeybee-agavi-cmf-project honeybee-agavi-cmf-project
 ```
 You will be prompted for for some information to configure the VM.
 
@@ -115,7 +116,6 @@ The following services are running on the cms devbox and are controlled via syst
     * web-status: https://honeybee-agavi-cmf-project.local/converjon/status
 * nginx
     * cms http-endpoint: https://honeybee-agavi-cmf-project.local/
-* php-fpm
 
 In order to start/stop services or get the status use the corresponding sudo command within the devbox, e.g.:
 ```shell
