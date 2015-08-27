@@ -84,8 +84,8 @@
         "build": [
             "if [ -d ./build/logs ]; then rm -rf ./build/logs; fi",
             "mkdir -p ./build/logs",
-            "./bin/composer.phar test",
-            "./bin/composer.phar code-sniffer"
+            "composer test",
+            "composer code-sniffer"
         ],
         "post-root-package-install": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::postRootPackageInstall"
