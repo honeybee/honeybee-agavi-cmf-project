@@ -14,9 +14,14 @@ class ProjectHandler
     const DEFAULT_REPOSITORY_NAME = 'honeybee/honeybee-agavi-cmf-project';
     const DEFAULT_PROJECT_NAME = 'honeybee-agavi-cmf-project';
 
+    protected static function getProjectPath(Event $event)
+    {
+        return realpath($event->getComposer()->getConfig()->get('vendor-dir') . DIRECTORY_SEPARATOR . '..');
+    }
+
     public static function postRootPackageInstall(Event $event)
     {
-        $project_path = realpath($event->getComposer()->getConfig()->get('vendor-dir') . DIRECTORY_SEPARATOR . '..');
+        $project_path = self::getProjectPath($event);
 
         $io = $event->getIO();
         $io->write('');
@@ -190,8 +195,8 @@ class ProjectHandler
 
         $io->write('-> running bower install');
         $process = ScriptToolkit::createProcess(
-                'node_modules/honeybee/node_modules/.bin/bower install --config.interactive=false',
-                $project_path . '/vendor'
+            'node_modules/honeybee/node_modules/.bin/bower install --config.interactive=false',
+            $project_path . '/vendor'
         );
         $process->run(function ($type, $buffer) use ($io) {
             $io->write($buffer, false);
@@ -232,7 +237,7 @@ class ProjectHandler
     {
         $io = $event->getIO();
         $io->write('-> copying and linking Honeybee files into project');
-        $project_path = ScriptToolkit::getProjectPath($event);
+        $project_path = self::getProjectPath($event);
 
         $modules_path = $project_path . DIRECTORY_SEPARATOR . 'pub/static/modules';
         $files = array_diff(scandir($modules_path), [ '.', '..' ]);
@@ -307,7 +312,7 @@ class ProjectHandler
     {
         $io = $event->getIO();
         $io->write('-> initialising directories');
-        $project_path = ScriptToolkit::getProjectPath($event);
+        $project_path = self::getProjectPath($event);
         $paths = [
             'app/cache',
             'app/log',
@@ -321,8 +326,12 @@ class ProjectHandler
             'etc/local'
         ];
 
+        // pre-install manual mkdir
         foreach ($paths as $path) {
-            ScriptToolkit::makeDirectory($project_path . DIRECTORY_SEPARATOR . $path);
+            $target = $project_path . DIRECTORY_SEPARATOR . $path;
+            if (!is_dir($target)) {
+                mkdir($target, 0755, true);
+            }
         }
 
         // @todo remove pub/static/modules symlinks here?

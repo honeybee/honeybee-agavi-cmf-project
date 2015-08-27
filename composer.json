@@ -36,10 +36,8 @@
 
     "prefer-stable": true,
 
-    "minimum-stability": "dev",
-
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.5.0",
         "lib-curl": "*",
         "lib-libxml": "*",
         "lib-xsl": "*",
@@ -48,7 +46,8 @@
         "lib-openssl": "*",
         "lib-pcre": "*",
         "ext-imagick": "*",
-        "honeybee/honeybee-agavi-cmf-vendor": "dev-master",
+        "honeybee/honeybee-agavi-cmf-vendor": "master@dev",
+        "honeybee/honeybee": "master@dev",
         "honeybee/trellis": "master@dev",
         "shrink0r/workflux": "master@dev"
     },
