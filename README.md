@@ -57,7 +57,7 @@ vagrant up # this will take a while, time to grab a coffee
 ```shell
 vagrant ssh
 cd /srv/www/honeybee-agavi-cmf-project.local/
-make install
+composer install
 sudo service nginx restart
 ```
 
@@ -82,14 +82,14 @@ and is ready for development.
 
 Run the migrations to complete the setup:
 ```shell
-make migrate-all
+composer migrate-all
 ```
 
 #### Creating the first system account user/admin
 
 The first user within the system must be created via command line using:
 ```shell
-make user
+composer user-create
 ```
 
 This will give an output similar to:
