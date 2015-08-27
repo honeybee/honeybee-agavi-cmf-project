@@ -25,9 +25,9 @@ converjon::reject_invalid_ssl: false
 converjon::aliases:
   -
     name: "dev"
-    base_file_path: "/srv/www/honeybee-agavi-cmf-project.local/data/assets"
+    base_file_path: "/srv/www/honeybee-agavi-cmf-project.local/data/files"
     fallback_base_file_paths:
-        - "/srv/www/honeybee-agavi-cmf-project.local/data/temp_assets"
+        - "/srv/www/honeybee-agavi-cmf-project.local/data/temp_files"
     headers:
       - 'Cache-Control: "public, max-age=86400"'
 

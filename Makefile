@@ -223,12 +223,12 @@ folders:
 	@echo "[INFO] Creating cache, log and asset folders (if missing)."
 	@if [ ! -d app/cache ]; then mkdir -p app/cache; fi
 	@if [ ! -d app/log ]; then mkdir -p app/log; fi
-	@if [ ! -d data/assets ]; then mkdir -p data/assets; fi
+	@if [ ! -d data/files ]; then mkdir -p data/files; fi
 	@if [ ! -d pub/static/modules-built ]; then mkdir -p pub/static/modules-built; fi
 	@if [ ! -d pub/static/modules ]; then mkdir -p pub/static/modules; fi
 	@chmod 755 app/cache
 	@chmod 755 app/log
-	@chmod 755 data/assets
+	@chmod 755 data/files
 	@chmod 755 pub/static/modules-built
 	@chmod 755 pub/static/modules
 

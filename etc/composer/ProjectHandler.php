@@ -316,7 +316,7 @@ class ProjectHandler
         $paths = [
             'app/cache',
             'app/log',
-            'data/assets',
+            'data/files',
             'pub/static/modules-built',
             'pub/static/modules',
             'build/codebrowser',
