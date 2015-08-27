@@ -23,10 +23,13 @@ Vagrant.configure(2) do |config|
     puppet.manifest_file      = "default.pp"
     puppet.module_path        = "puppets/modules"
     puppet.hiera_config_path  = "puppets/hiera/hiera.yaml"
-    puppet.options            = "--debug --parser future --yamldir /vagrant/puppets/hiera"
+    puppet.options            = "--parser future --yamldir /vagrant/puppets/hiera"
     puppet.facter = {
       "bo_environment" => "development"
     }
   end
+  
+  config.vm.provision "shell",
+    inline: "curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer && chmod +x /usr/local/bin/composer"
 
 end

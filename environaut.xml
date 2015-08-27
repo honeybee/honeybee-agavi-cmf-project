@@ -61,5 +61,16 @@
             <parameter name="max_attempts">5</parameter>
         </check>
 
+        <check name="agavi_environment" group="local_config">
+            <parameter name="question">What environment do you want to use for this application?</parameter>
+            <parameter name="default">development</parameter>
+            <parameter name="choices">
+                <parameter>integration</parameter>
+                <parameter>staging</parameter>
+                <parameter>preview</parameter>
+                <parameter>production</parameter>
+            </parameter>
+        </check>
+
     </checks>
 </environaut>
