@@ -69,15 +69,15 @@
 
     "scripts": {
         "test": [
-            "echo \"\nRunning unit tests ...\n\"",
+            "echo \"Running unit tests ...\"",
             "./vendor/bin/phpunit --colors ./testing"
         ],
         "code-sniffer": [
-            "echo \"\nRunning codesniffer to check for PSR-2 compatibility ...\n\"",
+            "echo \"Running codesniffer to check for PSR-2 compatibility ...\"",
             "./vendor/bin/phpcs --extensions=php --standard=psr2 ./app/lib ./app/modules ./testing"
         ],
         "api-doc": [
-            "echo \"\nRunning Sami to generate docs ...\n\"",
+            "echo \"Running Sami to generate docs ...\"",
             "if [ -d ./build/docs ]; then rm -rf ./build/docs; fi",
             "vendor/sami/sami/sami.php --ansi update app/config/sami.php"
         ],
