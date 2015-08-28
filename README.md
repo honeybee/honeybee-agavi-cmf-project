@@ -166,4 +166,4 @@ In normal user registration flows, users are sent account verification emails. I
 [2]: https://github.com/agavi/agavi
 [3]: https://github.com/honeybee/honeybee-agavi-cmf-project
 [4]: https://help.github.com/articles/adding-an-existing-project-to-github-using-the-command-line
-[5]: https://github.com/honeybee/honeybee-agavi-cmf-demo/blob/master/cookbook/README.md
+[5]: https://github.com/honeybee/honeybee-agavi-cmf-demo/wiki/Introduction
