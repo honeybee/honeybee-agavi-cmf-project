@@ -54,6 +54,17 @@
             <xi:fallback />
         </xi:include>
 
+        <check class="Environaut\Checks\ExecutableCheck" name="php" group="local_config">
+            <parameter name="default">php</parameter>
+            <parameter name="setting">php_command</parameter>
+            <parameter name="version_mask" space="preserve" literalize="false">/^PHP (5\.[3456]\.\d{1,2}).*/</parameter>
+        </check>
+
+        <check class="Environaut\Checks\ExecutableCheck" name="sass">
+            <parameter name="default">sass</parameter>
+            <parameter name="version_mask" space="preserve" literalize="false">/Sass 3\.(3|4)/</parameter>
+        </check>
+
         <check name="base_href" group="local_config">
             <parameter name="question">What's the base HREF of the application?</parameter>
             <parameter name="default">https://honeybee-agavi-cmf-project.local/</parameter>

@@ -134,6 +134,9 @@
             "HoneybeeExtensions\\Composer\\ResourceHandler::buildResource",
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
         ],
+        "env-recreate": [
+            "HoneybeeExtensions\\Composer\\ProjectHandler::recreateEnvironment"
+        ],
         "config-build": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
         ],
