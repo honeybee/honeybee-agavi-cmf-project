@@ -49,7 +49,9 @@
         "honeybee/honeybee-agavi-cmf-vendor": "master@dev",
         "honeybee/honeybee": "master@dev",
         "honeybee/trellis": "master@dev",
-        "shrink0r/workflux": "master@dev"
+        "shrink0r/workflux": "master@dev",
+        "roave/security-advisories": "master@dev",
+        "sensiolabs/security-checker": "^3.0"
     },
 
      "require-dev": {
@@ -94,7 +96,11 @@
             "HoneybeeExtensions\\Composer\\ProjectHandler::preInstall"
         ],
         "post-install-cmd": [
-            "HoneybeeExtensions\\Composer\\ProjectHandler::postInstall"
+            "HoneybeeExtensions\\Composer\\ProjectHandler::postInstall",
+            "php vendor/bin/security-checker security:check --format=simple"
+        ],
+        "post-update-cmd": [
+            "php vendor/bin/security-checker security:check --format=simple"
         ],
         "project-install": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::installProject"
