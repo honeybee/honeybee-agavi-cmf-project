@@ -37,6 +37,10 @@ fi
 # CLI_PHP_INI_SETTINGS
 # BOOTSTRAP_PHP_FILE
 #
+if [ -z "$PHP_COMMAND" ] ; then
+    PHP_COMMAND="php"
+fi
+
 if [ -z "$CLI_PHP_FILE" ] ; then
     CLI_PHP_FILE=$(readlink -m "${HONEYBEE_DIR}/bin/cli.php")
 fi
