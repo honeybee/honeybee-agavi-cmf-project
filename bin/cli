@@ -23,8 +23,8 @@ if [ -f $HONEYBEE_BIN_CLI ] ; then
     echo ""
 else
     echo "[ERROR] Honeybee bin/cli script not found: ${HONEYBEE_BIN_CLI}"
-    echo "[ERROR] Make sure you have run 'make install' to get vendor libs and"
-    echo "[ERROR] no environment variables are changing the bin/cli behaviour."
+    echo "[ERROR] Make sure you have run 'composer project-install' to get vendor libs"
+    echo "[ERROR] and no environment variables are changing the bin/cli behaviour."
     exit 1
 fi
 
