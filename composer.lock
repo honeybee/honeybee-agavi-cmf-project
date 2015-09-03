@@ -606,12 +606,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee.git",
-                "reference": "98783f5ddb573af8410dcf4c2c0d3144a5705f9a"
+                "reference": "645b196cf5e0501fa18cc239cdf2ca88ee83a024"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/98783f5ddb573af8410dcf4c2c0d3144a5705f9a",
-                "reference": "98783f5ddb573af8410dcf4c2c0d3144a5705f9a",
+                "url": "https://api.github.com/repos/honeybee/honeybee/zipball/645b196cf5e0501fa18cc239cdf2ca88ee83a024",
+                "reference": "645b196cf5e0501fa18cc239cdf2ca88ee83a024",
                 "shasum": ""
             },
             "require": {
@@ -691,7 +691,7 @@
                 "hexagonal",
                 "messaging"
             ],
-            "time": "2015-09-02 13:46:50"
+            "time": "2015-09-03 15:19:32"
         },
         {
             "name": "honeybee/honeybee-agavi-cmf-vendor",
@@ -699,12 +699,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/honeybee/honeybee-agavi-cmf-vendor.git",
-                "reference": "9bf5f17e8145640c11fcc5673b9e1f15fd4a87f5"
+                "reference": "86b5a6a48946574c8ba3951074a34de3c45dca77"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/9bf5f17e8145640c11fcc5673b9e1f15fd4a87f5",
-                "reference": "9bf5f17e8145640c11fcc5673b9e1f15fd4a87f5",
+                "url": "https://api.github.com/repos/honeybee/honeybee-agavi-cmf-vendor/zipball/86b5a6a48946574c8ba3951074a34de3c45dca77",
+                "reference": "86b5a6a48946574c8ba3951074a34de3c45dca77",
                 "shasum": ""
             },
             "require": {
@@ -763,7 +763,7 @@
                 "agavi",
                 "honeybee"
             ],
-            "time": "2015-09-02 14:02:49"
+            "time": "2015-09-03 15:23:24"
         },
         {
             "name": "honeybee/trellis",
@@ -1481,15 +1481,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "6e2635e4c982f4eafeda3045f011026425b72bb9"
+                "reference": "d8e6b5c282ab844ad4423d3986d4d2ad297184ec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/6e2635e4c982f4eafeda3045f011026425b72bb9",
-                "reference": "6e2635e4c982f4eafeda3045f011026425b72bb9",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/d8e6b5c282ab844ad4423d3986d4d2ad297184ec",
+                "reference": "d8e6b5c282ab844ad4423d3986d4d2ad297184ec",
                 "shasum": ""
             },
             "conflict": {
+                "aws/aws-sdk-php": ">=3.0.0,<3.2.1",
                 "cakephp/cakephp": ">=2.0.0,<2.4.8|>=1.3.0,<1.3.18|>=3.0.0,<3.0.6|>=2.4.0,<2.4.99|>=2.5.0,<2.5.90|>=2.6.0,<2.6.11|>=2.7.0,<2.7.2",
                 "contao/core": ">=3.0.0,<3.1.0|>=3.1.0,<3.2.0|>=2.11.0,<3.0.0|>=3.2.0,<3.2.19|>=3.3.0,<3.4.0|>=3.4.0,<3.4.4",
                 "doctrine/annotations": ">=1.0.0,<1.2.7",
@@ -1573,7 +1574,7 @@
                 }
             ],
             "description": "Prevents installation of composer packages with known security vulnerabilities: no API, simply require it",
-            "time": "2015-09-02 10:31:51"
+            "time": "2015-09-03 08:12:24"
         },
         {
             "name": "sensiolabs/security-checker",
@@ -2263,7 +2264,7 @@
             ],
             "authors": [
                 {
-                    "name": "William Durand",
+                    "name": "William DURAND",
                     "email": "william.durand1@gmail.com"
                 }
             ],
