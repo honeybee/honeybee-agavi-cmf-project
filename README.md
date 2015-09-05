@@ -42,13 +42,14 @@ The repository will be cloned and a post-install script will be executed which w
 Your application is now configured and ready for committing to your own repository. Detailed instructions on creating new repositories on Github from source can be found [here][4]. We have summarised the commands as follows:
 
 ```shell
+# first create repository at Github
 cd honeybee-agavi-cmf-project
 git init
 git add .
 git commit -m 'Initialising project'
 # replace the following Github repository url with your own
 git remote add origin git@github.com:honeybee/honeybee-agavi-cmf-project.git
-git push origin master
+git push -u origin master
 ```
 
 ###Launching the VM
