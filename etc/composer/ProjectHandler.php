@@ -209,7 +209,7 @@ class ProjectHandler
             $io->write($buffer, false);
         });
 
-        self::createEnvironment($event);
+        //self::createEnvironment($event);
         self::buildAssets($event);
     }
 
@@ -331,6 +331,8 @@ class ProjectHandler
             'app/cache',
             'app/log',
             'data/files',
+            'data/temp_files',
+            'data/process_states',
             'pub/static/modules-built',
             'pub/static/modules',
             'build/codebrowser',
