@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/local_configuration/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/local_configuration/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="local_settings" type="LocalSettingListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="LocalSettingListType">
+        <xs:sequence>
+            <xs:element name="from_file" type="LocalFileType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="from_env" type="EnvironmentVarType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="LocalFileType">
+        <xs:sequence>
+            <xs:element name="path" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="type" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="EnvironmentVarType">
+        <xs:sequence>
+            <xs:element name="var" type="xs:string" minOccurs="0" maxOccurs="1" />
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+</xs:schema>
