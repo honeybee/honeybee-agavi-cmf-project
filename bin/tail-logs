@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+PHP_ERROR_LOG=$(php -i | grep -P '^error_log' | cut -f '3' -d " ")
+
+tail -f "${PHP_ERROR_LOG}" app/log/*.log

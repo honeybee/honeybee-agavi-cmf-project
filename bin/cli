@@ -1,52 +1,17 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
-readonly CURRENT_DIR=$(readlink -m $(dirname $0))
-
-if [ -z "$LOCAL_CONFIG_SH" ] ; then
-    LOCAL_CONFIG_SH=$(readlink -m "$(dirname $0)/../etc/local/config.sh")
+if [ -z "$APP_DIR" ] ; then
+    APP_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )/../" && pwd )
 fi
 
-if [ -z "$APPLICATION_DIR" ] ; then
-    APPLICATION_DIR=$(readlink -m "${CURRENT_DIR}/../")
+CLI_PHP_INI_SETTINGS="-d display_errors=1 -d html_errors=off -d memory_limit=2048M"
+
+if [ -z "$CLI_PHP_FILE" ] ; then
+    CLI_PHP_FILE="${APP_DIR}/bin/cli.php"
 fi
 
-if [ -z "$HONEYBEE_DIR" ] ; then
-    HONEYBEE_DIR=$(readlink -m "${APPLICATION_DIR}/vendor/honeybee/honeybee-agavi-cmf-vendor")
-fi
-
-if [ -z "$HONEYBEE_BIN_CLI" ] ; then
-    HONEYBEE_BIN_CLI=$(readlink -m "${HONEYBEE_DIR}/bin/cli")
-fi
-
-if [ -f $HONEYBEE_BIN_CLI ] ; then
-#    echo "[INFO] Found honeybee bin/cli."
-    echo ""
-else
-    echo "[ERROR] Honeybee bin/cli script not found: ${HONEYBEE_BIN_CLI}"
-    echo "[ERROR] Make sure you have run 'composer project-install' to get vendor libs"
-    echo "[ERROR] and no environment variables are changing the bin/cli behaviour."
-    exit 1
-fi
-
-# You can set other (environment) variables to change defaults, paths etc.:
-#
-# LOCAL_CONFIG_SH
-# PHP_COMMAND
-# AGAVI_ENVIRONMENT
-# CLI_PHP_FILE
-# CLI_PHP_INI_SETTINGS
-# BOOTSTRAP_PHP_FILE
-#
 if [ -z "$PHP_COMMAND" ] ; then
     PHP_COMMAND="php"
 fi
 
-if [ -z "$CLI_PHP_FILE" ] ; then
-    CLI_PHP_FILE=$(readlink -m "${HONEYBEE_DIR}/bin/cli.php")
-fi
-
-#echo "[INFO] Sourcing: ${HONEYBEE_BIN_CLI}"
-
-# including original honeybee bin/cli script to execute cli.php
-. ${HONEYBEE_BIN_CLI}
-
+${PHP_COMMAND} ${CLI_PHP_INI_SETTINGS} -f ${CLI_PHP_FILE} -- $@
