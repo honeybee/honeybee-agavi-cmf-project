@@ -2,6 +2,9 @@
 #
 #
 class elasticsearch::requirements {
+  file { '/etc/elasticsearch' :
+    ensure => directory
+  }
   case $::operatingsystem {
     'OpenSuSE': {
       zypprepo { 'OpenSuse_Elasticsearch':

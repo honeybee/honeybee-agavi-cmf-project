@@ -1465,7 +1465,7 @@ session.cookie_domain =
 
 ; Whether or not to add the httpOnly flag to the cookie, which makes it inaccessible to browser scripting languages such as JavaScript.
 ; http://php.net/session.cookie-httponly
-session.cookie_httponly =
+session.cookie_httponly = 1
 
 ; Handler used to serialize data. php is the standard serializer of PHP.
 ; http://php.net/session.serialize-handler
@@ -1481,7 +1481,7 @@ session.serialize_handler = php
 ; Development Value: 1
 ; Production Value: 1
 ; http://php.net/session.gc-probability
-session.gc_probability = 0
+session.gc_probability = 1
 
 ; Defines the probability that the 'garbage collection' process is started on every
 ; session initialization. The probability is calculated by using the following equation:
@@ -1500,7 +1500,8 @@ session.gc_divisor = 1000
 ; After this number of seconds, stored data will be seen as 'garbage' and
 ; cleaned up by the garbage collection process.
 ; http://php.net/session.gc-maxlifetime
-session.gc_maxlifetime = 1440
+; 10800 = 3h
+session.gc_maxlifetime = 10800
 
 ; NOTE: If you are using the subdirectory option for storing session files
 ; (see session.save_path above), then garbage collection does *not*
@@ -1581,7 +1582,7 @@ session.use_trans_sid = 0
 ; the hash extension. A list of available hashes is returned by the hash_algos()
 ; function.
 ; http://php.net/session.hash-function
-session.hash_function = 0
+session.hash_function = 1
 
 ; Define how many bits are stored in each character when converting
 ; the binary hash data to something readable.
@@ -1594,6 +1595,12 @@ session.hash_function = 0
 ; Production Value: 5
 ; http://php.net/session.hash-bits-per-character
 session.hash_bits_per_character = 5
+
+; If this mode is enabled, the module does not accept uninitialized session ID.
+; If uninitialized session ID is sent from browser, new session ID is sent to
+; browser. Applications are protected from session fixation via session adoption
+; with strict mode. Defaults to 0 (disabled).
+session.use_strict_mode = 1
 
 ; The URL rewriter will look for URLs in a defined set of HTML tags.
 ; form/fieldset are special; if you include them here, the rewriter will
@@ -1847,6 +1854,103 @@ ldap.max_links = -1
 [dba]
 ;dba.default_handler=
 
-; Local Variables:
-; tab-width: 4
-; End:
+[opcache]
+; Determines if Zend OPCache is enabled
+opcache.enable=<%= scope['php::opcache_enable']%>
+
+; Determines if Zend OPCache is enabled for the CLI version of PHP
+opcache.enable_cli=<%= scope['php::opcache_enable_cli']%>
+
+; The OPcache shared memory storage size.
+opcache.memory_consumption=<%= scope['php::opcache_memory']%>
+
+; The amount of memory for interned strings in Mbytes.
+opcache.interned_strings_buffer=<%= scope['php::opcache_strings_buffer']%>
+
+; The maximum number of keys (scripts) in the OPcache hash table.
+; Only numbers between 200 and 100000 are allowed.
+opcache.max_accelerated_files=<%= scope['php::opcache_max_files']%>
+
+; The maximum percentage of "wasted" memory until a restart is scheduled.
+opcache.max_wasted_percentage=<%= scope['php::opcache_max_wasted']%>
+
+; When this directive is enabled, the OPcache appends the current working
+; directory to the script key, thus eliminating possible collisions between
+; files with the same name (basename). Disabling the directive improves
+; performance, but may break existing applications.
+opcache.use_cwd=<%= scope['php::opcache_use_cwd']%>
+
+; When disabled, you must reset the OPcache manually or restart the
+; webserver for changes to the filesystem to take effect.
+opcache.validate_timestamps=<%= scope['php::opcache_validate_time']%>
+
+; How often (in seconds) to check file timestamps for changes to the shared
+; memory storage allocation. ("1" means validate once per second, but only
+; once per request. "0" means always validate)
+;opcache.revalidate_freq=<%= scope['php::opcache_revalidate_freq']%>
+
+; Enables or disables file search in include_path optimization
+;opcache.revalidate_path=0
+
+; If disabled, all PHPDoc comments are dropped from the code to reduce the
+; size of the optimized code.
+;opcache.save_comments=1
+
+; If disabled, PHPDoc comments are not loaded from SHM, so "Doc Comments"
+; may be always stored (save_comments=1), but not loaded by applications
+; that don't need them anyway.
+;opcache.load_comments=1
+
+; If enabled, a fast shutdown sequence is used for the accelerated code
+opcache.fast_shutdown=<%= scope['php::opcache_fast_shutdown']%>
+
+; Allow file existence override (file_exists, etc.) performance feature.
+;opcache.enable_file_override=0
+
+; A bitmask, where each bit enables or disables the appropriate OPcache
+; passes
+;opcache.optimization_level=0xffffffff
+
+;opcache.inherited_hack=1
+;opcache.dups_fix=0
+
+; The location of the OPcache blacklist file (wildcards allowed).
+; Each OPcache blacklist file is a text file that holds the names of files
+; that should not be accelerated. The file format is to add each filename
+; to a new line. The filename may be a full path or just a file prefix
+; (i.e., /var/www/x  blacklists all the files and directories in /var/www
+; that start with 'x'). Line starting with a ; are ignored (comments).
+;opcache.blacklist_filename=
+
+; Allows exclusion of large files from being cached. By default all files
+; are cached.
+;opcache.max_file_size=0
+
+; Check the cache checksum each N requests.
+; The default value of "0" means that the checks are disabled.
+;opcache.consistency_checks=0
+
+; How long to wait (in seconds) for a scheduled restart to begin if the cache
+; is not being accessed.
+;opcache.force_restart_timeout=180
+
+; OPcache error_log file name. Empty string assumes "stderr".
+;opcache.error_log=
+
+; All OPcache errors go to the Web server log.
+; By default, only fatal errors (level 0) or errors (level 1) are logged.
+; You can also enable warnings (level 2), info messages (level 3) or
+; debug messages (level 4).
+;opcache.log_verbosity_level=1
+
+; Preferred Shared Memory back-end. Leave empty and let the system decide.
+;opcache.preferred_memory_model=
+
+; Protect the shared memory from unexpected writing during script execution.
+; Useful for internal debugging only.
+;opcache.protect_memory=0
+
+; maximum number of input variables accepted before $_GET/$_POST/$_COOKIE is being truncated
+max_input_vars = <%= scope['::php::fpm_max_input_vars']%>
+suhosin.post.max_vars = <%= scope['::php::fpm_max_input_vars']%>
+suhosin.request.max_vars = <%= scope['::php::fpm_max_input_vars']%>

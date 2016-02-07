@@ -118,7 +118,12 @@ myorigin = <%= @myorigin %>
 #inet_interfaces = all
 #inet_interfaces = $myhostname
 #inet_interfaces = $myhostname, localhost
+<% if @inet_interfaces and @inet_interfaces.is_a?(String) -%>
 inet_interfaces = <%= @inet_interfaces %>
+<% end -%>
+<% if @inet_interfaces and @inet_interfaces.is_a?(Array) -%>
+inet_interfaces = <%= @inet_interfaces.join(', ') %>
+<% end -%>
 
 # Enable IPv4, and IPv6 if supported
 inet_protocols = <%= @inet_protocols %>
@@ -281,8 +286,11 @@ mynetworks_style = <%= @mynetworks_style %>
 #mynetworks = 168.100.189.0/28, 127.0.0.0/8
 #mynetworks = $config_directory/mynetworks
 #mynetworks = hash:/etc/postfix/network_table
-<% if @mynetworks -%>
+<% if @mynetworks and @mynetworks.is_a?(String) -%>
 mynetworks = <%= @mynetworks %>
+<% end -%>
+<% if @mynetworks and @mynetworks.is_a?(Array) -%>
+mynetworks = <%= @mynetworks.join(', ') %>
 <% end -%>
 
 # The relay_domains parameter restricts what destinations this system will
@@ -740,9 +748,18 @@ smtpd_tls_key_file = <%= @smtpd_tls_key_file %>
 smtpd_tls_key_file = /etc/pki/tls/private/<%= @ssl %>.key
 <% end -%>
 <% if @smtpd_tls_cert_file -%>
-smtpd_tls_cert_file = <%= @smtpd_tls_cert_file -%>
+smtpd_tls_cert_file = <%= @smtpd_tls_cert_file %>
 <% else -%>
 smtpd_tls_cert_file = /etc/pki/tls/certs/<%= @ssl %>.crt
+<% end -%>
+<% if @smtpd_tls_CAfile -%>
+smtpd_tls_CAfile = <%= @smtpd_tls_CAfile %>
+<% end -%>
+<% if @smtpd_tls_ask_ccert -%>
+smtpd_tls_ask_ccert = yes
+<% end -%>
+<% if @tls_append_default_CA -%>
+tls_append_default_CA = yes
 <% end -%>
 
 <% end -%>
@@ -756,8 +773,16 @@ smtpd_sasl_path = <%= @smtpd_sasl_path %>
 <% if @smtp_sasl_auth -%>
 # Client auth against SMTP gateway
 smtp_sasl_auth_enable = yes
+<% if @smtp_sasl_password_maps -%>
 smtp_sasl_password_maps = <%= @smtp_sasl_password_maps %>
+<% end -%>
+<% if @smtp_sasl_security_options -%>
 smtp_sasl_security_options = <%= @smtp_sasl_security_options %>
+<% end -%>
+
+<% end -%>
+<% if @smtp_sasl_tls or @smtp_use_tls -%>
+smtp_use_tls = yes
 <% if @smtp_tls_CAfile -%>
 smtp_tls_CAfile = <%= @smtp_tls_CAfile %>
 <% end -%>
@@ -767,14 +792,31 @@ smtp_tls_CApath = <%= @smtp_tls_CApath %>
 <% if @smtp_tls_security_level -%>
 smtp_tls_security_level = <%= @smtp_tls_security_level %>
 <% end -%>
-<% if @smtp_sasl_tls -%>
-smtp_use_tls = yes
+<% if @smtp_tls_key_file -%>
+smtp_tls_key_file = <%= @smtp_tls_key_file %>
+<% end -%>
+<% if @smtp_tls_cert_file -%>
+smtp_tls_cert_file = <%= @smtp_tls_cert_file %>
+<% end -%>
+<% if @smtp_tls_secure_cert_match -%>
+smtp_tls_secure_cert_match = <%= @smtp_tls_secure_cert_match %>
+<% end -%>
+<% if @smtp_tls_note_starttls_offer -%>
+smtp_tls_note_starttls_offer = yes
+<% end -%>
+<% if @smtp_tls_mandatory_ciphers -%>
+smtp_tls_mandatory_ciphers = <%= @smtp_tls_mandatory_ciphers %>
 <% end -%>
 
 <% end -%>
 <% if @mail_name -%>
 # Change the mail daemon name
 mail_name = <%= @mail_name %>
+
+<% end -%>
+<% if @mailbox_size_limit -%>
+# Mailbox size limit
+mailbox_size_limit = <%= @mailbox_size_limit %>
 
 <% end -%>
 <% if @message_size_limit -%>
@@ -832,20 +874,9 @@ dovecot_destination_recipient_limit = 1
 
 <% end -%>
 <% end -%>
-<% if @smtpd_delay_reject -%>
-smtpd_delay_reject = <%= @smtpd_delay_reject %>
-
-<% end -%>
 # SMTP restrictions (block bogus stuff)
 <% if @smtpd_helo_required -%>
 smtpd_helo_required = yes
-<% end -%>
-<% if !@smtpd_client_restrictions.empty? -%>
-smtpd_client_restrictions =
-<% @smtpd_client_restrictions.each do |line| -%>
-  <%= line %>,
-<% end -%>
-
 <% end -%>
 <% if !@smtpd_helo_restrictions.empty? -%>
 smtpd_helo_restrictions =
@@ -861,17 +892,26 @@ smtpd_sender_restrictions =
 <% end -%>
 
 <% end -%>
+<% if @smtpd_delay_reject -%>
+smtpd_delay_reject = <%= @smtpd_delay_reject %>
+
+<% end -%>
+<% if !@smtpd_client_restrictions.empty? -%>
+smtpd_client_restrictions =
+<% @smtpd_client_restrictions.each do |line| -%>
+  <%= line %>,
+<% end -%>
+
+<% end -%>
 <% if !@smtpd_recipient_restrictions.empty? or @postgrey -%>
 smtpd_recipient_restrictions =
 <% @smtpd_recipient_restrictions.each do |line| -%>
   <%= line %>,
 <% end -%>
-<% if @postgrey -%>
 <% if @postgrey_policy_service -%>
   check_policy_service <%= @postgrey_policy_service %>,
 <% else -%>
   check_policy_service unix:postgrey/socket,
-<% end -%>
 <% end -%>
 
 <% end -%>
@@ -897,6 +937,10 @@ canonical_maps = <%= @canonical_maps %>
 <% end -%>
 <% if @sender_canonical_maps -%>
 sender_canonical_maps = <%= @sender_canonical_maps %>
+
+<% end -%>
+<% if @smtp_generic_maps -%>
+smtp_generic_maps = <%= @smtp_generic_maps %>
 
 <% end -%>
 <% if @postscreen -%>

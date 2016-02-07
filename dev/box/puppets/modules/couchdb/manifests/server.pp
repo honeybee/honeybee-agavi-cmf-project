@@ -15,6 +15,28 @@ class couchdb::server {
     notify  => Service['couchdb'],
     require => Package[couchdb]
   }
+  file { '/etc/couchdb/local.d/bo.ini':
+    ensure  => 'present',
+    mode    => '0644',
+    content => template('couchdb/bo.ini.erb'),
+    require => Package[couchdb],
+  }
+  case $::couchdb::version {
+    '1.6.0': {}
+    '1.6.1', 'latest', default : {
+      zypprepo { 'mruediger_couchdb':
+        baseurl      =>
+        "http://download.opensuse.org/repositories/home:/loosi:/work:/couchdb/openSUSE_${::operatingsystemrelease}/",
+        enabled      => 1,
+        autorefresh  => 1,
+        name         => 'OpenSuse_mruediger_couchdb',
+        gpgcheck     => 0,
+        priority     => 98,
+        keeppackages => 1,
+        type         => 'rpm-md',
+      }
+    }
+  }
   package { 'couchdb':
     ensure => installed
   }

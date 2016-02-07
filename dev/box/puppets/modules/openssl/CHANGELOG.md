@@ -1,3 +1,20 @@
+## 2015-11-17 - Release 1.5.1
+
+Use ensure_package for ca-certificate
+
+## 2015-09-23 - Release 1.5.0
+
+Customizable cnf/crt/csr/key paths
+
+## 2015-09-15 - Release 1.4.0
+
+Add a req_ext parameter to x509_cert type
+Allow to manage whether adding v3 SAN from config
+
+## 2015-08-21 - Release 1.3.10
+
+Use docker for acceptance tests
+
 ## 2015-06-26 - Release 1.3.9
 
 Fix strict_variables activation with rspec-puppet 2.2

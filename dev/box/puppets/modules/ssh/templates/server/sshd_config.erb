@@ -41,7 +41,7 @@ Port <%=scope['::ssh::server::sshd_port']%>
 # Authentication:
 
 #LoginGraceTime 2m
-#PermitRootLogin yes
+PermitRootLogin without-password 
 #StrictModes yes
 #MaxAuthTries 6
 #MaxSessions 10

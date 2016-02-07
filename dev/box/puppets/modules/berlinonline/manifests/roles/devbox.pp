@@ -3,7 +3,6 @@
 #
 class berlinonline::roles::devbox {
   require basics::packages
-  realize Basics::Packages::Multi_package[certs]
   realize Package[vim]
   realize Package[avahi]
   realize Package[nfs_server]

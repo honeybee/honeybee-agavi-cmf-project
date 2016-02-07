@@ -1,4 +1,4 @@
-  # Class: cli
+# Class: php::modules::fpm
 #
 #
 class php::modules::fpm
@@ -35,7 +35,7 @@ class php::modules::fpm
       alert { "Operatingsystem ${::operatingsystem} does not seem to be supported" :}
     }
   }
-  
+
   file {
     '/etc/php5/fpm/php.ini':
     ensure  => present,

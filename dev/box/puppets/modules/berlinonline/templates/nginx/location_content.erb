@@ -1,0 +1,12 @@
+fastcgi_pass    unix:/var/run/php-fpm/<%=scope["::berlinonline::application_name"]%>.sock;
+include         conf.d/fastcgi_params_<%=scope["::berlinonline::application_name"]%>;
+fastcgi_param   SCRIPT_FILENAME   $document_root$fastcgi_script_name;
+fastcgi_param   PATH_INFO         $fastcgi_script_name;
+fastcgi_param   SERVER_NAME       <%=@server_name%>;
+<% if scope["::berlinonline::application_http_with_https"] || scope["::berlinonline::application_https"]%>
+fastcgi_param   SERVER_PORT       443;
+fastcgi_param   HTTPS             on;
+<% end %>
+<% if scope['::berlinonline::application_request_uri']%>
+fastcgi_param   REQUEST_URI       <%=scope['::berlinonline::application_request_uri']%>;
+<% end %>

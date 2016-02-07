@@ -1,4 +1,4 @@
-# Class: berlinonline::php::cli::debian
+# Class: php::modules::cli::debian
 #
 #deploy php-cli packages and config for debian systems
 class php::modules::cli::debian {
@@ -8,7 +8,7 @@ class php::modules::cli::debian {
   file {
     '/etc/php5/cli/php.ini':
     ensure  => present,
-    content => template('berlinonline/php/php-cli.ini.erb'),
+    content => template('php/php-cli.ini.erb'),
     require => Package['php5-cli'];
   }
 }

@@ -1,12 +1,10 @@
 ---
 berlinonline::project_name: "honeybee-agavi-cmf-project"
 berlinonline::project_prefix: "honeybee-agavi-cmf-project"
-berlinonline::cms_name: "honeybee-agavi-cmf-project.local"
-berlinonline::cms_dir: "pub"
-berlinonline::bo_environment: "development"
-berlinonline::webdir_app_mode: "0777"
-berlinonline::webdir_cms_mode: "0777"
-berlinonline::webdirectory_mode: "0777"
+berlinonline::application_name: honeybee-agavi-cmf-project.local
+berlinonline::application_dir: "pub"
+berlinonline::application_env: development
+berlinonline::bo_environment: development
 berlinonline::aliases_root_recipient: vagrant
 berlinonline::project_git_path: "git@github.com:honeybee/honeybee-agavi-cmf-project.git"
 
@@ -14,23 +12,52 @@ berlinonline::sudos:all:
   - deploy
 
 elasticsearch::version: "1.5.1"
+elasticsearch::network_host: "0.0.0.0"
+elasticsearch::heap_size: 1G
+elasticsearch::discovery_zen_ping_multicast_enabled: false
 
+couchdb::version: "1.6.1"
 couchdb::bind_address: "0.0.0.0"
 
+converjon::version: "2.7.1"
 converjon::url_whitelist:
   - '~ ^http:\/\/honeybee-agavi-cmf-project.local:?\d*\/\S+'
-converjon::base_url_path: /converjon/
 converjon::nginx_deployment: path
+converjon::base_url_path: /converjon/
 converjon::reject_invalid_ssl: false
 converjon::aliases:
   -
-    name: "dev"
+    name: local
     base_file_path: "/srv/www/honeybee-agavi-cmf-project.local/data/files"
     fallback_base_file_paths:
-        - "/srv/www/honeybee-agavi-cmf-project.local/data/temp_files"
+      - "/srv/www/honeybee-agavi-cmf-project.local/data/temp_files"
     headers:
       - 'Cache-Control: "public, max-age=86400"'
 
 roles:
-  - "berlinonline::roles::honeybee"
+  - berlinonline::roles::honeybee
 
+local_conf:
+  application:
+    -
+      file: config.json
+      provider: json
+      content:
+        local:
+          base_href: https://honeybee-agavi-cmf-project.local/
+    -
+      file: elasticsearch.json
+      provider: json
+      content:
+        elasticsearch:
+          host: localhost
+          port: 9200
+    -
+      file: couchdb.json
+      provider: json
+      content:
+        couchdb:
+          host: localhost
+          port: 5984
+          user: honeybee
+          password: honeybee

@@ -1,5 +1,5 @@
 {
-  "CHANGELOG.md": "10ae81f90de87f70309c5143663d85a8",
+  "CHANGELOG.md": "18247d3fd1316b84525650e9367b9231",
   "CONTRIBUTING.md": "e2b8e8e433fc76b3798b7fe435f49375",
   "Gemfile": "e6e6eb07f0bfc9bb1e328895ca49b3f5",
   "LICENSE": "b8d96fef1f55096f9d39326408122136",
@@ -30,7 +30,7 @@
   "lib/puppet/provider/vcsrepo/svn.rb": "74ab5d60339e15cc04af0d059d0a7de6",
   "lib/puppet/provider/vcsrepo.rb": "dbd72590771291f1db23a41ac048ed9d",
   "lib/puppet/type/vcsrepo.rb": "76c6a584aac7333ed336e300dcb80aad",
-  "metadata.json": "8e90ca5e6fd5fc415acc04a93c4c3d05",
+  "metadata.json": "624ef9e34e1240b5bb5ac65b60cac671",
   "spec/acceptance/beaker/git/basic_auth/basic_auth_checkout_http.rb": "eaa8419eff123dd15e1485d2462a7ba6",
   "spec/acceptance/beaker/git/basic_auth/basic_auth_checkout_https.rb": "b7cb6c4c1852302ff2b37838548d4f22",
   "spec/acceptance/beaker/git/basic_auth/negative/basic_auth_checkout_git.rb": "c2319ac03e26887ad4487ea3b582bbcb",

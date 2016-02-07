@@ -1,15 +1,12 @@
 {
   "name": "puppetlabs-java",
-  "version": "1.4.1",
+  "version": "1.4.3",
   "author": "puppetlabs",
   "summary": "Installs the correct Java package on various platforms.",
   "license": "Apache-2.0",
   "source": "git://github.com/puppetlabs/puppetlabs-java",
   "project_page": "https://github.com/puppetlabs/puppetlabs-java",
   "issues_url": "https://tickets.puppetlabs.com/browse/MODULES",
-  "dependencies": [
-    {"name":"puppetlabs/stdlib","version_requirement":">= 2.4.0 < 5.0.0"}
-  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "RedHat",
@@ -81,11 +78,14 @@
   "requirements": [
     {
       "name": "pe",
-      "version_requirement": ">= 3.0.0 < 2015.3.0"
+      "version_requirement": ">= 3.0.0 < 2015.4.0"
     },
     {
       "name": "puppet",
       "version_requirement": ">= 3.0.0 < 5.0.0"
     }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 2.4.0 < 5.0.0"}
   ]
 }

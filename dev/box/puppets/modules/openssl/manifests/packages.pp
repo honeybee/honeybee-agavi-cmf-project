@@ -6,16 +6,18 @@ class openssl::packages {
     ensure => $openssl::package_ensure,
   }
 
-  if $::osfamily == 'Debian' {
-    package { 'ca-certificates':
+  if $::osfamily == 'Debian' or (
+  $::osfamily == 'RedHat' and versioncmp($::operatingsystemrelease, '6.0') >= 0) {
+    ensure_packages(['ca-certificates'], {
       ensure => $openssl::ca_certificates_ensure,
-      before => Package['openssl'],
-    }
+    })
 
-    exec { 'update-ca-certificates':
-      path        => $::path,
-      refreshonly => true,
-      require     => Package['ca-certificates'],
+    if $::osfamily == 'Debian' {
+      exec { 'update-ca-certificates':
+        path        => $::path,
+        refreshonly => true,
+        require     => Package['ca-certificates'],
+      }
     }
   }
 }

@@ -6,7 +6,7 @@ class berlinonline::packages(
   $nfs_server       = ''
   )
 {
-	realize Package[bzip2]
+  realize Package[bzip2]
   realize Package[curl]
   realize Package[less]
   realize Package[lsof]
@@ -24,4 +24,6 @@ class berlinonline::packages(
   realize Package[bash-completion]
   realize Package[systemd-bash-completion]
   realize Package[make]
+  realize Package[netcat]
+  realize Package[cron]
 }

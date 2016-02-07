@@ -4,6 +4,7 @@ class postfix::params {
   case $::osfamily {
     'RedHat': {
       $postfix_version = $::operatingsystemmajrelease ? {
+        #'7'     => '2.10.1',
         '6'     => '2.6.6',
         '5'     => '2.3.3',
         default => '2.6.6',
@@ -19,6 +20,7 @@ class postfix::params {
       $dovecot_directory = '/usr/libexec/dovecot'
       $postfix_package = 'postfix'
       $postfix_mysql_package = 'postfix-mysql'
+      $postfix_package_ensure = installed
       $postgrey_package = 'postgrey'
       $spamassassin_package = 'spamassassin'
       $spampd_package = 'spampd'
@@ -32,6 +34,7 @@ class postfix::params {
       $postmap = '/usr/sbin/postmap'
     }
     'Debian': {
+      $postfix_version = undef
       $command_directory = '/usr/sbin'
       $config_directory = '/etc/postfix'
       $daemon_directory = '/usr/lib/postfix'
@@ -43,6 +46,7 @@ class postfix::params {
       $dovecot_directory = '/usr/lib/dovecot'
       $postfix_package = 'postfix'
       $postfix_mysql_package = 'postfix-mysql'
+      $postfix_package_ensure = installed
       $postgrey_package = 'postgrey'
       $spamassassin_package = 'spamassassin'
       $spampd_package = 'spampd'
@@ -56,6 +60,7 @@ class postfix::params {
       $postmap = '/usr/sbin/postmap'
     }
     'FreeBSD': {
+      $postfix_version = undef
       $command_directory = '/usr/local/sbin'
       $config_directory = '/usr/local/etc/postfix'
       $daemon_directory = '/usr/local/libexec/postfix'
@@ -67,6 +72,7 @@ class postfix::params {
       $dovecot_directory = '/usr/local/libexec/dovecot'
       $postfix_package = 'mail/postfix'
       $postfix_mysql_package = 'mail/postfix'
+      $postfix_package_ensure = installed
       $postgrey_package = 'mail/postgrey'
       $spamassassin_package = 'mail/spamassassin'
       $spampd_package = 'mail/spampd'

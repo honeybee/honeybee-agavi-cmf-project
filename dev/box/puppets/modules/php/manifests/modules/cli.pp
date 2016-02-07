@@ -1,4 +1,4 @@
-# Class: cli
+# Class: php::modules::cli
 #
 #
 class php::modules::cli

@@ -12,8 +12,9 @@ class berlinonline::update {
     }
     'zypp' : {
       exec { 'zypper-refresh':
-        command => 'zypper refresh',
-        path    => ['/usr/bin', '/bin', '/sbin'],
+        command     => 'zypper refresh',
+        path        => ['/usr/bin', '/bin', '/sbin'],
+        refreshonly => true
       }
     }
     default : {

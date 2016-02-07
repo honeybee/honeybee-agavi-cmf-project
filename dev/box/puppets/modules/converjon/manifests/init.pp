@@ -35,6 +35,11 @@ class converjon(
   $nginx_deployment                       = '',
   $aliases                                = [],
   $alias_basepath                         = '',
+  $enable_auth                            = false,
+  $garbage_collector_enabled              = true,
+  $garbage_collector_source               = 'cache',
+  $garbage_collector_target               = 'immediate',
+  $garbage_collector_interval             = 5000
 )
 {
   define alias (String $base_file_path, Array $headers = [], Array $fallback_base_file_paths = []) {

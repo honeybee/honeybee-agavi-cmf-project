@@ -1,7 +1,7 @@
 alias: <%=@name%>
 base_file_path: "<%=@base_file_path%>"
 headers: <%@headers.each do |header|%>
-  - '<%=header%>'<%end%>
+  <%=header%><%end%>
 
 fallback_base_file_paths: <%@fallback_base_file_paths.each do |path|%>
   - '<%=path%>'<%end%>

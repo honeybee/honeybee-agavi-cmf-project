@@ -11,11 +11,17 @@ class basics::users{
     require    => Group[$::berlinonline::scm_user],
     managehome => true,
   }
-  group { $berlinonline::scm_group_primary:
+  group { $berlinonline::scm_group_primary :
     ensure => present,
     gid    => 10001
   }
   user { 'root':
     ensure => present
+  }
+  file { "/home/${$::berlinonline::scm_user}/.local" :
+    ensure  => directory,
+    owner   => $::berlinonline::scm_user,
+    group   => $::berlinonline::scm_group_primary,
+    require => User[$::berlinonline::scm_user]
   }
 }

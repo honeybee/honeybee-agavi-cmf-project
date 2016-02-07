@@ -30,12 +30,12 @@ Apt (Advanced Package Tool) is a package manager available on Debian, Ubuntu, an
 
 ### What apt affects
 
-* Your system's `preferences.list` file and `preferences.list.d` directory
+* Your system's `preferences` file and `preferences.d` directory
 * Your system's `sources.list` file and `sources.list.d` directory
 * System repositories
 * Authentication keys
 
-**Note:** This module offers `purge` parameters which, if set to 'true', **destroy** any configuration on the node's `sources.list(.d)` and `preferences.list(.d)` that you haven't declared through Puppet. The default for these parameters is 'false'.
+**Note:** This module offers `purge` parameters which, if set to 'true', **destroy** any configuration on the node's `sources.list(.d)` and `preferences(.d)` that you haven't declared through Puppet. The default for these parameters is 'false'.
 
 ### Beginning with apt
 
@@ -229,19 +229,23 @@ Main class, includes all other classes.
 
   * 'https': Specifies whether to enable https proxies. Valid options: 'true' and 'false'. Default: 'false'.
 
+  * 'ensure': Optional parameter. Valid options: 'file', 'present', and 'absent'. Default: 'undef'. Prefer 'file' over 'present'.
+
 * `purge`: Specifies whether to purge any existing settings that aren't managed by Puppet. Valid options: a hash made up from the following keys:
 
   * 'sources.list': Specifies whether to purge any unmanaged entries from `sources.list`. Valid options: 'true' and 'false'. Default: 'false'.
 
   * 'sources.list.d': Specifies whether to purge any unmanaged entries from `sources.list.d`. Valid options: 'true' and 'false'. Default: 'false'.
 
-  * 'preferences.list': Specifies whether to purge any unmanaged entries from `preferences.list`. Valid options: 'true' and 'false'. Default: 'false'.
+  * 'preferences': Specifies whether to purge any unmanaged entries from `preferences`. Valid options: 'true' and 'false'. Default: 'false'.
 
-  * 'preferences.list.d': Specifies whether to purge any unmanaged entries from `preferences.list.d`. Valid options: 'true' and 'false'. Default: 'false'.
+  * 'preferences.d': Specifies whether to purge any unmanaged entries from `preferences.d`. Valid options: 'true' and 'false'. Default: 'false'.
 
 * `settings`: Creates new `apt::setting` resources. Valid options: a hash to be passed to the [`create_resources` function](https://docs.puppetlabs.com/references/latest/function.html#createresources). Default: {}.
 
-* `sources`: Creates new `apt::setting` resources. Valid options: a hash to be passed to the [`create_resources` function](https://docs.puppetlabs.com/references/latest/function.html#createresources). Default: {}.
+* `sources`: Creates new `apt::source` resources. Valid options: a hash to be passed to the [`create_resources` function](https://docs.puppetlabs.com/references/latest/function.html#createresources). Default: {}.
+
+* `pins`: Creates new `apt::pin` resources. Valid options: a hash to be passed to the [`create_resources` function](https://docs.puppetlabs.com/references/latest/function.html#createresources). Default: {}.
 
 * `update`: Configures various update settings. Valid options: a hash made up from the following keys:
 
@@ -264,8 +268,8 @@ Manages backports.
 
 * `location`: Specifies an Apt repository containing the backports to manage. Valid options: a string containing a URL. Defaults:
 
-  * Debian (squeeze): 'http://backports.debian.org/debian-backports'
-  * Debian (other): 'http://ftp.debian.org/debian/'
+  * Debian (squeeze): 'http://httpredir.debian.org/debian-backports'
+  * Debian (other): 'http://httpredir.debian.org/debian'
   * Ubuntu: 'http://archive.ubuntu.com/ubuntu'
 
 * `pin`: *Optional.* Specifies a pin priority for the backports. Valid options: a number or string to be passed to the `id` parameter of the `apt::pin` define, or a hash of `parameter => value` pairs to be passed to `apt::pin`'s corresponding parameters. Default: '200'.
@@ -288,6 +292,8 @@ Specifies a custom Apt configuration file.
 * `ensure`: Specifies whether the configuration file should exist. Valid options: 'present' and 'absent'. Default: 'present'.
 
 * `priority`: *Optional.* Determines the order in which Apt processes the configuration file. Files with lower priority numbers are loaded first. Valid options: a string containing an integer. Default: '50'.
+
+* `notify_update`: *Optional.* Specifies whether to trigger an `apt-get update` run. Valid options: 'true' and 'false'. Default: 'true'.
 
 #### Define: `apt::key`
 
@@ -321,7 +327,7 @@ The `apt::key` define makes use of the `apt_key` type, but includes extra functi
 
 #### Define: `apt::pin`
 
-Manages Apt pins.
+Manages Apt pins. Does not trigger an `apt-get update` run.
 
 **Note:** For context on these parameters, we recommend reading the man page ['apt_preferences(5)'](http://linux.die.net/man/5/apt_preferences)
 

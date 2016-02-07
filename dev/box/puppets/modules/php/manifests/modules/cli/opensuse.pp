@@ -1,4 +1,4 @@
-# Class: php::cli::opensuse
+# Class: php::modules::cli::opensuse
 #
 #
 class php::modules::cli::opensuse {

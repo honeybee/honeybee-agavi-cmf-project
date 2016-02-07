@@ -1,4 +1,4 @@
-# Class: berlinonline::php::fpm::opensuse
+# Class: php::modules::fpm::opensuse
 #
 #
 class php::modules::fpm::opensuse {

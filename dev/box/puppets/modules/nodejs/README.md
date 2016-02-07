@@ -1,6 +1,6 @@
 # puppet-nodejs module
 
-[![Build Status](https://travis-ci.org/puppet-community/puppet-nodejs.png)](http://travis-ci.org/puppet-community/puppet-nodejs)
+[![Build Status](https://travis-ci.org/voxpupuli/puppet-nodejs.png)](http://travis-ci.org/voxpupuli/puppet-nodejs)
 
 #### Table of Contents
 
@@ -47,13 +47,22 @@ class { 'nodejs': }
 ```
 
 If you wish to install a Node.js 0.12.x release from the NodeSource repository
-rather than 0.10.x on Debian platforms:
+rather than 0.10.x on Debian/RH platforms:
 
 ```puppet
 class { 'nodejs':
-  repo_url_suffix => 'node_0.12',
+  repo_url_suffix => '0.12',
 }
 ```
+Or if you wish to install a Node.js 5.x release from the NodeSource repository:
+(4.x. is left as a exercise for the reader)
+
+```puppet
+class { 'nodejs':
+  repo_url_suffix => '5.x',
+}
+```
+
 
 ## Usage
 
@@ -111,12 +120,36 @@ package { 'mime':
 }
 ```
 
+#### Caveat using the npm package provider
+
+Note: The npm provider won't be avaliable until the server has been marked as having the `npm` command avaliable.
+
+So the following code will not work:
+
+```puppet
+include ::node
+
+package { 'bower':
+  provider => 'npm'
+}
+```
+
+As the npm provider won't be avaliable until the next Puppet run.
+
+One solution for this is to add collectors to ensure that all packages with the `npm` provider happen after `::nodejs` has applied
+
+```puppet
+Class['::nodejs'] -> Package <| provider == 'npm' |>
+```
+
+Note that this can lead to dependency cycles and has implications for virtual resources. Use with caution.
+
 ### npm local packages
 
 nodejs::npm is used for the local installation of npm packages. It attempts to
 support all of the `npm install <package>` combinations shown in the
 [npm install docs](https://docs.npmjs.com/cli/install)
-except version ranges. The title simply must be a unique, arbitary value.
+except version ranges. The title simply must be a unique, arbitrary value.
 
 * If using packages directly off the npm registry, the package parameter is the
 name of the package as published on the npm registry.
@@ -283,7 +316,7 @@ nodejs::npm { 'remove all express packages':
 
 ### nodejs::npm::global_config_entry
 
-nodejs::npm::global_config_entry can be used to set global npm configuration settings.
+nodejs::npm::global_config_entry can be used to set/remove global npm configuration settings.
 
 Examples:
 
@@ -408,8 +441,25 @@ User for the proxy used by the repository, if required.
 #### `repo_url_suffix`
 
 This module defaults to installing the latest NodeSource 0.10.x release on
-Debian platforms. If you wish to install a 0.12.x release you will need to
-set this parameter to `node_0.12` instead.
+Debian and RedHat (i.e. RHEL/CentOS/Fedora/Amazon Linux) platforms. If you wish to install a
+0.12.x release or greater, you will need to set this parameter accordingly.
+Accepted values are as follows:
+
+* Debian
+  * 0.10 (default)
+  * 0.12
+  * 4.x
+  * 5.x
+* Ubuntu
+  * 0.10 (default, **Not** available for Ubuntu 15.10)
+  * 0.12 (**Not** available for Ubuntu 15.10)
+  * 4.x (**Not** available for Ubuntu 10, 11 and 13)
+  * 5.x (**Not** available for Ubuntu 10, 11 and 13)
+* RedHat (RHEL/CentOS/Fedora/Amazon Linux)
+  * 0.10 (default, **Not** available for Fedora 23)
+  * 0.12 (**Not** available for Fedora 23)
+  * 4.x (**Only** available for RedHat/CentOS/Amazon Linux 7 and Fedora 21/22/23)
+  * 5.x (**Only** available for RedHat/CentOS/Amazon Linux 7 and Fedora 21/22/23)
 
 #### `use_flags`
 
@@ -440,10 +490,6 @@ The following platforms should also work, but have not been tested:
 This module is not supported on Debian Squeeze.
 
 ### Module dependencies
-
-This module uses `treydock-gpg_key` for the import of RPM GPG keys. If using
-an operating system of the RedHat-based family, you will need to ensure that
-it is installed.
 
 This modules uses `puppetlabs-apt` for the management of the NodeSource
 repository. If using an operating system of the Debian-based family, you will

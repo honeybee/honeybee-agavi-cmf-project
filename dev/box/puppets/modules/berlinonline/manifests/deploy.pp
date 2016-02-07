@@ -1,10 +1,10 @@
-# right now this modules deploys a single application (like berlinonline module). In future release we may be provide resources to 
-# deploy multiple apps per server. 
+# right now this modules deploys a single application (like berlinonline module). In future release we may be provide resources to
+# deploy multiple apps per server.
 # Class: berlinonline::deploy
 #
 #
 class berlinonline::deploy {
-  
+
   exec { 'ssh know github':
     command => 'ssh -Tv git@github.com -o StrictHostKeyChecking=no; echo Success',
     path    => '/bin:/usr/bin',
@@ -16,16 +16,19 @@ class berlinonline::deploy {
     user    => 'deploy',
     require => Exec['ssh know github']
   }
-  
-  vcsrepo { "${berlinonline::webdirectory}/${berlinonline::cms_name}":
-    ensure   => latest,
-    provider => git,
-    source   => $berlinonline::project_git_path,
-    user     => 'deploy',
-    owner    => 'deploy',
-    group    => 'deploy',
-    require  => Exec['ssh know gitlab']
+
+  unless empty($berlinonline::project_git_path) {
+    vcsrepo { "${berlinonline::webdirectory}/${berlinonline::application_name}":
+      ensure   => present,
+      provider => git,
+      source   => $berlinonline::project_git_path,
+      user     => 'deploy',
+      owner    => 'deploy',
+      group    => 'deploy',
+      require  => Exec['ssh know gitlab']
+    }
   }
+
   # exec { 'deploy_cms_init_script':
   #   command     => "${berlinonline::webdirectory}/${berlinonline::cms_name}/${berlinonline::deploy_script}",
   #   refreshonly => true,

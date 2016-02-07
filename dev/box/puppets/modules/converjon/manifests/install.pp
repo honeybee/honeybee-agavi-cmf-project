@@ -19,7 +19,8 @@ class converjon::install {
   package { 'converjon':
     ensure   => $converjon::version,
     provider => 'npm',
-    require  => Package[nodejs]
+    require  => Package[nodejs],
+    notify   => Service[converjon]
   }
 
   #get the array of converjon_whitelists and add at least the given fqdn if empty
@@ -45,16 +46,17 @@ class converjon::install {
 
   #we cannot create and link a file, since its the same file resource with the same name
   exec { 'symlink_current_converjon_config':
-    command     => 'ln -s /etc/converjon/config.yml /etc/converjon/current.yml',
-    path        => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
-    creates     => '/etc/converjon/current.yml',
-    require     => File['/etc/converjon/config.yml'],
+    command => 'ln -s /etc/converjon/config.yml /etc/converjon/current.yml',
+    path    => '/usr/bin:/usr/sbin:/bin:/usr/local/bin',
+    creates => '/etc/converjon/current.yml',
+    require => File['/etc/converjon/config.yml'],
   }
 
   file { '/etc/systemd/system/converjon.service':
     ensure  => file,
     content => template('converjon/converjon.service'),
     require => File['/etc/converjon/config.yml'],
+    notify  => Exec['systemctl-daemon-reload']
   }
 
   service { 'converjon':

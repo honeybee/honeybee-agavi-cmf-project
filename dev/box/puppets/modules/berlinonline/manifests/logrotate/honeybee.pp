@@ -4,7 +4,7 @@
 class berlinonline::logrotate::honeybee{
     logrotate::rule { 'honeybee':
       ensure        => 'present',
-      path          => "${berlinonline::webdirectory}/${berlinonline::cms_name}/app/log/*.log",
+      path          => "${berlinonline::webdirectory}/${berlinonline::application_name}/app/log/*.log",
       rotate        => 30,
       rotate_every  => 'day',
       sharedscripts => true,

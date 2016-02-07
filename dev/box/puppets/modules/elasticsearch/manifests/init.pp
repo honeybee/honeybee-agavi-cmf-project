@@ -32,11 +32,22 @@
 # Copyright 2015 Your name here, unless otherwise noted.
 #
 class elasticsearch(
-  $version      = '1.4.4',
-  $es_directory = '/usr/share/elasticsearch',
+  $version                                = '1.4.4',
+  $es_directory                           = '/usr/share/elasticsearch',
+  $network_host                           = '127.0.0.1',
+  $discovery_zen_ping_multicast_enabled   = false,
+  $node_local                             = true,
+  $script_disable_dynamic                 = true,
+  $cluster_name                           = $::fqdn,
+  $node_master                            = true,
+  Integer $index_replica                  = 1,
+  Boolean $unicast_multi_mode             = false,
 )
 {
   require ::elasticsearch::requirements
+  if $unicast_multi_mode {
+    $_unicast_nodes = query_nodes("Class['elasticsearch']{ cluster_name = '${cluster_name}' }", ipaddress)
+  }
   case $::operatingsystem {
     'OpenSuSE': {
       package { "elasticsearch${::elasticsearch::version}":
@@ -53,5 +64,21 @@ class elasticsearch(
     enable     => true,
     hasrestart => true,
     hasstatus  => true,
+  }
+  file { '/etc/elasticsearch/elasticsearch.yml':
+    ensure  => file,
+    owner   => 'root',
+    group   => 'root',
+    content => template('elasticsearch/elasticsearch.yml.erb'),
+    notify  => Service['elasticsearch']
+  }
+  ->
+  augeas { 'elasticsearch_sysconfig':
+    context => '/files/etc/sysconfig/elasticsearch',
+    changes => [
+      "set ES_CLUSTER_NAME ${cluster_name}",
+      "set ES_NODE_NAME ${::fqdn}",
+    ],
+    notify  => Service['elasticsearch'],
   }
 }

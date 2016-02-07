@@ -1,32 +1,26 @@
-  ---
+---
+
+roles:
+  -
+
 berlinonline::scm_user: deploy
 berlinonline::scm_group_primary: deploy
 berlinonline::scm_groups:
-  - "deploy"
+  - deploy
 
-berlinonline::scm_user: deploy
-berlinonline::scm_group_primary: deploy
-berlinonline::cms_dir: applications/cms/honeybee/pub
-berlinonline::cms_php_slowlog_time: 3s
-berlinonline::cms_php_slowlog_path: /var/log/php/cms_slow.log
-berlinonline::global_http_to_https_rewrite: true
-berlinonline::cms_rewrite: true
-berlinonline::cms_request_uri: $request_uri
-berlinonline::cms_name: cms.stage.berlinonline.net
-berlinonline::use_converjon: false
-berlinonline::cms_request_uri: $request_uri
-berlinonline::webdirectory: /var/www
+berlinonline::application_php_slowlog_time: 5s
+berlinonline::application_php_slowlog_path: /var/log/php/application_slow.log
+berlinonline::application_https: true
+berlinonline::application_rewrite: true
+berlinonline::application_request_uri: $request_uri
+berlinonline::application_name: app.stage.berlinonline.net
+berlinonline::application_dir: pub
+berlinonline::webdirectory: /srv/www
+berlinonline::webdirectory_mode: '0755'
 berlinonline::webuser: wwwrun
 berlinonline::webgroup: www
-berlinonline::webdir_cms_mode: '0755'
-berlinonline::webdirectory_mode: '0755'
-berlinonline::project_git_path:
-berlinonline::scm_group_additional:
- -
+berlinonline::php_max_input_vars: 3000
 
-
-berlinonline::sync_user: sync
-berlinonline::nginx_cms_use_wildcard_cert: false
 berlinonline::additional_roles:
   -
 
@@ -34,10 +28,9 @@ berlinonline::packages::avahi:
 berlinonline::packages::nfs_server:
 
 berlinonline::additional_packages:
-berlinonline::packagelist:
 
-converjon::version:                             "present"
-converjon::running_port:                         8080
+converjon::version:                             2.7.1
+converjon::running_port:                        8080
 converjon::running_instance_name:               null
 converjon::running_instance_timeout:            20000
 converjon::running_instance_access_log_format:  "short"
@@ -65,26 +58,23 @@ converjon::logging_access:                      false
 converjon::auth_username:
 converjon::auth_password:
 converjon::reject_invalid_ssl:                  true
+converjon::alias_basepath:                      /etc/converjon/aliases
 
-couchdb::setup: stable
-
-elasticsearch::version:                         "1.4.4"
+elasticsearch::version:                         "1.5.1"
 elasticsearch::plugins::icu::version:           "2.5.0"
-elasticsearch::es_directory:                    "/usr/share/elasticsearch"
+elasticsearch::es_directory:                    "/usr/share/java/elasticsearch"
 
-ssh::server::sshd_port: 22
 
-php::fpm_service_name:           'php-fpm'
-php::fpm_post_max_size:          17M
-php::fpm_upload_max_filesize:    16M
-php::fpm_log_errors_max_len:     4096
-php::fpm_max_file_uploads:       30
-php::cli_post_max_size:          17M
-php::cli_upload_max_filesize:    16M
-php::cli_log_errors_max_len:     4096
-php::cli_max_file_uploads:       30
-php::apc_shm_size:               256M
+converjon:maxrunningprocesses: 10
+converjon:maxbuffersize: 204800
+converjon:timeout: 10000
+converjon:maxwaitingtime: 30000
+converjon:converjon_basedir: /home/converjon/converjon
+converjon:paddingcolor: FFBBBB
 
+couchdb::version: 1.6.1
+couchdb::bind_address: '127.0.0.1'
+couchdb::port: 5984
 
 berlinonline::packagelist:
   bzip2:
@@ -101,8 +91,6 @@ berlinonline::packagelist:
     name: rsync
   screen:
     name: screen
-  smartmontools:
-    name: smartmontools
   tree:
     name: tree
   unzip:
@@ -127,3 +115,5 @@ berlinonline::packagelist:
     name: systemd-bash-completion
   make:
     name: make
+  smartmontools:
+    name: smartmontools

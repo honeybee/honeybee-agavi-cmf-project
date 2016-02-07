@@ -17,7 +17,7 @@ class converjon::nginx {
       else {
         nginx::server::location { 'Converjon':
           location => $converjon::base_url_path,
-          server   => Nginx::Server[$::berlinonline::cms_name],
+          server   => Nginx::Server[$::berlinonline::application_name],
           order    => 15,
           content  => "
             proxy_pass http://127.0.0.1:${::converjon::running_port};

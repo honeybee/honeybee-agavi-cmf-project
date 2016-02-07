@@ -1,7 +1,0 @@
-.DS_Store
-.vagrant
-/.bundle/*
-.ruby-*
-.falkorlib.yaml
-/pkg/*
-/site/*

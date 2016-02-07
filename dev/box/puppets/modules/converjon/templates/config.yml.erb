@@ -16,7 +16,7 @@ download:
   <% @whitelist_url.each do |entry| -%>
     - '<%=entry%>'
   <% end -%>
-download.rejectInvalidSSL: <%=scope['converjon::reject_invalid_ssl']%>
+rejectInvalidSSL: <%=scope['converjon::reject_invalid_ssl']%>
 
 timeout: <%=scope['converjon::download_timeout']%>
 
@@ -48,10 +48,18 @@ constraints:
     max: <%=scope['converjon::constrains_height_max']%>
 
 logging:
-  error: "<%=scope['converjon::logging_error']%>"
-  debug: "<%=scope['converjon::logging_debug']%>"
-  access: "<%=scope['converjon::logging_access']%>"
+  error: <%=scope['converjon::logging_error']%>
+  debug: <%=scope['converjon::logging_debug']%>
+  access: <%=scope['converjon::logging_access']%>
 
+<% if scope['converjon::enable_auth']%>
 authentication:
   username: "<%=scope['converjon::auth_username']%>"
   password: "<%=scope['converjon::auth_password']%>"
+<% end %>
+
+garbage_collector:
+  enabled: <%=scope['converjon::garbage_collector_enabled']%>
+  source: "<%=scope['converjon::garbage_collector_source']%>"
+  target: "<%=scope['converjon::garbage_collector_target']%>"
+  interval: <%=scope['converjon::garbage_collector_interval']%>
