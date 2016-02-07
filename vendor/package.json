@@ -1,9 +1,9 @@
 {
     "name": "honeybee-project-template",
     "description": "Defines the node dependencies for honeybee.",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "private": true,
     "dependencies": {
-        "honeybee": "git+ssh://git@github.com:berlinonline/honeybee.git#v001-dev"
+        "honeybee": "git+ssh://git@github.com:honeybee/honeybee-agavi-cmf-vendor.git"
     }
 }

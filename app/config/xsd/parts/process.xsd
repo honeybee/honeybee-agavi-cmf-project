@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/process/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/process/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:sequence>
+            <xs:element name="processes" type="ProcessListType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:group>
+
+    <xs:complexType name="ProcessListType">
+        <xs:sequence>
+            <xs:element name="process" type="ProcessType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="ProcessType">
+        <xs:sequence>
+            <xs:element name="builder" type="ProcessBuilderType" minOccurs="1" maxOccurs="1" />
+            <xs:group ref="SettingsGroup" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+        <xs:attribute name="class" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="ProcessBuilderType">
+        <xs:sequence>
+            <xs:group ref="SettingsGroup" minOccurs="0" />
+        </xs:sequence>
+        <xs:attribute name="class" type="xs:string" use="required" />
+    </xs:complexType>
+</xs:schema>

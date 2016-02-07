@@ -1,9 +1,10 @@
 {
     "name": "honeybee-project-template",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "license": "MIT",
     "private": true,
+    "main": "pub/static/requirejs.js",
     "dependencies": {
-        "honeybee": "git@github.com:berlinonline/honeybee.git#v001-dev"
+        "honeybee": "git@github.com:honeybee/honeybee-agavi-cmf-vendor.git"
     }
 }

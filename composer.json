@@ -37,7 +37,7 @@
     "prefer-stable": true,
 
     "require": {
-        "php": ">=5.5.0",
+        "php": ">=5.6.0",
         "lib-curl": "*",
         "lib-libxml": "*",
         "lib-xsl": "*",
@@ -50,44 +50,49 @@
         "honeybee/honeybee": "master@dev",
         "honeybee/trellis": "master@dev",
         "shrink0r/workflux": "master@dev",
+        "shrink0r/monatic": "master@dev",
         "roave/security-advisories": "master@dev",
         "sensiolabs/security-checker": "^3.0"
     },
 
      "require-dev": {
-        "phpmd/phpmd": "2.2.*",
-        "phpunit/phpunit": "4.8.*",
-        "sami/sami": "3.*",
+        "phpunit/phpunit": "^5.0.5",
+        "phpmd/phpmd": "^2.3",
+        "sami/sami": "^3.0.8",
+        "sebastian/phpcpd": "~2.0.2",
         "satooshi/php-coveralls": "0.6.*",
-        "sebastian/phpcpd": "2.0.*",
-        "squizlabs/php_codesniffer": "2.3.*"
+        "squizlabs/php_codesniffer": "^2.3.3"
     },
 
     "autoload": {
         "psr-4": { 
+            "YourNamespace\\" : "app/lib",
             "HoneybeeExtensions\\Composer\\": "etc/composer/"
          }
     },
 
+    "autoload-dev": {
+        "psr-4": {
+            "YourNamespace\\Tests\\" : "testing"
+        }
+    },
+
     "scripts": {
         "test": [
-            "echo \"Running unit tests ...\"",
-            "./vendor/bin/phpunit --colors ./testing"
+            "phpunit ./testing"
         ],
         "code-sniffer": [
-            "echo \"Running codesniffer to check for PSR-2 compatibility ...\"",
-            "./vendor/bin/phpcs --extensions=php --standard=psr2 ./app/lib ./app/modules ./testing"
+            "phpcs --extensions=php --standard=psr2 ./app/lib ./app/modules ./testing"
         ],
         "api-doc": [
-            "echo \"Running Sami to generate docs ...\"",
             "if [ -d ./build/docs ]; then rm -rf ./build/docs; fi",
             "vendor/sami/sami/sami.php --ansi update app/config/sami.php"
         ],
         "build": [
             "if [ -d ./build/logs ]; then rm -rf ./build/logs; fi",
             "mkdir -p ./build/logs",
-            "composer test",
-            "composer code-sniffer"
+            "@test",
+            "@code-sniffer"
         ],
         "post-root-package-install": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::postRootPackageInstall"
@@ -148,6 +153,15 @@
         ],
         "assets-build": [
             "HoneybeeExtensions\\Composer\\ProjectHandler::buildAssets"
+        ],
+        "js": [
+            "bin/cli honeybee.core.util.compile_js"
+        ],
+        "css": [
+            "bin/cli honeybee.core.util.compile_scss"
+        ],
+        "cc": [
+            "rm -rf app/cache/*"
         ]
     }
 }
