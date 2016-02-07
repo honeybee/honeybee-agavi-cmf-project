@@ -9,12 +9,15 @@ The Honeybee-Agavi Content Management Framework (CMF) is based on the [Honeybee]
 **This project is in active development**. Changes may be frequent until releases are provided.
 
 #Installation
+
 Installation of an application can be done directly from this project repository following the instructions provided. 
 
 ##Installing the application inside a VM
+
 These instructions detail the procedure for boostrapping your application on a virtual machine (VM).  The VM will be provisioned and configured with the required environment for Honeybee applications.
 
 ###Prerequisites
+
  * `VirtualBox` - https://www.virtualbox.org/wiki/Downloads
  * `git` - https://git-scm.com
  * `vagrant` - http://downloads.vagrantup.com
@@ -23,6 +26,7 @@ These instructions detail the procedure for boostrapping your application on a v
  * Some knowledge of the [Agavi][2] MVC framework is advantageous
 
 ###Creating a new project
+
 Creating a project with `composer` will guide you through configuring a project and VM for a new application. We ignore platform requirements because the project will be installed inside the VM.
 
 ```shell
@@ -39,6 +43,7 @@ The repository will be cloned and a post-install script will be executed which w
  * When asked by `composer` if you wish to keep the VCS files, you may answer `no`
 
 ###Initialising your repository
+
 Your application is now configured and ready for committing to your own repository. Detailed instructions on creating new repositories on Github from source can be found [here][4]. We have summarised the commands as follows:
 
 ```shell
@@ -53,6 +58,7 @@ git push -u origin master
 ```
 
 ###Launching the VM
+
 When your new repository is publicly available, the VM is ready to launch. When the VM is first initialised, it will clone the Github repository you just created. You can start the machine with the following commands:
 
 ```shell
@@ -65,6 +71,7 @@ vagrant up
 You will see console output as the machine image is downloaded and provisioned. During the provisioning you maybe prompted for input and can accept the default in all cases.
 
 ###Completing installation
+
 When your VM is up and running you can finish installation by executing the following commands:
 
 ```shell
@@ -78,6 +85,7 @@ sudo service nginx restart
 The application will install all dependencies and build all required resources. This may take several minutes.
 
 ###Accessing the CMS
+
 When successfully setup the application should be accessible at: 
 
 https://honeybee-agavi-cmf-project.local/ 
@@ -96,6 +104,7 @@ Alternatively you may wish to intialise the application from scratch as explaine
    * `mount honeybee-agavi-cmf-project.local:/srv/www/ /home/${USER}/projects/honeybee-agavi-cmf-project`
 
 ###Controlling system services
+
 The following main services are running on the VM and are controlled via `systemd`:
 
  * Couchdb
@@ -103,7 +112,7 @@ The following main services are running on the VM and are controlled via `system
    * web-client: http://honeybee-agavi-cmf-project.local:5984/_utils
  * Elasticsearch
    * http-endpoint: http://honeybee-agavi-cmf-project.local:9200
-   * web-client: http://honeybee-agavi-cmf-project.project:9200/_plugin/head
+   * web-client: http://honeybee-agavi-cmf-project.local:9200/_plugin/head/
  * Converjon
    * http-endpoint: https://honeybee-agavi-cmf-project.local/converjon
    * web-status: https://honeybee-agavi-cmf-project.local/converjon/status
@@ -111,10 +120,11 @@ The following main services are running on the VM and are controlled via `system
 In order to start/stop services or get the status, use the corresponding `sudo` command within the VM.
 
 ```shell
-sudo service couchdb status|start|stop|restart
+sudo systemctl status|start|stop|restart couchdb|elasticsearch|converjon
 ```
 
 #### Turning the VM on/off
+
 Whenever possible stop the box with:
 
 ```shell
@@ -134,12 +144,15 @@ vagrant reload # is the same as: vagrant halt && vagrant up
 ```
 
 ##Installation locally
+
 Coming soon...
 
 ##Initialisation
+
 When a Honeybee CMF project is first installed, the databases are not initialised and there is no data in the system.
 
 ###Initialising the stores
+
 System migrations are provided for creating administration users. We can execute all pending migrations and initialise the data stores using the following command:
 
 ```shell
@@ -149,6 +162,7 @@ composer migration-run -- --all
 On completion you will see a summary of which migrations were executed. There is no data in the system at this point.
 
 ###Creating an administrative user
+
 We can create an administration user with the following command.
 
 ```shell
