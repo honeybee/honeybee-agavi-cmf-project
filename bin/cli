@@ -14,4 +14,4 @@ if [ -z "$PHP_COMMAND" ] ; then
     PHP_COMMAND="php"
 fi
 
-${PHP_COMMAND} ${CLI_PHP_INI_SETTINGS} -f ${CLI_PHP_FILE} -- $@
+${PHP_COMMAND} ${CLI_PHP_INI_SETTINGS} -f ${CLI_PHP_FILE} -- "$@"
