@@ -36,7 +36,7 @@ converjon::aliases:
 # honeybee role adds elasticsearch head and icu plugins
 roles:
   - berlinonline::roles::honeybee
-  - berlinonline::roles::rabbitmq
+#  - berlinonline::roles::rabbitmq
 
 berlinonline::additional_packages:
   - ctags
