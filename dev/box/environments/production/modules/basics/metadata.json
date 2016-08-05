@@ -1,0 +1,19 @@
+{
+  "name": "berlinonline-basics",
+  "version": "0.0.5",
+  "author": "BerlinOnline",
+  "license": "Apache-2.0",
+  "summary": "Deploys BerlinOnline Basics",
+  "source": "https://gitlab.berlinonline.net/puppets/basics",
+  "project_page": "https://gitlab.berlinonline.net/puppets/basics",
+  "issues_url": "https://gitlab.berlinonline.net/puppets/basics/issues",
+  "tags": ["berlinonline"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "OpenSuSE",
+    "operatingsystemrelease": [ "13.1", "13.2" ]
+    }
+   ],
+  "dependencies": [
+  ]
+}

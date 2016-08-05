@@ -1,0 +1,18 @@
+{
+  "LICENSE": "8e55fce2ff4cd1331f7c6bc602fe7370",
+  "README.md": "4fb13dc0483094f870135cedf8c5b95b",
+  "Rakefile": "a1a87b266213b03b33f5e006d4df7925",
+  "lib/puppet/parser/functions/create_config_hash.rb": "27717467ce3fd55f6391e43885b7eac4",
+  "manifests/clear_cache.pp": "dbaefbb2bbf0dcd04c4f5882a1aca7d8",
+  "manifests/config/entry.pp": "302a8c4275387a8ad3b15c97a6f33d89",
+  "manifests/config.pp": "80e2baf75943b78b17d733d91ba2a6c8",
+  "manifests/init.pp": "fa324295e2c7c6ab50af16a22e741044",
+  "manifests/params.pp": "161bd6ecc90ca463d46b5da888a47cd5",
+  "metadata.json": "a748a7904a9ea4d98171454049628b60",
+  "spec/classes/composer_spec.rb": "b7ec120b5e462019719981a0fb728b4d",
+  "spec/defines/composer_clear_cache_spec.rb": "5e7e2f8e991e15266294f13369aed775",
+  "spec/defines/composer_config_entry_spec.rb": "f6f8a91fff67f5ce9c8f4b16cb2af5e9",
+  "spec/defines/composer_config_spec.rb": "7813083d179c69cf89c128dd348bee7b",
+  "spec/functions/create_config_hash_spec.rb": "76ec3bf47976a81651a8ace1e1148f4f",
+  "spec/spec_helper.rb": "0db89c9a486df193c0e40095422e19dc"
+}

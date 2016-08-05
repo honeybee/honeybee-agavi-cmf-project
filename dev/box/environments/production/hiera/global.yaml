@@ -1,0 +1,122 @@
+---
+
+roles:
+  -
+
+berlinonline::scm_user: deploy
+berlinonline::scm_group_primary: deploy
+berlinonline::scm_groups:
+  - deploy
+
+berlinonline::application_php_slowlog_time: 5s
+berlinonline::application_php_slowlog_path: /var/log/php/application_slow.log
+berlinonline::application_https: true
+berlinonline::application_rewrite: true
+berlinonline::application_request_uri: $request_uri
+berlinonline::application_name: app.stage.berlinonline.net
+berlinonline::application_dir: pub
+berlinonline::webdirectory: /srv/www
+berlinonline::webdir_application_mode: '0755'
+berlinonline::webuser: wwwrun
+berlinonline::webgroup: www
+berlinonline::php_max_input_vars: 3000
+berlinonline::aliases_root_recipient: deploy
+berlinonline::additional_roles:
+  -
+
+berlinonline::packages::avahi:
+berlinonline::packages::nfs_server:
+
+berlinonline::additional_packages:
+
+berlinonline::required_packages:
+  - php5-fpm
+
+converjon::version:                             2.7.2
+converjon::running_port:                        8080
+converjon::running_instance_name:               null
+converjon::running_instance_timeout:            20000
+converjon::running_instance_access_log_format:  "short"
+converjon::test_server_enable:                  false
+converjon::cache_base_path:                     "/var/cache/converjon"
+converjon::url_whitelist:
+  -
+converjon::process_limit:                       5
+converjon::download_timeout:                    5000
+converjon::process_timeout:                     5000
+converjon::analysis_aio_name:                   "aoi"
+converjon::converter_padding_color:             "#fefefe"
+converjon::cropping_default_mode:               "aoi_coverage"
+converjon::constrains_quality_min:              30
+converjon::constrains_quality_max:              90
+converjon::constrains_colors_min:               16
+converjon::constrains_colors_max:               265
+converjon::constrains_width_min:                20
+converjon::constrains_width_max:                1000
+converjon::constrains_height_min:               20
+converjon::constrains_height_max:               1000
+converjon::logging_error:                       "stderr"
+converjon::logging_debug:                       "stderr"
+converjon::logging_access:                      false
+converjon::auth_username:
+converjon::auth_password:
+converjon::reject_invalid_ssl:                  true
+converjon::alias_basepath:                      /etc/converjon/aliases
+
+elasticsearch::version:                         "1.5.2"
+elasticsearch::plugins::icu::version:           "2.5.0"
+elasticsearch::es_directory:                    "/usr/share/java/elasticsearch"
+
+
+converjon:maxrunningprocesses: 10
+converjon:maxbuffersize: 204800
+converjon:timeout: 10000
+converjon:maxwaitingtime: 30000
+converjon:converjon_basedir: /home/converjon/converjon
+converjon:paddingcolor: FFBBBB
+
+couchdb::version: 1.6.1
+couchdb::bind_address: '127.0.0.1'
+couchdb::port: 5984
+
+berlinonline::packagelist:
+  bzip2:
+    name: bzip2
+  curl:
+    name: curl
+  less:
+    name: less
+  lsof:
+    name: lsof
+  patch:
+    name: patch
+  rsync:
+    name: rsync
+  screen:
+    name: screen
+  tree:
+    name: tree
+  unzip:
+    name: unzip
+  whois:
+    name: whois
+  zip:
+    name: zip
+  openssl:
+    name: openssl
+  git:
+    name: git
+  vim:
+    name: vim
+  vim-data:
+    name: vim-data
+  rubygem-sass:
+    name: rubygem-sass
+  bash-completion:
+    name: bash-completion
+  systemd-bash-completion:
+    name: systemd-bash-completion
+  make:
+    name: make
+  smartmontools:
+    name: smartmontools

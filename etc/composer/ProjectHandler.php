@@ -209,33 +209,7 @@ class ProjectHandler
             $io->write($buffer, false);
         });
 
-        //self::createEnvironment($event);
         self::buildAssets($event);
-    }
-
-    public static function createEnvironment(Event $event)
-    {
-        $io = $event->getIO();
-        $io->write('-> configuring project environment');
-        $project_path = ScriptToolkit::getProjectPath($event);
-
-        $process = ScriptToolkit::createProcess('vendor/bin/environaut.phar check', $project_path);
-        $process->setTty(true);
-        $process->run(function ($type, $buffer) use ($io) {
-            $io->write($buffer, false);
-        });
-    }
-
-    public static function recreateEnvironment(Event $event)
-    {
-        $io = $event->getIO();
-        $io->write('-> reconfiguring project environment');
-        $project_path = ScriptToolkit::getProjectPath($event);
-        $environaut_cache_file = $project_path . DIRECTORY_SEPARATOR . '.environaut.cache';
-        if (file_exists($environaut_cache_file)) {
-            unlink($environaut_cache_file);
-        }
-        self::createEnvironment($event);
     }
 
     public static function buildAssets(Event $event)

@@ -2,13 +2,13 @@ Vagrant.configure(2) do |config|
   config.ssh.forward_agent              = true
   config.ssh.username                   = 'deploy'
   config.vm.hostname                    = 'honeybee-agavi-cmf-project.local'
-  config.vm.post_up_message             = 'Honeybee CMF DevBox - Happy development!'
+  config.vm.post_up_message             = 'honeybee-agavi-cmf-project Development'
   config.vm.box                         = 'berlinonline/opensuse-13_2'
+  config.vm.box_version                 = '1.0.2' # see https://atlas.hashicorp.com/berlinonline/boxes/opensuse-13_2
   config.ssh.private_key_path           = ['~/.vagrant.d/insecure_private_key', '~/.ssh/id_rsa']
   config.ssh.insert_key                 = false
   config.vm.network :private_network, type: :dhcp
   config.vm.synced_folder "./", "/vagrant/"
-
 
   config.vm.provider "virtualbox" do |vb|
     vb.memory = "2048"
@@ -19,14 +19,17 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision :puppet do |puppet|
-    puppet.manifests_path     = "puppets/manifests"
-    puppet.manifest_file      = "default.pp"
-    puppet.module_path        = "puppets/modules"
-    puppet.hiera_config_path  = "puppets/hiera/hiera.yaml"
-    puppet.options            = "--parser future --yamldir /vagrant/puppets/hiera"
+    puppet.environment_path  = "environments"
+    puppet.environment       = "production"
     puppet.facter = {
       "bo_environment" => "development"
     }
+    puppet.options          = "--verbose --debug"
   end
+
+#  $script = <<SCRIPT
+#  echo Manually doing stuff via inline shell script provisioning...
+#SCRIPT
+#  config.vm.provision "shell", inline: $script
 
 end

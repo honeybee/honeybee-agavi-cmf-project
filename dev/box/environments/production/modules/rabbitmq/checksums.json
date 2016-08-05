@@ -1,0 +1,11 @@
+{
+  "CHANGELOG.md": "4294cdc21c6f71dc2949f76f84149652",
+  "LICENSE": "4f84465c5e5adf60f576a075da0c4851",
+  "README.md": "0a0eb9012e551346b7a03bf21cec3654",
+  "manifests/init.pp": "b156f6db3c48e0a3f414e0d37af30201",
+  "manifests/params.pp": "44cd1c81407a96ce07c4d9a9adb0e8dd",
+  "metadata.json": "7ff32858fd2fe436683e2aff22927253",
+  "templates/enabled_plugins.erb": "ed347a29480d38c4a102226b9b5d291c",
+  "templates/rabbitmq-env.conf.erb": "bcda4fbacbb1b8ba5ca7f78ea438e514",
+  "templates/rabbitmq.config-cluster.erb": "3373aa28bb530e9837de13f60343e34e"
+}

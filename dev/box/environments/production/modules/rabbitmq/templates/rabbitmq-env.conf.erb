@@ -1,0 +1,3 @@
+<% @rabbitmq_env.sort_by {|key,value| key}.each do |key,value| -%>
+<%= key %>=<%= value %>
+<% end -%>

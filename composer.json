@@ -35,6 +35,13 @@
     },
 
     "prefer-stable": true,
+    
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "git@github.com:FriendsOfHoneybee/php-amqplib.git"
+        }
+    ],
 
     "require": {
         "php": ">=5.6.0",
@@ -46,6 +53,7 @@
         "lib-openssl": "*",
         "lib-pcre": "*",
         "ext-imagick": "*",
+        "honeybee/agavi": "dev-honeybee-1.0",
         "honeybee/honeybee-agavi-cmf-vendor": "master@dev",
         "honeybee/honeybee": "master@dev",
         "honeybee/trellis": "master@dev",
@@ -60,8 +68,9 @@
         "phpmd/phpmd": "^2.3",
         "sami/sami": "^3.0.8",
         "sebastian/phpcpd": "~2.0.2",
-        "satooshi/php-coveralls": "0.6.*",
-        "squizlabs/php_codesniffer": "^2.3.3"
+        "satooshi/php-coveralls": "master@dev",
+        "squizlabs/php_codesniffer": "^2.3.3",
+        "php-amqplib/php-amqplib": "master@dev"
     },
 
     "autoload": {
@@ -144,9 +153,6 @@
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig",
             "HoneybeeExtensions\\Composer\\ResourceHandler::buildResource",
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"
-        ],
-        "env-recreate": [
-            "HoneybeeExtensions\\Composer\\ProjectHandler::recreateEnvironment"
         ],
         "config-build": [
             "HoneybeeExtensions\\Composer\\ConfigurationHandler::buildConfig"

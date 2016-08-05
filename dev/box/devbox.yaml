@@ -1,0 +1,66 @@
+---
+berlinonline::project_name: "honeybee-agavi-cmf-project"
+berlinonline::project_prefix: "honeybee-agavi-cmf-project"
+berlinonline::application_name: honeybee-agavi-cmf-project.local
+berlinonline::application_dir: "pub"
+berlinonline::bo_environment: development
+berlinonline::application_env: development
+berlinonline::aliases_root_recipient: vagrant
+berlinonline::project_git_path: "-b feature/update_box git@github.com:honeybee/honeybee-agavi-cmf-project.git"
+berlinonline::webdirectory_mode: '0777'
+
+berlinonline::sudos:all:
+  - deploy
+
+elasticsearch::branch: "2.3"
+elasticsearch::network_host: "0.0.0.0"
+
+couchdb::version: "1.6.1"
+couchdb::bind_address: "0.0.0.0"
+
+converjon::version: "2.7.2"
+converjon::nginx_deployment: path
+converjon::base_url_path: /converjon/
+converjon::reject_invalid_ssl: false
+converjon::url_whitelist:
+  - '~ ^https:\/\/honeybee-agavi-cmf-project.local:?\d*\/\S+'
+converjon::aliases:
+  -
+    name: local
+    base_file_path: "/srv/www/ehoneybee-agavi-cmf-project.local/data/files"
+    fallback_base_file_paths:
+      - "/srv/www/honeybee-agavi-cmf-project.local/data/temp_files"
+    headers:
+      - 'Cache-Control: "public, max-age=86400"'
+
+# honeybee role adds elasticsearch head and icu plugins
+roles:
+  - berlinonline::roles::honeybee
+  - berlinonline::roles::rabbitmq
+
+berlinonline::additional_packages:
+  - ctags
+  - ack
+
+local_conf:
+  application:
+    -
+      file: config.json
+      provider: json
+      content:
+        local:
+          base_href: https://honeybee-agavi-cmf-project.local/
+    -
+      file: elasticsearch.json
+      provider: json
+      content:
+        elasticsearch:
+          host: localhost
+          port: 9200
+    -
+      file: couchdb.json
+      provider: json
+      content:
+        couchdb:
+          host: localhost
+          port: 5984

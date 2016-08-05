@@ -10,22 +10,4 @@
         <xi:fallback />
     </xi:include>
 
-<!--
-    <ae:configuration context="web">
-
-        <output_types default="html">
-            <output_type name="html">
-                <layouts default="default">
-                    <layout name="default">
-                        <layer name="decorator">
-                            <ae:parameter name="directory">%core.template_dir%</ae:parameter>
-                            <ae:parameter name="template">CustomMaster</ae:parameter>
-                        </layer>
-                    </layout>
-                </layouts>
-            </output_type>
-        </output_types>
-    </ae:configuration>
--->
-
 </ae:configurations>

@@ -1,6 +1,0 @@
-forge "https://forgeapi.puppetlabs.com"
-
-mod 'deadpoint-zypprepo',
-	:git => "https://github.com/deadpoint/puppet-zypprepo"
-mod 'puppetlabs-java'
-mod 'puppetlabs-stdlib'

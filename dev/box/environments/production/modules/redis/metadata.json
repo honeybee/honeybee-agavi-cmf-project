@@ -1,0 +1,16 @@
+{
+  "name": "redis",
+  "version": "0.1.0",
+  "author": "berlinonline",
+  "summary": "Installs Redis key-value store server",
+  "license": "Apache-2.0",
+  "source": "https://gitlab.berlinonline.net/puppets/berlinonline-redis",
+  "project_page": "https://gitlab.berlinonline.net/puppets/berlinonline-redis",
+  "issues_url": "https://gitlab.berlinonline.net/puppets/berlinonline-redis",
+  "dependencies": [
+    {
+      "name":"puppetlabs-stdlib","version_requirement":">= 1.0.0",
+      "name":"deadpoint-zypprepo"
+    }
+  ]
+}

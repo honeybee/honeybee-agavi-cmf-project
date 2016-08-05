@@ -1,0 +1,8 @@
+{
+  "LICENSE": "58a374459d0f22654f0737d64b26d38a",
+  "README.md": "afa77c4ae6eccea120174b39603e2326",
+  "lib/puppet/provider/hash_file/json.rb": "fa33531263b895b3ba03181fe553606a",
+  "lib/puppet/provider/hash_file/yaml.rb": "d50299030f2e96e0831660f662cc969a",
+  "lib/puppet/type/hash_file.rb": "bdb4d3fcd0d9949ec57ae96f7b425be8",
+  "metadata.json": "5ddbdd32a829893daa933fd4ee3c7d5d"
+}

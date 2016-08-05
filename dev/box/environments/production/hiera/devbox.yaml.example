@@ -1,0 +1,61 @@
+---
+berlinonline::project_name: "devbox-cms"
+berlinonline::project_prefix: "devbox-cms"
+berlinonline::application_name: devbox-cms.local
+berlinonline::application_dir: "pub"
+berlinonline::application_env: development
+berlinonline::bo_environment: development
+berlinonline::aliases_root_recipient: vagrant
+#berlinonline::project_git_path: "git@github.com:your/devbox-cms.git"
+berlinonline::webdirectory_mode: '0777'
+
+berlinonline::sudos:all:
+  - deploy
+
+elasticsearch::branch: "2.3"
+
+couchdb::version: "1.6.1"
+couchdb::bind_address: "127.0.0.1"
+
+converjon::version: "2.7.2"
+converjon::nginx_deployment: path
+converjon::base_url_path: /converjon/
+converjon::reject_invalid_ssl: false
+converjon::url_whitelist:
+  - '~ ^https:\/\/devbox-cms.local:?\d*\/\S+'
+converjon::aliases:
+  -
+    name: local
+    base_file_path: "/srv/www/devbox-cms.local/data/files"
+    fallback_base_file_paths:
+      - "/srv/www/devbox-cms.local/data/temp_files"
+    headers:
+      - 'Cache-Control: "public, max-age=86400"'
+
+roles:
+  - berlinonline::roles::honeybee
+
+local_conf:
+  application:
+    -
+      file: config.json
+      provider: json
+      content:
+        local:
+            base_href: https://devbox-cms.local/
+    -
+      file: elasticsearch.json
+      provider: json
+      content:
+        elasticsearch:
+          host: localhost
+          port: 9200
+    -
+      file: couchdb.json
+      provider: json
+      content:
+        couchdb:
+          host: localhost
+          port: 5984
+          user: honeybee
+          password: honeybee
