@@ -1,0 +1,90 @@
+berlinonline::webdirectory:           '/srv/www'
+berlinonline::repo_tool:              'zypp'
+berlinonline::additional_roles:
+  - 'berlinonline::systemd'
+
+elasticsearch::es_directory:        '/usr/share/java/elasticsearch'
+
+berlinonline::packagelist:
+  avahi:
+    name: avahi
+  certs:
+    name:
+      - ca-certificates-cacert
+      - ca-certificates-mozilla
+  nfs_server:
+    name: nfs-kernel-server
+  php5-bcmath:
+    name: php5-bcmath
+    notify: Service[php-fpm]
+  php5-ctype:
+    name: php5-ctype
+    notify: Service[php-fpm]
+  php5-curl:
+    name: php5-curl
+    notify: Service[php-fpm]
+  php5-fileinfo:
+    name: php5-fileinfo
+    notify: Service[php-fpm]
+  php5-gd:
+    name: php5-gd
+    notify: Service[php-fpm]
+  php5-iconv:
+    name: php5-iconv
+    notify: Service[php-fpm]
+  php5-imagick:
+    name: php5-imagick
+    require: Exec[zypper-refresh]
+  php5-intl:
+    name: php5-intl
+    notify: Service[php-fpm]
+  php5-json:
+    name: php5-json
+    notify: Service[php-fpm]
+  php5-mbstring:
+    name: php5-mbstring
+    notify: Service[php-fpm]
+  php5-mcrypt:
+    name: php5-mcrypt
+    notify: Service[php-fpm]
+  php5-opcache:
+    name: php5-opcache
+    notify: Service[php-fpm]
+  php5-openssl:
+    name: php5-openssl
+    notify: Service[php-fpm]
+  php5-pcntl:
+    name: php5-pcntl
+    notify: Service[php-fpm]
+  php5-phar:
+    name: php5-phar
+    notify: Service[php-fpm]
+  php5-sockets:
+    name: php5-sockets
+    notify: Service[php-fpm]
+  php5-tokenizer:
+    name: php5-tokenizer
+    notify: Service[php-fpm]
+  php5-xdebug:
+    name: php5-xdebug
+    notify: Service[php-fpm]
+    require: Zypprepo[OpenSuse_PHP_Extension]
+  php5-xmlwriter:
+    name: php5-xmlwriter
+    notify: Service[php-fpm]
+  php5-xsl:
+    name: php5-xsl
+    notify: Service[php-fpm]
+  php5-zip:
+    name: php5-zip
+    notify: Service[php-fpm]
+  php5-zlib:
+    name: php5-zlib
+    notify: Service[php-fpm]
+  netcat:
+    name: netcat-openbsd
+  cron:
+    name: cronie
+
+php::fpm_service_name:    'php-fpm'
+php::fpm_package_name:    'php5-fpm'

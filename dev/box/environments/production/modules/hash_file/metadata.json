@@ -1,0 +1,45 @@
+{
+  "name": "fiddyspence-hash_file",
+  "version": "1.0.3",
+  "author": "Chris Spence",
+  "summary": "Type and providers for managing YAML and JSON data",
+  "license": "Apache-2.0",
+  "source": "https://github.com/fiddyspence/puppet-hash_file",
+  "project_page": "https://github.com/fiddyspence/puppet-hash_file",
+  "issues_url": "https://github.com/fiddyspence/puppet-hash_file/issues",
+  "dependencies": [
+  
+  ],
+  "data_provider": null,
+  "tags": [
+    "file",
+    "hash",
+    "data sorting"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "Redhat",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0",
+        "7.0"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "12.04",
+        "10.04",
+        "14.10"
+      ]
+    },
+    {
+      "operatingsystem": "Debian",
+      "operatingsystemrelease": [
+        "5.0",
+        "6.0",
+        "7.0"
+      ]
+    }
+  ]
+}

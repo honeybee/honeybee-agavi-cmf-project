@@ -1,0 +1,50 @@
+{
+  "name": "thias-rabbitmq",
+  "version": "0.2.0",
+  "author": "Matthias Saou",
+  "summary": "Minimalistic RabbitMQ module",
+  "license": "Apache-2.0",
+  "source": "https://github.com/thias/puppet-rabbitmq",
+  "project_page": "https://forge.puppetlabs.com/thias/rabbitmq",
+  "issues_url": "https://github.com/thias/puppet-rabbitmq/issues",
+  "tags": [
+    "rabbitmq",
+    "amqp",
+    "erlang"
+  ],
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemrelease": [
+        "5",
+        "6",
+        "7"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": "3.x"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=2.7.20 <4.0.0"
+    }
+  ],
+  "description": "Minimalistic RabbitMQ module.",
+  "dependencies": [
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">= 3.2.0"
+    }
+  ]
+}

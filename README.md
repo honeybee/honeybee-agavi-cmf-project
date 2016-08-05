@@ -19,6 +19,7 @@ These instructions detail the procedure for boostrapping your application on a v
 ###Prerequisites
 
  * `VirtualBox` - https://www.virtualbox.org/wiki/Downloads
+ * `VirtualBox Guest Additions` - https://www.virtualbox.org/manual/ch04.html#idm1784
  * `git` - https://git-scm.com
  * `vagrant` - http://downloads.vagrantup.com
  * `composer` - https://getcomposer.org/download
@@ -62,6 +63,8 @@ git push -u origin master
 When your new repository is publicly available, the VM is ready to launch. When the VM is first initialised, it will clone the Github repository you just created. You can start the machine with the following commands:
 
 ```shell
+# ensure VirtualBox guest additions are installed!
+# vagrant plugin install vagrant-vbguest
 cd honeybee-agavi-cmf-project/dev/box
 vagrant up
 # please wait, the virtual machine will be downloaded and installed

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:types_1_0="http://agavi.org/agavi/config/global/types/1.0"
+    xmlns="http://berlinonline.de/schemas/honeybee/config/jobs/1.0"
+    targetNamespace="http://berlinonline.de/schemas/honeybee/config/jobs/1.0"
+    elementFormDefault="qualified"
+>
+
+    <xs:include schemaLocation="./settings.xsd" />
+
+    <xs:group name="ConfigurationType">
+        <xs:choice>
+            <xs:element name="jobs" type="JobsListType" minOccurs="0" maxOccurs="1" />
+        </xs:choice>
+    </xs:group>
+
+    <xs:complexType name="JobsListType">
+        <xs:sequence>
+            <xs:element name="job" type="JobType" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="JobType">
+        <xs:sequence>
+            <xs:element name="class" type="xs:string" minOccurs="1" maxOccurs="1" />
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="strategy" type="StrategyType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="name" type="xs:string" use="required" />
+    </xs:complexType>
+
+    <xs:complexType name="StrategyType">
+        <xs:sequence>
+            <xs:element name="retry" type="RetryType" minOccurs="0" maxOccurs="1" />
+            <xs:element name="failure" type="FailureType" minOccurs="0" maxOccurs="1" />
+        </xs:sequence>
+        <xs:attribute name="implementor" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="RetryType">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="implementor" type="xs:string" use="optional" />
+    </xs:complexType>
+
+    <xs:complexType name="FailureType">
+        <xs:group ref="SettingsGroup" />
+        <xs:attribute name="implementor" type="xs:string" use="optional" />
+    </xs:complexType>
+</xs:schema>

@@ -48,8 +48,8 @@
 
     <xs:group name="SubscriptionGroup">
         <xs:choice>
-            <xs:element name="subscription" type="SubscriptionType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="subscriptions" type="SubscriptionCollectionType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="subscription" type="SubscriptionType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="subscriptions" type="SubscriptionCollectionType" minOccurs="0" maxOccurs="1" />
         </xs:choice>
     </xs:group>
 
@@ -64,14 +64,15 @@
             <xs:element name="transport" type="xs:string" />
             <xs:group ref="FilterGroup" />
             <xs:group ref="HandlerGroup" />
+            <xs:element name="settings" type="SettingsListType" minOccurs="0" maxOccurs="1"/>
         </xs:sequence>
         <xs:attribute name="enabled" type="xs:boolean" use="optional" />
     </xs:complexType>
 
     <xs:group name="HandlerGroup">
         <xs:choice>
-            <xs:element name="handler" type="HandlerType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="handlers" type="HandlerCollectionType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="handler" type="HandlerType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="handlers" type="HandlerCollectionType" minOccurs="0" maxOccurs="1" />
         </xs:choice>
     </xs:group>
 
@@ -88,8 +89,8 @@
 
     <xs:group name="FilterGroup">
         <xs:choice>
-            <xs:element name="filter" type="FilterType" minOccurs="0" maxOccurs="unbounded"/>
-            <xs:element name="filters" type="FilterCollectionType" minOccurs="0" maxOccurs="1"/>
+            <xs:element name="filter" type="FilterType" minOccurs="0" maxOccurs="unbounded" />
+            <xs:element name="filters" type="FilterCollectionType" minOccurs="0" maxOccurs="1" />
         </xs:choice>
     </xs:group>
 
