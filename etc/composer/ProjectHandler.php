@@ -101,6 +101,7 @@ class ProjectHandler
             $io->write('When the repository is ready, you can launch the VM by executing the following commands:');
             $io->write('');
             $io->write('<options=bold>cd ' . $project_path . '/dev/box</>');
+            $io->write('<options=bold>vagrant plugin install vagrant-vbguest</> <comment># required plugin</comment>');
             $io->write('<options=bold>vagrant up</> <comment># this may take a while, time to grab a coffee</comment>');
             $io->write('');
             $io->write('Once the VM is up and running you can complete installation using the following commands:');
