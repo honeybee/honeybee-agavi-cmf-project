@@ -5,6 +5,6 @@
     "private": true,
     "main": "pub/static/requirejs.js",
     "dependencies": {
-        "honeybee": "git@github.com:honeybee/honeybee-agavi-cmf-vendor.git"
+        "honeybee": "https://git@github.com/honeybee/honeybee-agavi-cmf-vendor.git"
     }
 }
