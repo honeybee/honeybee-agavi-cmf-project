@@ -4,6 +4,6 @@
     "version": "0.1.1",
     "private": true,
     "dependencies": {
-        "honeybee": "git+ssh://git@github.com:honeybee/honeybee-agavi-cmf-vendor.git"
+        "honeybee": "https://git@github.com/honeybee/honeybee-agavi-cmf-vendor.git"
     }
 }
